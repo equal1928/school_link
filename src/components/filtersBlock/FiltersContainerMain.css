@@ -1,0 +1,55 @@
+.filtersContainer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+
+    background-size: cover;
+    height: 60vh
+}
+
+.filtersImage {
+    
+}
+
+.filtersList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.priceButton {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 190px;
+}
+
+.filtersButton {
+    width: 120px;
+    margin: 25px;
+}
+
+.filtersButton button {
+    border-radius: 13px;
+    width: 120px;
+    height: 45px;
+}
+
+.searchButton {
+    border-radius: 13px;
+    margin-top: 80px;
+    margin-bottom: 50px;
+    width: 220px;
+    height: 60px;
+}
+
+.priceButton .form-control, .priceButton .form-floating,
+ .priceButton .form-select {
+    width: 40px;
+    height: 45px;
+}
+
+.priceButton .form-control, .priceButton .input-group-text{
+    border-radius: 13px;
+}

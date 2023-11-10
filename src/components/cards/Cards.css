@@ -1,0 +1,55 @@
+.SchoolCard {
+    margin: 25px;
+}
+
+.HouseCardLarge {
+    margin: 25px;
+}
+
+.HouseCardSmall {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 30px;
+}
+
+.titleHouseCard {
+    font-size: 22px;
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 25px;
+}
+
+.priceHouse {
+    font-size: 22px;
+    border-width: 1px;
+    border-style: solid;
+    border-color:gray;
+    border-radius: 8px;
+    width:fit-content;
+    height: 50px;
+    padding: 8px;
+}
+
+.linkToAd {
+    border-width: 1px;
+    border-style: solid;
+    border-color:black;
+    border-radius: 8px;
+    width:fit-content;
+    height: 50px;
+    padding: 8px;
+}
+
+.ListSchoolCards {
+    height: 50vh;
+    width: 40vw;
+
+    display: flex;
+    /* justify-content: end; */
+    /* align-items: center; */
+    flex-wrap: wrap;
+}

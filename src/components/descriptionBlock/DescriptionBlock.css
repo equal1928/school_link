@@ -1,0 +1,37 @@
+.descriptionBlock {
+    margin-top: 25px;
+}
+
+.descriptionTitle {
+    margin-left: 20px;
+}
+
+.descriptionTitle p {
+    font-size: 40px;
+}
+
+.descriptionContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* flex-direction: row; */
+    /* align-content: space-between;
+    flex-direction: row; */
+}
+
+.descriptionRow {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 25px;
+}
+
+.descriptionContainer p {
+    font-size: 20px;
+    margin: 0px;
+}
+
+.checkIcon {
+    height: 40px;
+    width: 40px;
+}

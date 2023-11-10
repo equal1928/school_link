@@ -1,0 +1,28 @@
+.entryBlock {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.favouritesButton {
+    margin: 5px;
+    width: 37px;
+    height: 37px;
+}
+
+.loginButton {
+    border-radius: 13px;
+    border-width: 2px;
+    border-color: black;
+    height: 37px;
+    margin: 5px;
+    padding-top: 2px;;
+}
+
+.registrationButton {
+    border-radius: 13px;
+    border-width: 2px;
+    border-color: black;
+    height: 37px;
+    margin: 5px;
+    padding-top: 2px;
+}
