@@ -1,18 +1,12 @@
-.SearchMapContainer {
-    display: flex;
-    position: relative;
-}
-
 .MapContainer {
     height: 80vh;
-    width: 60vw;
+    width: 100vw;
 }
 
-.showListButton {
-    position: absolute;
-    z-index: 99999;
-    right: 10px;
-    margin-top: 10px;
+.titleList {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 25px 0px 25px;
 }
 
 .closeButton {
@@ -25,9 +19,19 @@
     display: flex;
     /* justify-content: space-around; */
     /* align-items: center; */
+    position: absolute;
+    z-index: 99999;
     flex-wrap: wrap;
-    width: 40vw;
+    width: 360px;
     height: 80vh;
     background-color: #E3E5E5;
     overflow-y: auto;
+}
+
+.SpinnerListHouse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    width: 100vw;
 }

@@ -8,7 +8,7 @@ import './Cards.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { HouseModel } from '../../models/HouseModel'
-import { Spinner } from 'react-bootstrap'
+import { Container, Pagination, Spinner } from 'react-bootstrap'
 
 
 const card = [
@@ -112,20 +112,33 @@ export function ListHouse() {
         });
     }, []);
 
+    let active = 1;
+    let items = [];
+    for (let number = 1; number <= 5; number++) {
+        items.push(
+            <Pagination.Item key={number} active={number === active}>
+            {number}
+            </Pagination.Item>,
+        );
+    }
+
     return (
-        <div className='ListHouse'>
-            {isLoading ? (
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </Spinner>
+        <div className="ListHouse">
+            {/* {isLoading ? (
+                <Container className="SpinnerListHouse">
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </Container>
             ) : (
                 Cards.map((card: HouseModel) => (
                     <HouseCardSmall card={card}/>
                 ))
-            )}
-            {/* <HouseCardSmall card={card[0]}/>
+            )} */}
+            <HouseCardSmall card={card[0]}/>
             <HouseCardSmall card={card[1]}/>
-            <HouseCardSmall card={card[2]}/> */}
+            <HouseCardSmall card={card[2]}/>
+            <Pagination>{items}</Pagination>
         </div>
     )
 }

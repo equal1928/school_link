@@ -3,9 +3,10 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import { Icon, LatLngExpression, divIcon, point } from "leaflet";
 import { PointsOnMapModel } from '../../models/PointOnMapModel'
 import { useState } from "react";
-import { CloseButton, Spinner } from "react-bootstrap";
+import { CloseButton, Offcanvas, Spinner } from "react-bootstrap";
 
 import { HouseCardLarge } from "../cards/HouseCardLarge";
+import "./SearchMap.css"
 
 import img1 from '../images/House1.png'
 import img2 from '../images/House2.png'
@@ -133,12 +134,11 @@ export function Map(props: PointsOnMapModel) {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const toggleShow = () => setShow((s) => !s);
 
     return (
         <div className="SearchMapContainer">
-            <div className="ListHouseMap">
-                {/* {cardsIsLoading ? (
+            <div className="ListHouseMap" style={{ display: show ? 'block' : 'none' }}>
+                {/* { {cardsIsLoading ? (
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
@@ -146,8 +146,11 @@ export function Map(props: PointsOnMapModel) {
                     <HouseCardLarge card={card[0]}/>
                     <HouseCardLarge card={card[1]}/>
                     <HouseCardLarge card={card[2]}/>
-                )} */}
-                <CloseButton className="closeButton" />
+                )} } */}
+                <div className="titleList">
+                    <p style={{ margin: 0}}>Объявления</p>
+                    <CloseButton className="closeButton" onClick={handleClose}/>
+                </div>
                 <HouseCardLarge card={card[0]}/>
                 <HouseCardLarge card={card[1]}/>
                 <HouseCardLarge card={card[2]}/>
@@ -162,7 +165,8 @@ export function Map(props: PointsOnMapModel) {
                         {props.points.map(point => (
                             <Marker key={point.id} position={[point.latitude, point.longitude]} icon={customIcon} eventHandlers={{
                                 click: () => {
-                                    toggleShow()
+                                    setShow(true)
+                                    //TODO: Сделать запрос объектов, выбраного дома 
                                 },
                               }}></Marker>
                         ))}

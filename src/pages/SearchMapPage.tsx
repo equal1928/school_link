@@ -5,11 +5,11 @@ import { Map } from '../components/map/Map'
 import '../components/cards/Cards.css'
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Button, Offcanvas, Spinner } from 'react-bootstrap';
+import { Button, Container, Offcanvas, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import '../components/filtersBlock/FiltersContainerSearch.css'
-import '../components/map/SearchMap.css'
+import './SearchMapPage.css'
 
 const points = [
     {
@@ -106,7 +106,7 @@ export function SearchMapPage() {
     }, []);
 
     const navigate = useNavigate();
-    function handleClick(event: any) {
+    function handleClick() {
         navigate('/search-list');
     }
 
@@ -116,16 +116,19 @@ export function SearchMapPage() {
             <FiltersList />
             <div className="SearchMapContainer">
                 {mapIsLoading ? (
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
+                    <Container className="SpinnerMapLoading">
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                    </Container>
                 ) : (
-                    <Map points={Points} />
+                    <div>
+                        <div className="showListButton">
+                            <Button onClick={handleClick}>Показать объекты списком</Button>
+                        </div>
+                        <Map points={Points} />
+                    </div>
                 )}
-                <div className="showListButton">
-                    <Button  onClick={handleClick}>Показать объекты списком</Button>
-                </div>
-                
             </div>
         </div>
     );
