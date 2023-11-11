@@ -1,0 +1,46 @@
+.modal-content {
+    padding: 15px !important;
+}
+
+.modal-header, .modal-footer {
+    border: 0 !important;
+}
+
+.LoginForm input, .RegistrationForm input {
+    height: 60px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    background-color: hsl(180, 2%, 84%, 40%);
+}
+
+.LoginForm input:focus, .RegistrationForm input:focus {
+    box-shadow: inset 0px 0px 0px 0px;
+    border-color: gray;
+}
+
+.FooterButton {
+    display: block;
+    width: 100%;
+    height: 60px;
+    border-width: 1px;
+    border-style: solid;
+    border-color:black;
+    border-radius: 8px;
+    background-color: white;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.FooterButton:hover {
+    background-color: white;
+    color: black;
+    border-color:black;
+}
+
+.FooterButton:active {
+    background-color: lightgrey;
+    color: black;
+    border-color:black;
+}

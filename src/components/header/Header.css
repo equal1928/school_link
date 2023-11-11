@@ -5,24 +5,34 @@
 
 .favouritesButton {
     margin: 5px;
-    width: 37px;
-    height: 37px;
+    width: 35px;
+    height: 35px;
 }
 
 .loginButton {
-    border-radius: 13px;
-    border-width: 2px;
-    border-color: black;
-    height: 37px;
-    margin: 5px;
-    padding-top: 2px;;
+    width: 80px;
 }
 
 .registrationButton {
-    border-radius: 13px;
+    width: 206px;
+}
+
+.loginButton, .registrationButton {
+    border-radius: 10px;
     border-width: 2px;
-    border-color: black;
-    height: 37px;
+    border-color: gray;
+    background-color: white;
+    border-style: solid;
     margin: 5px;
-    padding-top: 2px;
+    height: 35px;
+}
+
+.loginButton:hover, .registrationButton:hover {
+    background-color: white;
+    color: black;
+}
+
+.loginButton:active, .registrationButton:active {
+    color: black;
+    border-color:black;
 }

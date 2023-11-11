@@ -1,15 +1,21 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+import { useState } from 'react';
+
+import { RegistrationForm } from '../registration/RegistrationForm'
+import { LoginForm } from '../registration/LoginForm'
 
 import './Header.css'
 import logoIcon from '../images/logoSite.png'
 import favouritesIcon from '../images/favourites.png'
-import { Image } from 'react-bootstrap';
 
 
 export function Header() {
+    const [loginModalShow, setLoginModalShow] = useState(false);
+    const [registrationModalShow, setRegistrationModalShow] = useState(false);
+
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -20,11 +26,25 @@ export function Header() {
                 <Navbar.Collapse className="entryBlock" id="basic-navbar-nav">
                     <Nav className="navLink">
                         <Image className="favouritesButton" src={favouritesIcon} />
-                        <Button className="loginButton" variant="outline-secondary">Войти</Button>
-                        <Button className="registrationButton" variant="outline-secondary">Зарегистрироваться</Button>
+                        <button className="loginButton" 
+                                onClick={() => setLoginModalShow(true)}>
+                            Войти
+                        </button>
+                        <button className="registrationButton" 
+                                onClick={() => setRegistrationModalShow(true)}>
+                            Зарегистрироваться
+                        </button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
+            <LoginForm
+                show={loginModalShow}
+                onHide={() => setLoginModalShow(false)}
+            />
+            <RegistrationForm
+                show={registrationModalShow}
+                onHide={() => setRegistrationModalShow(false)}
+            />
         </Navbar>
     )
 }
