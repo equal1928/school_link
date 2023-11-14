@@ -124,7 +124,7 @@ export function SearchMapPage() {
                 ) : (
                     <div>
                         <div className="showListButton">
-                            <Button onClick={handleClick}>Показать объекты списком</Button>
+                            <Button variant="light" onClick={handleClick}>Показать объекты списком</Button>
                         </div>
                         <Map points={Points} />
                     </div>

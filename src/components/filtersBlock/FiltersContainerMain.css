@@ -3,13 +3,7 @@
     justify-content: end;
     align-items: center;
     flex-direction: column;
-
-    background-size: cover;
-    height: 60vh
-}
-
-.filtersImage {
-    
+    height: 90vh;
 }
 
 .filtersList {
@@ -18,38 +12,54 @@
     flex-wrap: wrap;
 }
 
+.filtersList Form {
+    margin: 5px 0px 5px 15px;
+}
+
 .priceButton {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    width: 190px;
+    width: 210px;
 }
 
 .filtersButton {
-    width: 120px;
-    margin: 25px;
+
 }
 
 .filtersButton button {
-    border-radius: 13px;
-    width: 120px;
+    border-radius: 0px;
+    height: 45px;
+}
+
+.filtersFirstButton button {
+    border-radius: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 45px;
+}
+
+.filtersLastButton button {
+    border-radius: 0px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     height: 45px;
 }
 
 .searchButton {
     border-radius: 13px;
-    margin-top: 80px;
-    margin-bottom: 50px;
+    margin-top: 90px;
+    margin-bottom: 70px;
     width: 220px;
     height: 60px;
 }
 
 .priceButton .form-control, .priceButton .form-floating,
  .priceButton .form-select {
-    width: 40px;
+    width: 50px;
     height: 45px;
 }
 
 .priceButton .form-control, .priceButton .input-group-text{
-    border-radius: 13px;
+    border-radius: 0px;
 }

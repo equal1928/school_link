@@ -52,7 +52,7 @@ export function RegistrationForm(props: any) {
             }}
         >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+                <Modal.Title>
                     Создать личный кабинет
                 </Modal.Title>
             </Modal.Header>
