@@ -42,7 +42,7 @@ export function LoginForm(props: any) {
             }}
         >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+                <Modal.Title>
                     Войти в личный кабинет
                 </Modal.Title>
             </Modal.Header>

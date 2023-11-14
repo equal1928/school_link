@@ -13,7 +13,12 @@
 
 .showListButton {
     position: absolute;
-    z-index: 99999;
-    right: 10px;
-    margin-top: 10px;
+    z-index: 999;
+    right: 20px;
+    margin-top: 30px;
+}
+
+.showListButton button {
+    border-color: gray !important;
+    border-width: 2px !important;
 }

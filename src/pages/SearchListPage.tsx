@@ -18,7 +18,7 @@ export function SearchListPage() {
             <Header />
             <FiltersList />
             <Container className="showMapRow">
-                <Button className="showMapButton" onClick={handleClick}>Показать объекты на карте</Button>
+                <Button variant="light" onClick={handleClick}>Показать объекты на карте</Button>
             </Container>
             <Container className="ListContainer">
                 <ListHouse />

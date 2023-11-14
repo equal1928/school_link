@@ -1,5 +1,6 @@
 .MapContainer {
-    height: 80vh;
+    margin-top: 20px;
+    height: 85vh;
     width: 100vw;
 }
 
@@ -9,21 +10,14 @@
     margin: 10px 25px 0px 25px;
 }
 
-.closeButton {
-    /* position: relative;
-    right: 10px;
-    margin-top: 10px; */
-}
-
 .ListHouseMap {
     display: flex;
-    /* justify-content: space-around; */
-    /* align-items: center; */
+    margin-top: 20px;
     position: absolute;
-    z-index: 99999;
+    z-index: 1001;
     flex-wrap: wrap;
     width: 360px;
-    height: 80vh;
+    height: 85vh;
     background-color: #E3E5E5;
     overflow-y: auto;
 }

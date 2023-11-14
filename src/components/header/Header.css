@@ -1,6 +1,14 @@
+.headerContainer {
+    --bs-bg-opacity: 0 !important;
+}
+
 .entryBlock {
     display: flex;
     justify-content: flex-end;
+}
+
+.toggleButton {
+    background-color: white !important;
 }
 
 .favouritesButton {

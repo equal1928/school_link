@@ -17,12 +17,12 @@ export function Header() {
     const [registrationModalShow, setRegistrationModalShow] = useState(false);
 
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar expand="lg" className="bg-body-tertiary headerContainer">
             <Container>
                 <Navbar.Brand href="/">
                     <img src={logoIcon} className="App-logo" alt="logo" />
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle className="toggleButton" aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="entryBlock" id="basic-navbar-nav">
                     <Nav className="navLink">
                         <Image className="favouritesButton" src={favouritesIcon} />

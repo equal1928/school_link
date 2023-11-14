@@ -1,0 +1,36 @@
+.footerContainer {
+    background-color: #25282C;
+    padding: 1% 3% 0% 3%;
+}
+
+.footerContainer p, .footerContainer a {
+    color: white;
+}
+
+.footerTitle {
+    font-size: 35px;
+}
+
+.footerPolicyText {
+    color: gray;
+    font-size: 11px;
+}
+
+.horizontalLine {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.footerRow, .footerPolicy {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footerColumnSubscribe {
+    width: 350px;
+}
+
+.formEmail {
+    margin-bottom: 5px;
+}

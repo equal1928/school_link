@@ -4,8 +4,9 @@
     margin: 10px 0px 10px 0px;
 }
 
-.showMapButton {
-
+.showMapRow button {
+    border-color: gray !important;
+    border-width: 2px !important;
 }
 
 .ListContainer {
