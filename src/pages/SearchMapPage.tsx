@@ -1,15 +1,15 @@
+import { useNavigate } from 'react-router-dom'
+import axios from "axios";
+import { useEffect, useState } from "react"
+import { Button, Container, Offcanvas, Spinner } from 'react-bootstrap'
+
 import { Header } from '../components/header/Header'
 import { FiltersList } from '../components/filtersBlock/FiltersList'
 import { Map } from '../components/map/Map'
 
-import '../components/cards/Cards.css'
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Button, Container, Offcanvas, Spinner } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-
 import '../components/filtersBlock/FiltersContainerSearch.css'
 import './SearchMapPage.css'
+import '../components/cards/Cards.css'
 
 const points = [
     {

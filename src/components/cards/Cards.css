@@ -10,6 +10,7 @@
     display: flex;
     flex-wrap: nowrap;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .titleHouseCard {
@@ -52,4 +53,10 @@
     /* justify-content: end; */
     /* align-items: center; */
     flex-wrap: wrap;
+}
+
+.ListHouse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

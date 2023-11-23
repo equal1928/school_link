@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Header } from '../components/header/Header'
 import { FiltersList } from '../components/filtersBlock/FiltersList'
 import { ListHouse } from "../components/cards/ListHouse"
+import { Footer } from '../components/footer/Footer'
 
 import './SearchListPage.css'
 
@@ -23,6 +24,7 @@ export function SearchListPage() {
             <Container className="ListContainer">
                 <ListHouse />
             </Container>
+            <Footer />
         </div>
     );
 }
