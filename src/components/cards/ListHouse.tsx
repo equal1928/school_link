@@ -103,7 +103,7 @@ export function ListHouse() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("https://retoolapi.dev/cpL8ts/data").then(response => {
+        axios.get("https://retoolapi.dev/ylEncE/data").then(response => {
             setCards(response.data);
             setIsLoading(false)
         }).catch(error => {
@@ -124,7 +124,7 @@ export function ListHouse() {
 
     return (
         <div className="ListHouse">
-            {/* {isLoading ? (
+            {isLoading ? (
                 <Container className="SpinnerListHouse">
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
@@ -134,10 +134,7 @@ export function ListHouse() {
                 Cards.map((card: HouseModel) => (
                     <HouseCardSmall card={card}/>
                 ))
-            )} */}
-            <HouseCardSmall card={card[0]}/>
-            <HouseCardSmall card={card[1]}/>
-            <HouseCardSmall card={card[2]}/>
+            )}
             <Pagination>{items}</Pagination>
         </div>
     )
