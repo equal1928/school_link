@@ -12,10 +12,6 @@
     flex-wrap: wrap;
 }
 
-.filtersList Form {
-    margin: 5px 0px 5px 15px;
-}
-
 .priceButton {
     display: flex;
     align-items: center;
@@ -24,12 +20,37 @@
 }
 
 .filtersButton {
-
+    
 }
 
 .filtersButton button {
     border-radius: 0px;
     height: 45px;
+}
+
+.typeHousFilter {
+    margin: 5px 0px 5px 15px;
+}
+
+.schoolListFilter {
+    max-height: 300px; 
+    width: 200px;
+    padding: 10px 15px 10px 15px;
+    overflow-y: auto; 
+}
+
+.timeSchoolFilter {
+    margin: 5px 0px 5px 15px;
+}
+
+.numberRoomsFilter {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px 0px 0px 15px;
+}
+
+.numberRoomsFilter .form-check {
+    margin-right: 5px;
 }
 
 .filtersFirstButton button {
