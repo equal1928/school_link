@@ -1,23 +1,75 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { InputGroup } from 'react-bootstrap';
-import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 
+import { SchoolModel } from '../../models/SchoolModel'
+
 
 export function FiltersList() {
+    const [schools, setSchools] = useState<SchoolModel[]>([]);
+    const [selectedSchools, setSelectedSchools] = useState<number[]>([]);
+    const [schoolNameFilter, setSchoolNameFilter] = useState('');
+
+    useEffect(() => {
+        axios.get('https://retoolapi.dev/BwAFP7/data')
+            .then(response => {
+                setSchools(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
+
+    const handleSchoolCheckboxChange = (schoolId: number) => {
+        const updatedSelectedSchools = selectedSchools.includes(schoolId)
+            ? selectedSchools.filter(id => id !== schoolId)
+            : [...selectedSchools, schoolId];
+
+        setSelectedSchools(updatedSelectedSchools);
+    };
+
+
+    const renderSchoolCheckboxes = () => {
+        return schools
+            .filter(school => school && school.name && school.name.toLowerCase().includes(schoolNameFilter.toLowerCase()))
+            .map(school => (
+                <Form.Check
+                    key={school.id}
+                    type="checkbox"
+                    label={school.name}
+                    checked={selectedSchools.includes(school.id)}
+                    onChange={() => handleSchoolCheckboxChange(school.id)}
+                />
+            ));
+    };
+
     return (
         <div className="filtersList" >
             <DropdownButton className="filtersFirstButton" variant="light" id="dropdown-basic-button" title="Тип жилья" data-bs-theme="light">
-                <Form>
+                <Form className="typeHousFilter">
                     <Form.Check label="Новостройка" />
                     <Form.Check label="Вторичное жилье" />
                 </Form>  
             </DropdownButton>
             <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button" title="Школа" data-bs-theme="light">
-                {/* Фильтры */}
+                <Form className="schoolListFilter">
+                    <InputGroup>
+                        <Form.Control
+                            type="text"
+                            placeholder="Название школы"
+                            value={schoolNameFilter}
+                            onChange={(e) => setSchoolNameFilter(e.target.value)}
+                        />
+                    </InputGroup>
+                    <Form.Group>
+                        {renderSchoolCheckboxes()}
+                    </Form.Group>
+                </Form>
             </DropdownButton>
             <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button" title="Расстояние до школы" data-bs-theme="light">
-                <Form>
+                <Form className="timeSchoolFilter">
                     <Form.Check label="5 минут" />
                     <Form.Check label="10 минут" />
                     <Form.Check label="15 минут" />
@@ -26,7 +78,7 @@ export function FiltersList() {
                 </Form> 
             </DropdownButton>
             <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button" title="Количество комнат" data-bs-theme="light">
-                <Form>
+                <Form className="numberRoomsFilter">
                     <Form.Check label="Студия" />
                     <Form.Check label="1" />
                     <Form.Check label="2" />

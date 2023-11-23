@@ -1,10 +1,10 @@
 import { Image } from 'react-bootstrap';
-import { SchoolModel } from '../../models/SchoolModel'
+import { SchoolModelCard } from '../../models/SchoolModelCard'
 
 import './Cards.css'
 
 interface SchoolCardProps {
-    card: SchoolModel;
+    card: SchoolModelCard;
 }
 
 export function SchoolCard(props: SchoolCardProps) {
@@ -12,7 +12,7 @@ export function SchoolCard(props: SchoolCardProps) {
         <div className="SchoolCard">
             <Image src={`${props.card.photo}`} alt="" />
             <div>
-                {props.card.title}<br/>                
+                {props.card.name}<br/>                
             </div>
             <div>
                 {props.card.features.map(feature => <li>{feature}</li>)}               
