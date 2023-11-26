@@ -98,44 +98,90 @@ const card = [
     },
 ]
 
+
 export function ListHouse() {
-    const [Cards, setCards] = useState([]);
+    const [cards, setCards] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [cardsPerPage] = useState(5);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("https://retoolapi.dev/ylEncE/data").then(response => {
-            setCards(response.data);
-            setIsLoading(false)
-        }).catch(error => {
-            console.error(error);
-            setIsLoading(false)
-        });
+        axios.get("https://retoolapi.dev/ylEncE/data")
+            .then(response => {
+                setCards(response.data);
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error(error);
+                setIsLoading(false);
+            });
     }, []);
 
-    let active = 1;
-    let items = [];
-    for (let number = 1; number <= 5; number++) {
-        items.push(
-            <Pagination.Item key={number} active={number === active}>
-            {number}
-            </Pagination.Item>,
-        );
-    }
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [currentPage]);
 
-    return (
-        <div className="ListHouse">
-            {isLoading ? (
+    const lastPage = Math.ceil(cards.length / cardsPerPage);
+    const maxPageDisplay = 5;
+
+    const getDisplayedPages = () => {
+        const startPage = Math.max(1, currentPage - Math.floor(maxPageDisplay / 2));
+        const endPage = Math.min(lastPage, startPage + maxPageDisplay - 1);
+        return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+    };
+
+    const handlePageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const renderCards = () => {
+        if (isLoading) {
+            return (
                 <Container className="SpinnerListHouse">
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
                 </Container>
-            ) : (
-                Cards.map((card: HouseModel) => (
-                    <HouseCardSmall card={card}/>
-                ))
-            )}
-            <Pagination>{items}</Pagination>
+            );
+        }
+
+        const indexOfLastCard = currentPage * cardsPerPage;
+        const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+        const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
+
+        return currentCards.map((card: HouseModel) => (
+            <HouseCardSmall key={card.id} card={card} />
+        ));
+    };
+
+    const renderPaginationItems = () => {
+        const displayedPages = getDisplayedPages();
+
+        return (
+            <>
+                {currentPage > 1 && (
+                    <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} />
+                )}
+                {displayedPages.map((page) => (
+                    <Pagination.Item
+                        key={page}
+                        active={page === currentPage}
+                        onClick={() => handlePageChange(page)}
+                    >
+                        {page}
+                    </Pagination.Item>
+                ))}
+                {currentPage < lastPage && (
+                    <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} />
+                )}
+            </>
+        );
+    };
+
+    return (
+        <div className="ListHouse">
+            {renderCards()}
+            <Pagination>{renderPaginationItems()}</Pagination>
         </div>
-    )
+    );
 }
