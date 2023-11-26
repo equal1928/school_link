@@ -1,27 +1,28 @@
-import { Image } from 'react-bootstrap';
+import { Card, Image } from 'react-bootstrap';
 import { SchoolModelCard } from '../../models/SchoolModelCard'
 
-import './Cards.css'
+import './SchoolCard.css'
 
-interface SchoolCardProps {
-    card: SchoolModelCard;
-}
 
-export function SchoolCard(props: SchoolCardProps) {
+export function SchoolCard({ card }: { card: SchoolModelCard }) {
     return (
-        <div className="SchoolCard">
-            <Image src={`${props.card.photo}`} alt="" />
-            <div>
-                {props.card.name}<br/>                
-            </div>
-            <div>
-                {props.card.features.map(feature => <li>{feature}</li>)}               
-            </div>
-            <div>
-                {props.card.address}<br/> 
-                Школа №
-            </div>
-            <div><a href={props.card.link}>Перейти на сайт школы</a></div>
-        </div>
+        <Card className="SchoolCard" style={{ width: '18rem', backgroundColor: "#E3E5E5" }}>
+            <Card.Img variant="top" src={card.photo} />
+            <Card.Body>
+                <div className="schoolName">
+                    {card.name}<br/>                
+                </div>
+                {/* <div>
+                    {card.features && card.features.map(feature => <li>{feature}</li>)}               
+                </div> */}
+                <div>
+                    <li>Профильные классы,</li>
+                    <li>Подготовка к олимпиадам,</li>
+                    <li>Высокий средний бал ЕГЭ</li>         
+                </div>
+                <div className="cardAddress">{card.address}<br/></div>
+                <div className="cardLink"><a href={card.link}>Перейти на сайт школы</a></div>
+            </Card.Body>
+        </Card>
     )
 }

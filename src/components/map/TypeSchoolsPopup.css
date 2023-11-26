@@ -1,0 +1,27 @@
+.popoverButton {
+    background-color: white !important;
+    color: black !important;
+    height: 28px;
+    width: 28px;
+    padding: 0px !important;
+}
+
+.popoverHeader {
+    background-color: white !important;
+}
+
+.popoverBody {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0px !important;
+}
+
+.popoverBody span {
+    display: flex;
+}
+
+.popoverBody img {
+    margin-right: 5px;
+    width: 24px;
+    height: 24px;
+}

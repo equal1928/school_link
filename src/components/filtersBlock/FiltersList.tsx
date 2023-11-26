@@ -4,11 +4,11 @@ import { InputGroup } from 'react-bootstrap';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 
-import { SchoolModel } from '../../models/SchoolModel'
+import { SchoolModelFilter } from '../../models/SchoolModelFilter'
 
 
 export function FiltersList() {
-    const [schools, setSchools] = useState<SchoolModel[]>([]);
+    const [schools, setSchools] = useState<SchoolModelFilter[]>([]);
     const [selectedSchools, setSelectedSchools] = useState<number[]>([]);
     const [schoolNameFilter, setSchoolNameFilter] = useState('');
 

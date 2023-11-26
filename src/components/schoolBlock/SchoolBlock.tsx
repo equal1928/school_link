@@ -1,4 +1,4 @@
-import { ListSchoolCards } from '../cards/ListSchoolCards'
+//import { ListSchoolCards } from '../cards/ListSchoolCards'
 
 import './SchoolBlock.css'
 
@@ -17,7 +17,7 @@ export function SchoolBlock() {
                     взглядов и ценностей.
                 </p>
             </div>
-            <ListSchoolCards />
+            {/* <ListSchoolCards /> */}
         </div>
     )
 }

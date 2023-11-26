@@ -1,28 +1,27 @@
-import { Image } from 'react-bootstrap';
-import { HouseModel } from '../../models/HouseModel'
+import { Card, Image } from 'react-bootstrap';
+import { HouseModelCard } from '../../models/HouseModelCard'
 
-import './Cards.css'
+import './HouseCardSmall.css'
 
-interface HouseCardProps {
-    card: HouseModel;
-}
 
-export function HouseCardSmall(props: HouseCardProps) {
+export function HouseCardSmall({ card }: { card: HouseModelCard }) {
     return (
-        <div className="HouseCardSmall">
-            <Image className="imageHouseCard" src={props.card.photo} />
-            <div className="cardBody">
+        <Card className="HouseCardSmall">
+            <div className="fixblock">
+                <Card.Img variant="top" className="imageHouseCard" src={card.photo} />
+            </div>
+            <Card.Body className="cardBody">
                 <div className="titleHouseCard">          
-                    {props.card.rooms}-ком. квартира, {props.card.square} кв.м.,  
-                    {props.card.address}
+                    {card.rooms}-ком. квартира, {card.square} кв.м.,  
+                    {card.address}
                 </div>
                 <div className="priceHouse">
-                    {props.card.price} рублей     
+                    {card.price} рублей     
                 </div>
                 <div className="linkToAd">
-                    <a href={props.card.link}>Перейти к объявлению</a>
+                    <a href={card.link}>Перейти к объявлению</a>
                 </div>
-            </div>
-        </div>
+            </Card.Body>
+        </Card>
     )
 }

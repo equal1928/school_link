@@ -12,6 +12,9 @@
 }
 
 .showListButton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     position: absolute;
     z-index: 999;
     right: 20px;
@@ -21,4 +24,5 @@
 .showListButton button {
     border-color: gray !important;
     border-width: 2px !important;
+    margin-bottom: 10px;
 }
