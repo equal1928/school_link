@@ -1,0 +1,56 @@
+.HouseCardSmall {
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 300px !important;
+}
+
+.fixblock {
+    height: 100%;
+    width: 35vw;
+}
+
+.imageHouseCard {
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 25px;
+    background-color: white;
+    width: 65vw;
+}
+
+.titleHouseCard {
+    font-size: 22px;
+}
+
+.priceHouse {
+    font-size: 22px;
+    border-width: 1px;
+    border-style: solid;
+    border-color:gray;
+    border-radius: 8px;
+    width:fit-content;
+    height: 50px;
+    padding: 8px;
+}
+
+.linkToAd {
+    border-width: 1px;
+    border-style: solid;
+    border-color:black;
+    border-radius: 8px;
+    width:fit-content;
+    height: 50px;
+    padding: 8px;
+}
+
+.linkToAd a {
+    color: black;
+}

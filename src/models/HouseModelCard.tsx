@@ -4,7 +4,7 @@ type School = {
     link: string;
 };
 
-export interface OfferModel {
+export interface HouseModelCard {
     id: number;
     photo: string;
     price: number;

@@ -1,0 +1,42 @@
+.SchoolCard {
+    margin: 25px;
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 25px;
+    background-color: white;
+}
+
+.card-body div {
+    margin-bottom: 5px !important;
+}
+
+.ListSchoolCards {
+    height: 50vh;
+    width: 40vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.schoolName {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.nearbySchools {
+    margin-left: 10px;
+    font-size: 13px;
+}
+
+.cardAddress {
+    font-size: 13px;
+    color: gray;
+}
+
+.cardLink a {
+    font-size: 15px;
+    color: black;
+}

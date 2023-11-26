@@ -1,0 +1,16 @@
+.HouseCardLarge {
+    margin: 25px;
+}
+
+.card-body div {
+    margin-bottom: 5px !important;
+}
+
+.cardAddress {
+    font-size: 13px;
+    color: gray;
+}
+
+.cardLink a {
+    color: black;
+}

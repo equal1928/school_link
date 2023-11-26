@@ -6,10 +6,14 @@ import { Button, Container, Offcanvas, Spinner } from 'react-bootstrap'
 import { Header } from '../components/header/Header'
 import { FiltersList } from '../components/filtersBlock/FiltersList'
 import { Map } from '../components/map/Map'
+import { PointsHousesOnMap } from '../models/PointsHousesOnMap';
+import { PointsSchoolsOnMap } from '../models/PointsSchoolsOnMap';
 
 import '../components/filtersBlock/FiltersContainerSearch.css'
 import './SearchMapPage.css'
 import '../components/cards/Cards.css'
+import { TypeSchoolsPopup } from '../components/map/TypeSchoolsPopup';
+
 
 const points = [
     {
@@ -92,18 +96,26 @@ const points = [
 
 
 export function SearchMapPage() {
-    const [Points, setPoints] = useState([]);
+    const [PointsHomes, setPointsHomes] = useState<PointsHousesOnMap[]>([]);
+    const [PointsSchools, setPointsSchools] = useState<PointsSchoolsOnMap[]>([]);
     const [mapIsLoading, setMapIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("https://retoolapi.dev/cpL8ts/data").then(response => {
-            setPoints(response.data);
-            setMapIsLoading(false)
-        }).catch(error => {
+        const fetchData = async () => {
+          try {
+            const homesResponse = await axios.get<PointsHousesOnMap[]>("https://retoolapi.dev/minnlU/homepoints");
+            setPointsHomes(homesResponse.data);
+            const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>("https://retoolapi.dev/zoluMf/schoolpoints");
+            setPointsSchools(schoolsResponse.data);
+            setMapIsLoading(false);
+          } catch (error) {
             console.error(error);
-            setMapIsLoading(false)
-        });
-    }, []);
+            setMapIsLoading(false);
+          }
+        };
+      
+        fetchData();
+      }, []);
 
     const navigate = useNavigate();
     function handleClick() {
@@ -125,8 +137,9 @@ export function SearchMapPage() {
                     <div>
                         <div className="showListButton">
                             <Button variant="light" onClick={handleClick}>Показать объекты списком</Button>
+                            <TypeSchoolsPopup />
                         </div>
-                        <Map points={Points} />
+                        <Map points={{ homes: PointsHomes, schools: PointsSchools }} />
                     </div>
                 )}
             </div>

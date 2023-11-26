@@ -1,27 +1,29 @@
 import { Card, Image } from 'react-bootstrap';
-import { HouseModel } from '../../models/HouseModel'
+import { HouseModelCard } from '../../models/HouseModelCard'
 
-import './Cards.css'
+import './HouseCardLarge.css'
 
-interface HouseCardProps {
-    card: HouseModel;
-}
-
-export function HouseCardLarge(props: HouseCardProps) {
+export function HouseCardLarge({ card }: { card: HouseModelCard }) {
     return (
         <Card className="HouseCardLarge" style={{ width: '18rem', backgroundColor: "#E3E5E5" }}>
-            <Card.Img variant="top" src={props.card.photo} />
+            <Card.Img variant="top" src={card.photo} />
             <Card.Body>
-                <div>
-                    {props.card.price} рублей<br/>                
-                    {props.card.rooms}-ком. квартира, {props.card.square} кв.м., 
-                    {props.card.currentFloor}/{props.card.totalFloors} этаж
+                <div>{card.price} рублей</div>
+                <div>            
+                    {card.rooms}-ком. квартира, {card.square} кв.м.<br/> 
+                    {card.currentFloor}/{card.totalFloors} этаж
                 </div>
-                <div>Школы рядом:</div>
-                <div>
-                    {props.card.schools.map(school => <li>Школа №{school.number} <a href={school.link}>Узнать о школе</a></li>)}   
+                Школы рядом:
+                <div className="nearbySchools">
+                    <li>Школа №203,</li>
+                    <li>Лицей №110,</li>
+                    <li>Школа №10</li>
                 </div>
-                <div>{props.card.address}</div>
+                <div>
+                    {card.schools && card.schools.map(school => <li>Школа №{school.number} <a href={school.link}>Узнать о школе</a></li>)}   
+                </div>
+                <div className="cardAddress">{card.address}</div>
+                <div className="cardLink"><a href={card.link}>Перейти к объявлению</a></div>
             </Card.Body>
         </Card>
     )

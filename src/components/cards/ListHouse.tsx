@@ -7,7 +7,7 @@ import img3 from '../images/House3.png'
 import './Cards.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { HouseModel } from '../../models/HouseModel'
+import { HouseModelCard } from '../../models/HouseModelCard'
 import { Container, Pagination, Spinner } from 'react-bootstrap'
 
 
@@ -100,13 +100,13 @@ const card = [
 
 
 export function ListHouse() {
-    const [cards, setCards] = useState([]);
+    const [cards, setCards] = useState<HouseModelCard[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [cardsPerPage] = useState(5);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("https://retoolapi.dev/ylEncE/data")
+        axios.get("https://retoolapi.dev/cZVlG9/homeinfo")
             .then(response => {
                 setCards(response.data);
                 setIsLoading(false);
@@ -149,8 +149,8 @@ export function ListHouse() {
         const indexOfFirstCard = indexOfLastCard - cardsPerPage;
         const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
 
-        return currentCards.map((card: HouseModel) => (
-            <HouseCardSmall key={card.id} card={card} />
+        return currentCards.map(currentCard => (
+            <HouseCardSmall key={currentCard.id} card={currentCard} />
         ));
     };
 
