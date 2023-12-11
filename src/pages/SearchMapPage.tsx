@@ -4,95 +4,14 @@ import { useEffect, useState } from "react"
 import { Button, Container, Offcanvas, Spinner } from 'react-bootstrap'
 
 import { Header } from '../components/header/Header'
-import { FiltersList } from '../components/filtersBlock/FiltersList'
+import { SearchFiltersBlock } from '../components/filtersBlock/SearchFiltersBlock'
 import { Map } from '../components/map/Map'
 import { PointsHousesOnMap } from '../models/PointsHousesOnMap';
 import { PointsSchoolsOnMap } from '../models/PointsSchoolsOnMap';
-
-import '../components/filtersBlock/FiltersContainerSearch.css'
-import './SearchMapPage.css'
-import '../components/cards/Cards.css'
 import { TypeSchoolsPopup } from '../components/map/TypeSchoolsPopup';
 
-
-const points = [
-    {
-        id: 1,
-        latitude: 56.849796,
-        longitude: 60.578488,
-        apartmentIds: 1
-    },
-    {
-        id: 2,
-        latitude: 56.848270,
-        longitude: 60.528488,
-        apartmentIds: [
-            1,
-            2,
-            3
-        ]
-    },
-    {
-        id: 3,
-        latitude: 56.818270,
-        longitude: 60.563475,
-        apartmentIds: [
-            1,
-            2,
-            3
-        ]
-    },
-    {
-        id: 4,
-        latitude: 56.878270,
-        longitude: 60.693475,
-        apartmentIds: [
-            1,
-            2,
-            3
-        ]
-    },
-    {
-        id: 5,
-        latitude: 56.858270,
-        longitude: 60.653475,
-        apartmentIds: [
-            1,
-            2,
-            3
-        ]
-    },
-    {
-        id: 6,
-        latitude: 56.888270,
-        longitude: 60.603475,
-        apartmentIds: [
-            1,
-            2,
-            3
-        ]
-    },
-    {
-        id: 7,
-        latitude: 56.818270,
-        longitude: 60.693475,
-        apartmentIds: [
-            1,
-            2,
-            3
-        ]
-    },
-    {
-        id: 8,
-        latitude: 56.848270,
-        longitude: 60.663475,
-        apartmentIds: [
-            1,
-            2,
-            3
-        ]
-    },
-]
+import './SearchMapPage.css'
+import '../components/cards/Cards.css'
 
 
 export function SearchMapPage() {
@@ -125,7 +44,7 @@ export function SearchMapPage() {
     return (
         <div>
             <Header />
-            <FiltersList />
+            <SearchFiltersBlock />
             <div className="SearchMapContainer">
                 {mapIsLoading ? (
                     <Container className="SpinnerMapLoading">

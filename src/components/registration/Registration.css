@@ -34,13 +34,13 @@
 }
 
 .FooterButton:hover {
-    background-color: white;
+    background-color: lightgray !important;
     color: black;
     border-color:black;
 }
 
 .FooterButton:active {
-    background-color: lightgrey;
+    background-color: #F4B659 !important;
     color: black;
     border-color:black;
 }

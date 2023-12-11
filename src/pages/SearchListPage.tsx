@@ -2,7 +2,7 @@ import { Button, Container, Pagination } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import { Header } from '../components/header/Header'
-import { FiltersList } from '../components/filtersBlock/FiltersList'
+import { SearchFiltersBlock } from '../components/filtersBlock/SearchFiltersBlock'
 import { ListHouse } from "../components/cards/ListHouse"
 import { Footer } from '../components/footer/Footer'
 
@@ -17,7 +17,7 @@ export function SearchListPage() {
     return (
         <div>
             <Header />
-            <FiltersList />
+            <SearchFiltersBlock />
             <Container className="showMapRow">
                 <Button variant="light" onClick={handleClick}>Показать объекты на карте</Button>
             </Container>

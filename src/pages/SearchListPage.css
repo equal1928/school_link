@@ -8,3 +8,11 @@
     border-color: gray !important;
     border-width: 2px !important;
 }
+
+.showMapRow button:active {
+    background-color: #F4B659 !important;
+}
+
+.showMapRow button:hover {
+    background-color: lightgray !important;
+}

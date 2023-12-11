@@ -21,7 +21,7 @@ export function Footer() {
             </div>
             <div className="footerRow">
                 <div className="footerColumnSubscribe">
-                    <p>Подпишитесь на нашу рассылку, чтобы всегда оставаться на связи</p>
+                    <p style={{marginBottom: "5px"}}>Подпишитесь на нашу рассылку, чтобы всегда оставаться на связи</p>
                     <Form>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Control className="formEmail" type="email" placeholder="Введите ваш e-mail" />

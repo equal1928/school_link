@@ -7,8 +7,17 @@
     justify-content: flex-end;
 }
 
-.toggleButton {
+.navLinkHeader {
+    display: flex;
+    align-items: flex-end;
+}
+
+.toggleButtonHeader {
     background-color: white !important;
+}
+
+.toggleButtonHeader:focus {
+    box-shadow: none !important;
 }
 
 .favouritesButton {
@@ -36,11 +45,12 @@
 }
 
 .loginButton:hover, .registrationButton:hover {
-    background-color: white;
+    background-color: lightgray !important;
     color: black;
 }
 
 .loginButton:active, .registrationButton:active {
     color: black;
     border-color:black;
+    background-color: #F4B659 !important;
 }

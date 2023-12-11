@@ -1,8 +1,8 @@
 .popoverButton {
     background-color: white !important;
     color: black !important;
-    height: 28px;
-    width: 28px;
+    height: 32px;
+    width: 32px;
     padding: 0px !important;
 }
 
@@ -20,8 +20,15 @@
     display: flex;
 }
 
-.popoverBody img {
+.homeMarker {
+    margin-left: 3px;
     margin-right: 5px;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 26px;
+}
+
+.schoolMarker {
+    margin-right: 5px;
+    width: 26px;
+    height: 26px;
 }

@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import { Icon, LatLngExpression, divIcon, icon, point } from "leaflet";
+import { Icon, LatLngExpression, PointExpression, divIcon, icon, point } from "leaflet";
 import { CloseButton, Container, Offcanvas, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
@@ -107,6 +107,8 @@ const card = [
     },
 ]
 
+const customIconSize = [25, 30] as PointExpression;
+
 const homeIcon = new Icon({
     iconUrl: require("../images/homeMarker.png"),
     iconSize: [19, 25]
@@ -114,31 +116,31 @@ const homeIcon = new Icon({
 
 const baseSchoolIcon = new Icon({
     iconUrl: require("../images/baseSchoolMarker.png"),
-    iconSize: [21, 25]
+    iconSize: customIconSize
 });
 
 const topSchoolIcon = new Icon({
     iconUrl: require("../images/topSchoolMarker.png"),
-    iconSize: [21, 25]
+    iconSize: customIconSize
 });
 const gymnasiumIcon = new Icon({
     iconUrl: require("../images/gymnasiumMarker.png"),
-    iconSize: [21, 25]
+    iconSize: customIconSize
 });
 
 const lyceumIcon = new Icon({
     iconUrl: require("../images/lyceumMarker.png"),
-    iconSize: [21, 25]
+    iconSize: customIconSize
 });
 
 const hoverIcon = new Icon({
     iconUrl: require("../images/hoverMarker.png"),
-    iconSize: [21, 25]
+    iconSize: customIconSize
 });
 
 const inactiveIcon = new Icon({
     iconUrl: require("../images/inactiveMarker.png"),
-    iconSize: [21, 25]
+    iconSize: customIconSize
 });
 
 enum TypeSchool {
@@ -266,18 +268,16 @@ export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools:
                               }}></Marker>
                         ))}
                     </MarkerClusterGroup>
-                    <MarkerClusterGroup chunkedLoading>
-                        {propsSchool.map(point => (
-                            <Marker key={point.id} position={[point.latitude, point.longitude]} 
-                                    icon={getMarkerIcon(point.typeSchool)} eventHandlers={{
-                                click: () => {
-                                    setShowCard(true);
-                                    setCurrentTypePoint(TypePoint.SCHOOL);
-                                    handleScholClick(point.schoolId) ;
-                                },
-                              }}></Marker>
-                        ))}
-                    </MarkerClusterGroup>
+                    {propsSchool.map(point => (
+                        <Marker key={point.id} position={[point.latitude, point.longitude]} 
+                                icon={getMarkerIcon(point.typeSchool)} eventHandlers={{
+                            click: () => {
+                                setShowCard(true);
+                                setCurrentTypePoint(TypePoint.SCHOOL);
+                                handleScholClick(point.schoolId) ;
+                            },
+                            }}></Marker>
+                    ))}
                 </MapContainer>
             </div>
         </div>

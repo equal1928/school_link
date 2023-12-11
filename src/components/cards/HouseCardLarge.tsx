@@ -13,12 +13,12 @@ export function HouseCardLarge({ card }: { card: HouseModelCard }) {
                     {card.rooms}-ком. квартира, {card.square} кв.м.<br/> 
                     {card.currentFloor}/{card.totalFloors} этаж
                 </div>
-                Школы рядом:
+                {/* Школы рядом:
                 <div className="nearbySchools">
                     <li>Школа №203,</li>
                     <li>Лицей №110,</li>
                     <li>Школа №10</li>
-                </div>
+                </div> */}
                 <div>
                     {card.schools && card.schools.map(school => <li>Школа №{school.number} <a href={school.link}>Узнать о школе</a></li>)}   
                 </div>
