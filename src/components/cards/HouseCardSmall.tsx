@@ -6,7 +6,7 @@ import './HouseCardSmall.css'
 
 export function HouseCardSmall({ card }: { card: HouseModelCard }) {
     return (
-        <Card className="HouseCardSmall">
+        <Card className="houseCardSmall">
             <div className="fixblock">
                 <Card.Img variant="top" className="imageHouseCard" src={card.photo} />
             </div>

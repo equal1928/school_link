@@ -5,6 +5,7 @@ import Popover from 'react-bootstrap/Popover';
 
 import "./TypeSchoolsPopup.css"
 
+import homeMarker from "../images/homeMarker.png"
 import baseSchoolMarker from "../images/baseSchoolMarker.png"
 import inactiveMarker from "../images/inactiveMarker.png"
 import gymnasiumMarker from "../images/gymnasiumMarker.png"
@@ -14,13 +15,14 @@ import lyceumMarker from "../images/lyceumMarker.png"
 
 const popover = (
   <Popover id="popover-basic">
-    <Popover.Header as="h3" className="popoverHeader">Обозначение школы</Popover.Header>
+    <Popover.Header as="h3" className="popoverHeader">Обозначения на карте</Popover.Header>
     <Popover.Body className="popoverBody">
-      <span><Image src={baseSchoolMarker} /><p>Общеобразовательная школа</p></span>
-      <span><Image src={inactiveMarker} /><p>Школа не работает</p></span>
-      <span><Image src={gymnasiumMarker} /><p>Гимназия</p></span>
-      <span><Image src={topSchoolMarker} /><p>Школа топ 3 города</p></span>
-      <span><Image src={lyceumMarker} /><p>Лицей</p></span>
+      <span><Image className="homeMarker" src={homeMarker} /><p>Объект недвижимости</p></span>
+      <span><Image className="schoolMarker" src={baseSchoolMarker} /><p>Общеобразовательная школа</p></span>
+      <span><Image className="schoolMarker" src={inactiveMarker} /><p>Школа не работает</p></span>
+      <span><Image className="schoolMarker" src={gymnasiumMarker} /><p>Гимназия</p></span>
+      <span><Image className="schoolMarker" src={topSchoolMarker} /><p>Школа топ 3 города</p></span>
+      <span><Image className="schoolMarker" src={lyceumMarker} /><p>Лицей</p></span>
     </Popover.Body>
   </Popover>
 );

@@ -7,13 +7,32 @@
     color: white;
 }
 
-.footerTitle {
-    font-size: 35px;
+@media (max-width: 767px) {
+    .footerTitle {
+        font-size: 20px;
+    }
 }
 
-.footerPolicyText {
-    color: gray;
-    font-size: 11px;
+@media (min-width: 768px) {
+    .footerTitle {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footerPolicyText {
+        color: gray;
+        font-size: 9px;
+        margin-bottom: 5px;
+    }
+}
+
+@media (min-width: 768px) {
+    .footerPolicyText {
+        color: gray;
+        font-size: 11px;
+        margin-bottom: 5px;
+    }
 }
 
 .horizontalLine {
@@ -25,10 +44,33 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-bottom: 5px;
 }
 
-.footerColumnSubscribe {
-    width: 350px;
+@media (max-width: 767px) {
+    .footerColumn {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    .footerColumn {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footerColumnSubscribe {
+        font-size: 11px;
+        width: 350px;
+    }
+}
+
+@media (min-width: 768px) {
+    .footerColumnSubscribe {
+        font-size: 14px;
+        width: 350px;
+    }
 }
 
 .formEmail {

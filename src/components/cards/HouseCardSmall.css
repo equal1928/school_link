@@ -1,15 +1,37 @@
-.HouseCardSmall {
-    display: flex;
-    flex-direction: row !important;
-    flex-wrap: nowrap;
-    margin-bottom: 30px;
-    width: 100%;
-    height: 300px !important;
+@media (max-width: 767px) {
+    .houseCardSmall {
+        display: flex;
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        margin-bottom: 30px;
+        width: 100%;
+        height: 200px !important;
+    }
 }
 
-.fixblock {
-    height: 100%;
-    width: 35vw;
+@media (min-width: 768px) {
+    .houseCardSmall {
+        display: flex;
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        margin-bottom: 30px;
+        width: 100%;
+        height: 300px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .fixblock {
+        height: 100%;
+        width: 45vw;
+    }
+}
+
+@media (min-width: 768px) {
+    .fixblock {
+        height: 100%;
+        width: 35vw;
+    }
 }
 
 .imageHouseCard {
@@ -17,40 +39,91 @@
     object-fit: cover;
 }
 
-.cardBody {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-left: 25px;
-    background-color: white;
-    width: 65vw;
+@media (max-width: 767px) {
+    .cardBody {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px !important;
+        background-color: white;
+        width: 55vw;
+    }
 }
 
-.titleHouseCard {
-    font-size: 22px;
+@media (min-width: 767px) {
+    .cardBody {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 25px;
+        background-color: white;
+        width: 65vw;
+    }
 }
 
-.priceHouse {
-    font-size: 22px;
-    border-width: 1px;
-    border-style: solid;
-    border-color:gray;
-    border-radius: 8px;
-    width:fit-content;
-    height: 50px;
-    padding: 8px;
+@media (min-width: 767px) {
+    .titleHouseCard {
+        font-size: 22px;
+    }
 }
 
-.linkToAd {
-    border-width: 1px;
-    border-style: solid;
-    border-color:black;
-    border-radius: 8px;
-    width:fit-content;
-    height: 50px;
-    padding: 8px;
+@media (min-width: 767px) {
+    .priceHouse {
+        font-size: 22px;
+        border-width: 1px;
+        border-style: solid;
+        border-color:gray;
+        border-radius: 8px;
+        width:fit-content;
+        height: 50px;
+        padding: 8px;
+    }
+}
+
+@media (min-width: 767px) {
+    .linkToAd {
+        border-width: 1px;
+        border-style: solid;
+        border-color:black;
+        border-radius: 8px;
+        width: fit-content;
+        height: 50px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .titleHouseCard {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .priceHouse {
+        font-size: 14px;
+        border-width: 1px;
+        border-style: solid;
+        border-color:gray;
+        border-radius: 8px;
+        width:fit-content;
+
+        padding: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .linkToAd {
+        font-size: 14px;
+        border-width: 1px;
+        border-style: solid;
+        border-color:black;
+        border-radius: 8px;
+        width: fit-content;
+        padding: 8px;
+    }
 }
 
 .linkToAd a {
     color: black;
+    text-decoration: none;
 }

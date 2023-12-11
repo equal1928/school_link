@@ -15,7 +15,7 @@
 }
 
 .active>.page-link, .page-link.active {
-    background-color: lightgray !important;
+    background-color: #F4B659 !important;
     color: #000000 !important;
     border-color: #000000 !important;
 }

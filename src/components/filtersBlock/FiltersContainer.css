@@ -1,26 +1,35 @@
-.filtersContainer {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    flex-direction: column;
-    height: 90vh;
+.filtersOffcanvas {
+    height: 100vh !important;
 }
 
-.filtersList {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.bg-body-tertiary {
+    --bs-bg-opacity: 0 !important;
+}
+
+/* .toggleButtonFilter {
+    width: 300px !important;
+    height: 50px !important;
+    border: 1px solid grey !important;
+    background-color: white !important;
+} */
+
+.toggleButtonFilter:active {
+    background-color: #F4B659 !important;
+}
+
+.toggleButtonFilter:focus {
+    box-shadow: none !important;
 }
 
 .priceButton {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    width: 210px;
+    width: 260px;
 }
 
 .filtersButton {
-    
+
 }
 
 .filtersButton button {
@@ -33,7 +42,7 @@
 }
 
 .schoolListFilter {
-    max-height: 300px; 
+    max-height: 250px; 
     width: 200px;
     padding: 10px 15px 10px 15px;
     overflow-y: auto; 
@@ -53,6 +62,20 @@
     margin-right: 5px;
 }
 
+.materialFilter {
+    margin: 5px 0px 0px 15px;
+    width: 170px;
+}
+
+.floorFilter {
+    margin: 5px 15px 0px 15px;
+    width: 150px;
+}
+
+.yearFilter {
+    margin: 5px 15px 0px 15px;
+}
+
 .filtersFirstButton button {
     border-radius: 0px;
     border-top-left-radius: 10px;
@@ -67,20 +90,25 @@
     height: 45px;
 }
 
-.searchButton {
-    border-radius: 13px;
-    margin-top: 90px;
-    margin-bottom: 70px;
-    width: 220px;
-    height: 60px;
+.filtersLastButtonMore {
+    border-radius: 0px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    height: 45px;
+    width: 110px;
+}
+
+.searchButton:active {
+    background-color: #F4B659 !important;
 }
 
 .priceButton .form-control, .priceButton .form-floating,
  .priceButton .form-select {
-    width: 50px;
+    width: 70px;
     height: 45px;
 }
 
 .priceButton .form-control, .priceButton .input-group-text{
     border-radius: 0px;
+    border-width: 0px !important;
 }

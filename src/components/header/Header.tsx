@@ -22,9 +22,9 @@ export function Header() {
                 <Navbar.Brand href="/">
                     <img src={logoIcon} className="App-logo" alt="logo" />
                 </Navbar.Brand>
-                <Navbar.Toggle className="toggleButton" aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle className="toggleButtonHeader" aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="entryBlock" id="basic-navbar-nav">
-                    <Nav className="navLink">
+                    <Nav className="navLinkHeader">
                         <Image className="favouritesButton" src={favouritesIcon} />
                         <button className="loginButton" 
                                 onClick={() => setLoginModalShow(true)}>

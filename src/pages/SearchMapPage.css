@@ -26,3 +26,12 @@
     border-width: 2px !important;
     margin-bottom: 10px;
 }
+
+
+.showListButton button:active {
+    background-color: #F4B659 !important;
+}
+
+.showListButton button:hover {
+    background-color: lightgray !important;
+}
