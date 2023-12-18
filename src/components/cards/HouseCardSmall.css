@@ -20,6 +20,10 @@
     }
 }
 
+.houseCardSmall:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 767px) {
     .fixblock {
         height: 100%;

@@ -17,7 +17,7 @@ import '../components/cards/Cards.css'
 export function SearchMapPage() {
     const [PointsHomes, setPointsHomes] = useState<PointsHousesOnMap[]>([]);
     const [PointsSchools, setPointsSchools] = useState<PointsSchoolsOnMap[]>([]);
-    const [mapIsLoading, setMapIsLoading] = useState(true);
+    const [mapIsLoading, setMapIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,10 +26,10 @@ export function SearchMapPage() {
             setPointsHomes(homesResponse.data);
             const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>("https://retoolapi.dev/zoluMf/schoolpoints");
             setPointsSchools(schoolsResponse.data);
-            setMapIsLoading(false);
+            setMapIsLoading(true);
           } catch (error) {
             console.error(error);
-            setMapIsLoading(false);
+            setMapIsLoading(true);
           }
         };
       
@@ -46,7 +46,7 @@ export function SearchMapPage() {
             <Header />
             <SearchFiltersBlock />
             <div className="SearchMapContainer">
-                {mapIsLoading ? (
+                {!mapIsLoading ? (
                     <Container className="SpinnerMapLoading">
                         <Spinner animation="border" role="status">
                             <span className="visually-hidden">Loading...</span>
