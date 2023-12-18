@@ -1,3 +1,7 @@
+.HouseCardLarge:hover {
+    cursor: pointer;
+}
+
 .HouseCardLarge {
     margin: 25px;
 }

@@ -12,100 +12,8 @@ import { HouseModelCard } from "../../models/HouseModelCard";
 import { SchoolModelCard } from "../../models/SchoolModelCard";
 import { SchoolCard } from "../cards/SchoolCard";
 
-
 import "./SearchMap.css"
 
-import img1 from '../images/House1.png'
-import img2 from '../images/House2.png'
-import img3 from '../images/House3.png'
-
-
-const card = [
-    {
-        id: 1,
-        photo: `${img1}`,
-        price: 8000000,
-        rooms: 3,
-        square: 110,
-        currentFloor: 8,
-        totalFloors: 10,
-        schools: [
-            {
-                number: 9,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 10,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 11,
-                address: "Плотинка",
-                link: "https"
-            }
-        ],
-        address: "Свердловская обл., г. Екатеринбург, ул. Красноуральская, 22",
-        link: "https",
-    },
-    {
-        id: 2,
-        photo: `${img2}`,
-        price: 4000000,
-        rooms: 1,
-        square: 40,
-        currentFloor: 2,
-        totalFloors: 30,
-        schools: [
-            {
-                number: 9,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 10,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 11,
-                address: "Плотинка",
-                link: "https"
-            }
-        ],
-        address: "Свердловская обл., г. Екатеринбург, ул. Красноуральская, 24",
-        link: "https",
-    },
-    {
-        id: 3,
-        photo: `${img3}`,
-        price: 5600000,
-        rooms: 2,
-        square: 70,
-        currentFloor: 4,
-        totalFloors: 15,
-        schools: [
-            {
-                number: 9,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 10,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 11,
-                address: "Плотинка",
-                link: "https"
-            }
-        ],
-        address: "Свердловская обл., г. Екатеринбург, ул. Красноуральская, 20",
-        link: "https",
-    },
-]
 
 const customIconSize = [25, 30] as PointExpression;
 
@@ -187,7 +95,7 @@ export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools:
     const [scholCard, setScholCard] = useState<SchoolModelCard>();
     const [currentTypePoint, setCurrentTypePoint] = useState<TypePoint>();
 
-    const handleHomeClick = (pointId: number[]) => {
+    const handleHomePointClick = (pointId: number[]) => {
         axios.get(`https://retoolapi.dev/cZVlG9/homeinfo?_page=1&_limit=4`)
             .then(response => {
                 setHomesCard(response.data);
@@ -198,7 +106,7 @@ export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools:
             });
     };
 
-    const handleScholClick = (pointId: number) => {
+    const handleSchoolPointClick = (pointId: number) => {
         axios.get(`https://retoolapi.dev/PlFJLm/scholinfo/${pointId}`)
             .then(response => {
                 setScholCard(response.data);
@@ -263,7 +171,7 @@ export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools:
                                 click: () => {
                                     setShowCard(true);
                                     setCurrentTypePoint(TypePoint.HOME);
-                                    handleHomeClick([1,2,3]);
+                                    handleHomePointClick([1,2,3]);
                                 },
                               }}></Marker>
                         ))}
@@ -274,7 +182,7 @@ export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools:
                             click: () => {
                                 setShowCard(true);
                                 setCurrentTypePoint(TypePoint.SCHOOL);
-                                handleScholClick(point.schoolId) ;
+                                handleSchoolPointClick(point.schoolId) ;
                             },
                             }}></Marker>
                     ))}

@@ -1,0 +1,61 @@
+.spinnerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.cardImg {
+    width: 40vw;
+    max-height: 250px;
+}
+
+.headerInfoBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 60vw;
+}
+
+.titleSell {
+    font-size: 25px;
+}
+
+.price {
+    font-size: 22px;
+    border-width: 1px;
+    border-style: solid;
+    border-color:gray;
+    border-radius: 8px;
+    width:fit-content;
+    padding: 8px;
+}
+
+.description {
+    font-size: 25px;
+}
+
+.generalDescription {
+    width: 50vw;
+}
+
+.descriptionObject {
+    width: 50vw;
+}
+
+.apartmentDescription {
+    display: flex;
+    flex-direction: column;
+}
+
+.houseDescription {
+    display: flex;
+    flex-direction: column;
+}
+
+.apartmentDescription span, .houseDescription span {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+} 

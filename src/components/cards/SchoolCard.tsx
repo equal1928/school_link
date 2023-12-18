@@ -5,8 +5,11 @@ import './SchoolCard.css'
 
 
 export function SchoolCard({ card }: { card: SchoolModelCard }) {
+    const handleSchoolCardClick = (schoolId: number) => (event: React.MouseEvent<HTMLElement>) => {
+        window.open(`/school/${schoolId}`, '_blank');
+    }
     return (
-        <Card className="SchoolCard" style={{ width: '18rem', backgroundColor: "#E3E5E5" }}>
+        <Card className="SchoolCard" style={{ width: '18rem', backgroundColor: "#E3E5E5" }} onClick={handleSchoolCardClick(card.id)}>
             <Card.Img variant="top" src={card.photo} />
             <Card.Body>
                 <div className="schoolName">
