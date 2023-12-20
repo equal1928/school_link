@@ -8,9 +8,8 @@ import { RegistrationForm } from '../registration/RegistrationForm'
 import { LoginForm } from '../registration/LoginForm'
 
 import './Header.css'
-import logoIcon from '../images/logoSite.png'
+import logoIcon from '../images/logo1.png'
 import favouritesIcon from '../images/favourites.png'
-
 
 export function Header() {
     const [loginModalShow, setLoginModalShow] = useState(false);
