@@ -1,0 +1,77 @@
+.spinnerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.imgWrapper{
+    width: 60vh;
+    max-height: 350px;
+    margin-right: 20px;
+}
+.cardImg {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.headerInfoBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 60vw;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.titleSell {
+    font-size: 25px;
+}
+
+.price {
+    font-size: 22px;
+    border-width: 1px;
+    border-style: solid;
+    border-color:gray;
+    border-radius: 8px;
+    width:fit-content;
+    padding: 8px;
+}
+
+.description {
+    font-size: 22px;
+}
+
+.generalDescription {
+    width: auto;
+}
+
+.descriptionObject {
+    width: 50vw;
+}
+
+.apartmentDescription {
+    display: flex;
+    flex-direction: column;
+}
+
+.houseDescription {
+    display: flex;
+    flex-direction: column;
+}
+
+.schoolDescription span{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+.field {
+    padding-right: 10px;
+    font-weight: bold;
+}
+.mainWrapper{
+    display: flex;
+    flex-wrap: wrap;
+}

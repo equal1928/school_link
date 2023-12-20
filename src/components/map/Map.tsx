@@ -18,28 +18,28 @@ import "./SearchMap.css"
 const customIconSize = [25, 30] as PointExpression;
 
 const homeIcon = new Icon({
-    iconUrl: require("../images/homeMarker.png"),
-    iconSize: [19, 25]
+    iconUrl: require("../images/redMarker.png"),
+    iconSize: customIconSize
   });
 
 const baseSchoolIcon = new Icon({
-    iconUrl: require("../images/baseSchoolMarker.png"),
+    iconUrl: require("../images/blueMarker.png"),
     iconSize: customIconSize
 });
 
 const topSchoolIcon = new Icon({
-    iconUrl: require("../images/topSchoolMarker.png"),
+    iconUrl: require("../images/greenMarker.png"),
     iconSize: customIconSize
 });
-const gymnasiumIcon = new Icon({
-    iconUrl: require("../images/gymnasiumMarker.png"),
+const goodSchoolIcon = new Icon({
+    iconUrl: require("../images/orangeMarker.png"),
     iconSize: customIconSize
 });
 
-const lyceumIcon = new Icon({
-    iconUrl: require("../images/lyceumMarker.png"),
-    iconSize: customIconSize
-});
+// const lyceumIcon = new Icon({
+//     iconUrl: require("../images/lyceumMarker.png"),
+//     iconSize: customIconSize
+// });
 
 const hoverIcon = new Icon({
     iconUrl: require("../images/hoverMarker.png"),
@@ -67,12 +67,11 @@ enum TypePoint {
 
 function getMarkerIcon(typeSchool: TypeSchool) {
     //FIXME: переделать на switch, почему-то с ним неправильно приводит типы
-    if (typeSchool == TypeSchool.SCHOOL)
+    if (typeSchool
+        == TypeSchool.SCHOOL)
         return baseSchoolIcon;
     if (typeSchool == TypeSchool.LYCEUM)
-        return lyceumIcon;
-    if (typeSchool == TypeSchool.GYMNASIUM)
-        return gymnasiumIcon;
+        return goodSchoolIcon;
     if (typeSchool == TypeSchool.TOP)
         return topSchoolIcon;
     if (typeSchool == TypeSchool.INACTIVE)
