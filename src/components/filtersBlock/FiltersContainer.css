@@ -112,3 +112,15 @@
     border-radius: 0px;
     border-width: 0px !important;
 }
+
+.filtersContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+}
+.mainText{
+    font-size: 72px;
+    color: white;
+}

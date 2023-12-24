@@ -12,6 +12,7 @@ import { TypeSchoolsPopup } from '../components/map/TypeSchoolsPopup';
 
 import './SearchMapPage.css'
 import '../components/cards/Cards.css'
+import {Disclaimer} from "../components/disclaimer/Disclaimer";
 
 
 export function SearchMapPage() {
@@ -45,6 +46,7 @@ export function SearchMapPage() {
         <div>
             <Header />
             <SearchFiltersBlock />
+            <Disclaimer />
             <div className="SearchMapContainer">
                 {!mapIsLoading ? (
                     <Container className="SpinnerMapLoading">
