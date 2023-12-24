@@ -23,8 +23,12 @@ export function SchoolCard({ card }: { card: SchoolModelCard }) {
                     <li>Подготовка к олимпиадам,</li>
                     <li>Высокий средний бал ЕГЭ</li>
                 </div>
-                <div className="cardAddress">{card.address}<br/></div>
-                <div className="cardLink"><a href={card.link}>Перейти на сайт школы</a></div>
+                <div className="cardAddress">
+                    {card.address}<br/>
+                </div>
+                <div className="cardLink">
+                    <p>Перейти к школе</p>
+                </div>
             </Card.Body>
         </Card>
     )

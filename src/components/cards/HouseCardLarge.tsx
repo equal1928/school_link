@@ -15,7 +15,7 @@ export function HouseCardLarge({ card }: { card: HouseModelCard }) {
             <Card.Body>
                 <div>{card.price} рублей</div>
                 <div>            
-                    {card.rooms}-ком. квартира, {card.square} кв.м.<br/> 
+                    {card.rooms}-ком. квартира, {card.totalSquare} кв.м.<br/> 
                     {card.currentFloor}/{card.totalFloors} этаж
                 </div>
                 {/* Школы рядом:
@@ -27,8 +27,12 @@ export function HouseCardLarge({ card }: { card: HouseModelCard }) {
                 <div>
                     {card.schools && card.schools.map(school => <li>Школа №{school.number} <a href={school.link}>Узнать о школе</a></li>)}   
                 </div>
-                <div className="cardAddress">{card.address}</div>
-                <div className="cardLink"><a href={card.link}>Перейти к объявлению</a></div>
+                <div className="cardAddress">
+                    {card.address}
+                </div>
+                <div className="cardLink">
+                    <p>Перейти к объявлению</p>
+                </div>
             </Card.Body>
         </Card>
     )

@@ -8,10 +8,8 @@ import { Map } from '../components/map/Map'
 import { Footer } from '../components/footer/Footer'
 import { HouseModelCard } from "../models/HouseModelCard";
 import { PointsHousesOnMap } from '../models/PointsHousesOnMap';
-import { PointsSchoolsOnMap } from '../models/PointsSchoolsOnMap';
 
 import './HomePage.css'
-import {Disclaimer} from "../components/disclaimer/Disclaimer";
 
 
 export function HomePage() {
@@ -32,25 +30,24 @@ export function HomePage() {
           }
         };
         fetchData();
-      }, []);
+    }, []);
 
-    // const [PointsHomes, setPointsHomes] = useState<PointsHousesOnMap[]>([]);
-    // const [mapIsLoading, setMapIsLoading] = useState(false);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //       try {
-    //         const homesResponse = await axios.get<PointsHousesOnMap[]>(`https://retoolapi.dev/minnlU/homepoints/${homeId}`);
-    //         setPointsHomes(homesResponse.data);
-    //         setMapIsLoading(true);
-    //       } catch (error) {
-    //         console.error(error);
-    //         setMapIsLoading(true);
-    //       }
-    //     };
+    const [listPoints, setListPoints] = useState<PointsHousesOnMap[]>([]);
+    const [mapIsLoading, setMapIsLoading] = useState(false);
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const homesResponse = await axios.get<PointsHousesOnMap>(`https://retoolapi.dev/minnlU/homepoints/${homeId}`);
+            setListPoints([homesResponse.data,]);
+            setMapIsLoading(true);
+          } catch (error) {
+            console.error(error);
+            setMapIsLoading(true);
+          }
+        };
       
-    //     fetchData();
-    //   }, []);
+        fetchData();
+    }, []);
 
     return (
         <div>
@@ -62,29 +59,24 @@ export function HomePage() {
                     </Spinner>
                 </Container>
             ) : (
-                <Container>
+                <Container style={{marginTop: "20px"}}>
                     <Row>
-                        <div className="col-md-12">
-                            <div className="mainWrapper">
-                                <div className="imgWrapper">
-                                    <Image className="cardImg" src={homesCard && homesCard.photo}/>
-                                </div>
-                                <div className="headerInfoBlock">
-                                    <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной квартиры,
-                                        {homesCard && homesCard.square} кв.м., {homesCard && homesCard.address}
-                                    </div>
-                                    <div className="price">{homesCard && homesCard.price} рублей</div>
-                                    {/*Школы рядом:*/}
-                                    {/*<div className="nearbySchools">*/}
-                                    {/*    <li>Школа №203,</li>*/}
-                                    {/*    <li>Лицей №110,</li>*/}
-                                    {/*    <li>Школа №10</li>*/}
-                                    {/*</div>*/}
-                                    <div className="cardLink"><a href={homesCard && homesCard.link}>Перейти к объявлению</a>
-                                    </div>
-                                </div>
+                        <Col className="mainWrapper">
+                            <div className="imgWrapper">
+                                <Image className="cardImg" src={homesCard && homesCard.photo}/>
                             </div>
-                        </div>
+                        </Col>
+                        <Col className="headerInfoBlock">
+                            <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной квартиры, {homesCard && homesCard.totalSquare} кв.м., {homesCard && homesCard.address}</div>
+                            <div className="price">{homesCard && homesCard.price} рублей</div>
+                            {/*Школы рядом:*/}
+                            {/*<div className="nearbySchools">*/}
+                            {/*    <li>Школа №203,</li>*/}
+                            {/*    <li>Лицей №110,</li>*/}
+                            {/*    <li>Школа №10</li>*/}
+                            {/*</div>*/}
+                            <div className="cardLink"><a href={homesCard && homesCard.link}>Перейти к объявлению</a></div>
+                        </Col>
                     </Row>
                     <Row>
                         <Col className="generalDescription">
@@ -93,11 +85,11 @@ export function HomePage() {
                             <div className="apartmentDescription">
                                 <span>
                                     <p>Тип жилья</p>
-                                    <p>Новостройка</p>
+                                    <p>{/*{homesCard && homesCard.housType}*/}Новостройка</p>
                                 </span>
                                 <span>
                                     <p>Общая площадь</p>
-                                    <p>{homesCard && homesCard.square} кв.м</p>
+                                    <p>{homesCard && homesCard.totalSquare} кв.м</p>
                                 </span>
                                 <span>
                                     <p>Этаж/этажность</p>
@@ -109,34 +101,42 @@ export function HomePage() {
                                 </span>
                                 <span>
                                     <p>Жилая площадь</p>
-                                    <p>100 кв.м.</p>
+                                    <p>{/*{homesCard && homesCard.livingSquare}*/}100 кв.м.</p>
                                 </span>
                             </div>
                             <p>ДОМ</p>
                             <div className="houseDescription">
                                 <span>
                                     <p>Жилой комплекс</p>
-                                    <p>Новостройка</p>
+                                    <p>{/*{homesCard && homesCard.housType}*/}Новостройка</p>
                                 </span>
                                 <span>
                                     <p>Материал стен</p>
-                                    <p>Кирпич</p>
+                                    <p>{/*{homesCard && homesCard.wallMaterial}*/}Кирпич</p>
                                 </span>
                                 <span>
                                     <p>Год постройки</p>
-                                    <p>2008</p>
+                                    <p>{/*{homesCard && homesCard.yearConstruction}*/}2008</p>
                                 </span>
                             </div>
                         </Col>
                         <Col className="descriptionObject">
                             <p className="description">Описание объекта</p>
-                            <p>цйуцйуйцуцйуывфвфыыфвфыымысммсысмывмвымывамывамывамвымывавымаыамавыа</p>
+                            <p className="descriptionObjectText">
+                                «Флористика», «Корнепластика», «Изобразительное искусство», «Театр моды»,
+                                помогающие развивать у обучающихся особую культуру общения человека с природой
+                                на языке искусства. «Баскетбол», «Футбол», «Хоровое пение», «Вокальная студия» 
+                                способствуют гармоничному развитию личности, «Научно-практическое краеведение».
+                                {/*{homesCard && homesCard.description}*/}
+                            </p>
                         </Col>
                     </Row>
                 </Container>
             )}
-            <p className="description">Расположение объекта</p>
-            {/* <Map points={{ homes: PointsHomes, schools: [] }} /> */}
+            <Container><p className="descriptionMap">Расположение объекта</p></Container> 
+            <div className="mapBlock">
+                <Map points={{ homes: listPoints, schools: [] }} />
+            </div>
             <Footer />
         </div>
     );

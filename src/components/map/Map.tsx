@@ -18,36 +18,23 @@ import "./SearchMap.css"
 const customIconSize = [25, 30] as PointExpression;
 
 const homeIcon = new Icon({
-    iconUrl: require("../images/redMarker.png"),
+    iconUrl: require("../images/greyMarker.png"),
     iconSize: customIconSize
   });
-
-const baseSchoolIcon = new Icon({
-    iconUrl: require("../images/blueMarker.png"),
-    iconSize: customIconSize
-});
-
-const topSchoolIcon = new Icon({
+const top5SchoolIcon = new Icon({
     iconUrl: require("../images/greenMarker.png"),
     iconSize: customIconSize
 });
-const goodSchoolIcon = new Icon({
+const top20SchoolIcon = new Icon({
+    iconUrl: require("../images/blueMarker.png"),
+    iconSize: customIconSize
+});
+const top56SchoolIcon = new Icon({
     iconUrl: require("../images/orangeMarker.png"),
     iconSize: customIconSize
 });
-
-// const lyceumIcon = new Icon({
-//     iconUrl: require("../images/lyceumMarker.png"),
-//     iconSize: customIconSize
-// });
-
-const hoverIcon = new Icon({
-    iconUrl: require("../images/hoverMarker.png"),
-    iconSize: customIconSize
-});
-
-const inactiveIcon = new Icon({
-    iconUrl: require("../images/inactiveMarker.png"),
+const baseSchoolIcon = new Icon({
+    iconUrl: require("../images/redMarker.png"),
     iconSize: customIconSize
 });
 
@@ -59,6 +46,13 @@ enum TypeSchool {
     INACTIVE = 4
 }
 
+// enum TypeSchool {
+//     TOP5,
+//     TOP20,
+//     TOP56,
+//     BASE
+// }
+
 enum TypePoint {
     NONE,
     HOME,
@@ -67,20 +61,20 @@ enum TypePoint {
 
 function getMarkerIcon(typeSchool: TypeSchool) {
     //FIXME: переделать на switch, почему-то с ним неправильно приводит типы
-    if (typeSchool
-        == TypeSchool.SCHOOL)
+    if (typeSchool == TypeSchool.SCHOOL)
         return baseSchoolIcon;
     if (typeSchool == TypeSchool.LYCEUM)
-        return goodSchoolIcon;
+        return top5SchoolIcon;
     if (typeSchool == TypeSchool.TOP)
-        return topSchoolIcon;
+        return top20SchoolIcon;
     if (typeSchool == TypeSchool.INACTIVE)
-        return inactiveIcon;
-    return inactiveIcon;
+        return top56SchoolIcon;
+    return baseSchoolIcon;
   }
 
 
-export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools: PointsSchoolsOnMap[] } }) {
+export function Map({ isSearchPage = false, points }: { isSearchPage?: boolean; 
+                    points: { homes: PointsHousesOnMap[]; schools: PointsSchoolsOnMap[] } }) {
     const [showCard, setShowCard] = useState(false);
     const handleClose = () => { 
         setShowCard(false); 
@@ -125,7 +119,7 @@ export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools:
         <div className="SearchMapContainer">
             <div className="mapOffcanvas" style={{ display: showCard ? 'block' : 'none' }}>
                 <div className="titleList">
-                    <p style={{ margin: 0}}>Объявления</p>
+                    <h5 style={{ margin: 0}}>Объявления</h5>
                     <CloseButton className="closeButton" onClick={handleClose}/>
                 </div>
                 <div className="cardsListContainer">
@@ -151,7 +145,7 @@ export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools:
                                 </Spinner>
                             </Container>
                         ) : (
-                            <div>
+                            <div className="schoolCardContainer">
                                 {scholCard && <SchoolCard card={scholCard}/>}
                             </div>
                         ))
@@ -159,10 +153,10 @@ export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools:
                 </div>
             </div>
             <div>
-                <MapContainer className="MapContainer" center={MAP_CENTER} zoom={13} scrollWheelZoom={true}>
+                <MapContainer className="MapContainer" style={isSearchPage ? {height: "90vh", width: "100vw"} : {height: "40vh", width: "90vw"}} center={MAP_CENTER} zoom={13} scrollWheelZoom={true}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        url="http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}"
                     />
                     <MarkerClusterGroup chunkedLoading>
                         {propsHome.map(point => (
@@ -181,7 +175,7 @@ export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools:
                             click: () => {
                                 setShowCard(true);
                                 setCurrentTypePoint(TypePoint.SCHOOL);
-                                handleSchoolPointClick(point.schoolId) ;
+                                handleSchoolPointClick(point.schoolId);
                             },
                             }}></Marker>
                     ))}

@@ -9,10 +9,10 @@ import { Map } from '../components/map/Map'
 import { PointsHousesOnMap } from '../models/PointsHousesOnMap';
 import { PointsSchoolsOnMap } from '../models/PointsSchoolsOnMap';
 import { TypeSchoolsPopup } from '../components/map/TypeSchoolsPopup';
+import {Disclaimer} from "../components/disclaimer/Disclaimer";
 
 import './SearchMapPage.css'
 import '../components/cards/Cards.css'
-import {Disclaimer} from "../components/disclaimer/Disclaimer";
 
 
 export function SearchMapPage() {
@@ -60,7 +60,7 @@ export function SearchMapPage() {
                             <Button variant="light" onClick={handleClick}>Показать объекты списком</Button>
                             <TypeSchoolsPopup />
                         </div>
-                        <Map points={{ homes: PointsHomes, schools: PointsSchools }} />
+                        <Map isSearchPage={true} points={{ homes: PointsHomes, schools: PointsSchools }} />
                     </div>
                 )}
             </div>

@@ -15,14 +15,14 @@ export function HouseCardSmall({ card }: { card: HouseModelCard }) {
             </div>
             <Card.Body className="cardBody">
                 <div className="titleHouseCard">          
-                    {card.rooms}-ком. квартира, {card.square} кв.м.,  
+                    {card.rooms}-ком. квартира, {card.totalSquare} кв.м.,  
                     {card.address}
                 </div>
                 <div className="priceHouse">
                     {card.price} рублей     
                 </div>
                 <div className="linkToAd">
-                    <a href={card.link}>Перейти к объявлению</a>
+                    <p>Перейти к объявлению</p>
                 </div>
             </Card.Body>
         </Card>

@@ -5,12 +5,13 @@
     height: 80vh;
 }
 
-.imgWrapper{
-    width: 70vh;
-    max-height: 400px;
+.imgWrapper {
+    width: 60vh;
+    max-height: 350px;
     margin-right: 40px;
     margin-bottom: 30px;
 }
+
 .cardImg {
     object-fit: cover;
     width: 100%;
@@ -20,11 +21,12 @@
 .headerInfoBlock {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-start;
-    width: 30vw;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: auto;
+    /* height: 350px; */
 }
 .mainContainer{
     margin-top:-10px;
@@ -32,24 +34,39 @@
 
 .titleSell {
     font-size: 25px;
+    margin-bottom: 15px;
 }
 
 .price {
     font-size: 22px;
     border-width: 1px;
-    border-style: none;
     border-color:gray;
     border-radius: 8px;
     width:fit-content;
     padding: 8px;
+    margin-bottom: 15px;
+}
+
+.cardLink {
+    margin-bottom: 15px;
+}
+
+.cardLink a {
+    margin-bottom: 15px;
+    color: black;
 }
 
 .description {
     font-size: 25px;
 }
 
+.descriptionObjectText {
+    word-wrap: break-word;
+}
+
 .generalDescription {
     width: 50vw;
+    margin-right: 20px;
 }
 
 .descriptionObject {
@@ -66,13 +83,27 @@
     flex-direction: column;
 }
 
+.descriptionMap {
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
 .apartmentDescription span, .houseDescription span {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-}
-.mainWrapper{
+} 
+
+.mainWrapper {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
+}
+
+.mapBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
 }

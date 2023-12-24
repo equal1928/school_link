@@ -1,17 +1,13 @@
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
-import { useState } from 'react';
 
 import './Disclaimer.css'
 
-import homeMarker from "../images/redMarker.png"
-import baseSchoolMarker from "../images/blueMarker.png"
-// import inactiveMarker from "../images/redMarker.png"
-import goodSchoolMarker from "../images/orangeMarker.png"
-import topSchoolMarker from "../images/greenMarker.png"
-// import lyceumMarker from "../images/lyceumMarker.png"
+import homeMarker from "../images/greyMarker.png"
+import top5SchoolMarker from "../images/greenMarker.png"
+import top20SchoolMarker from "../images/blueMarker.png"
+import top56SchoolMarker from "../images/orangeMarker.png"
+import baseSchoolMarker from "../images/redMarker.png"
 
 export function Disclaimer() {
 
@@ -27,12 +23,18 @@ export function Disclaimer() {
                 <div className="schoolBlock">
                     <div className="disclaimerWrapper"><Image className="homeMarker" src={homeMarker}/><p>Объект
                         недвижимости</p></div>
-                    <div className="disclaimerWrapper"><Image className="schoolMarker" src={baseSchoolMarker}/><p>Просто
-                        школа</p></div>
-                    <div className="disclaimerWrapper"><Image className="schoolMarker" src={goodSchoolMarker}/>
-                        <p>Школа топ 20</p></div>
-                    <div className="disclaimerWrapper"><Image className="schoolMarker" src={topSchoolMarker}/><p>Школа
-                        топ 5 района</p></div>
+                    <div className="disclaimerWrapper"><Image className="schoolMarker" src={top5SchoolMarker}/>
+                        <p>Школа топ 5</p>
+                    </div>
+                    <div className="disclaimerWrapper"><Image className="schoolMarker" src={top20SchoolMarker}/>
+                        <p>Школа топ 20</p>
+                    </div>
+                    <div className="disclaimerWrapper"><Image className="schoolMarker" src={top56SchoolMarker}/>
+                        <p>Школа топ 56</p>
+                    </div>
+                    <div className="disclaimerWrapper"><Image className="schoolMarker" src={baseSchoolMarker}/>
+                        <p>Просто школа</p>
+                    </div>
                 </div>
             </div>
         </Container>

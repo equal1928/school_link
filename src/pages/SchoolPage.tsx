@@ -6,13 +6,11 @@ import { Col, Container, Image, Row, Spinner } from 'react-bootstrap'
 import { Header } from '../components/header/Header'
 import { Map } from '../components/map/Map'
 import { Footer } from '../components/footer/Footer'
-import { HouseModelCard } from "../models/HouseModelCard";
-import { PointsHousesOnMap } from '../models/PointsHousesOnMap';
 import { PointsSchoolsOnMap } from '../models/PointsSchoolsOnMap';
+import {SchoolModelCard} from "../models/SchoolModelCard";
 
 import './SchoolPage.css'
-import {SchoolModelCard} from "../models/SchoolModelCard";
-import TestSchool from "../images/homeMarker.png";
+
 
 export function SchoolPage() {
     const params = useParams();
@@ -23,7 +21,7 @@ export function SchoolPage() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const schoolResponse = await axios.get<SchoolModelCard>(`https://retoolapi.dev/cZVlG9/homeinfo/${schoolId}`);
+            const schoolResponse = await axios.get<SchoolModelCard>(`https://retoolapi.dev/PlFJLm/scholinfo/${schoolId}`);
             setSchoolCard(schoolResponse.data);
             setLoadingSchoolCard(true);
           } catch (error) {
@@ -34,23 +32,22 @@ export function SchoolPage() {
         fetchData();
       }, []);
 
-    // const [PointsHomes, setPointsHomes] = useState<PointsHousesOnMap[]>([]);
-    // const [mapIsLoading, setMapIsLoading] = useState(false);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //       try {
-    //         const homesResponse = await axios.get<PointsHousesOnMap[]>(`https://retoolapi.dev/minnlU/homepoints/${homeId}`);
-    //         setPointsHomes(homesResponse.data);
-    //         setMapIsLoading(true);
-    //       } catch (error) {
-    //         console.error(error);
-    //         setMapIsLoading(true);
-    //       }
-    //     };
-
-    //     fetchData();
-    //   }, []);
+    const [listPoints, setListPoints] = useState<PointsSchoolsOnMap[]>([]);
+    const [mapIsLoading, setMapIsLoading] = useState(false);
+    useEffect(() => {
+        const fetchData = async () => {
+        try {
+            const schoolResponse = await axios.get<PointsSchoolsOnMap>(`https://retoolapi.dev/zoluMf/schoolpoints/${schoolId}`);
+            setListPoints([schoolResponse.data,]);
+            setMapIsLoading(true);
+        } catch (error) {
+            console.error(error);
+            setMapIsLoading(true);
+        }
+        };
+    
+        fetchData();
+    }, []);
 
     return (
         <div>
@@ -65,8 +62,8 @@ export function SchoolPage() {
                 <Container>
                     <Row>
                         <div className="col-md-12">
-                            <div className="headerInfoBlock">
-                                <p className="titleSell">Специализированный учебно-научный центр УрФУ</p>
+                            <div>
+                                <p className="titleSell">{schoolCard && schoolCard.name}</p>
                             </div>
                         </div>
                     </Row>
@@ -79,36 +76,34 @@ export function SchoolPage() {
 
                                 <div className="generalDescription">
                                     <div className="schoolDescription">
-                                <span>
-                                    <div className="field"> Адрес: </div>
-                                    <div>г. Екатеринбург, ул. Щорса, 114</div>
-                                </span>
                                         <span>
-                                    <div className="field">Телефоны:</div>
-                                    <div>9122334455</div>
-                                </span>
+                                            <div className="field"> Адрес: </div>
+                                            <div>{schoolCard && schoolCard.address}</div>
+                                        </span>
                                         <span>
-                                    <div className="field">Адрес электронной почты:</div>
-                                    <div>licey3@eduekb.ru</div>
-                                            {/*<p>{homesCard && homesCard.currentFloor}/{homesCard && homesCard.totalFloors}</p>*/}
-                                </span>
+                                            <div className="field">Телефоны:</div>
+                                            <div>{/*{schoolCard && schoolCard.phone}*/}9122334455</div>
+                                        </span>
                                         <span>
-                                    <div className="field">Сайт:</div>
-                                    <div>лицей3.екатеринбург.рф</div>
-                                            {/*<p>{homesCard && homesCard.rooms}</p>*/}
-                                </span>
+                                            <div className="field">Адрес электронной почты:</div>
+                                            <div>{/*{schoolCard && schoolCard.email}*/}licey3@eduekb.ru</div>
+                                        </span>
                                         <span>
-                                    <div className="field">Дата основания:</div>
-                                    <div>101.09.1936</div>
-                                </span>
+                                            <div className="field">Сайт:</div>
+                                            <div className="cardLinkSchool"><a href={schoolCard && schoolCard.link}>{schoolCard && schoolCard.link}</a></div>
+                                        </span>
                                         <span>
-                                    <div className="field">Классы:</div>
-                                    <div>с 1 по 11</div>
-                                </span>
+                                            <div className="field">Дата основания:</div>
+                                            <div>{/*{schoolCard && schoolCard.foundingDate}*/}10.09.1936</div>
+                                        </span>
                                         <span>
-                                    <div className="field">Численность обучающихся:</div>
-                                    <div>849 чел</div>
-                                </span>
+                                            <div className="field">Классы:</div>
+                                            <div>{/*{schoolCard && schoolCard.classes}*/}с 1 по 11</div>
+                                        </span>
+                                        <span>
+                                            <div className="field">Численность обучающихся:</div>
+                                            <div>{/*{schoolCard && schoolCard.numberStudents}*/}849 человек</div>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -117,37 +112,46 @@ export function SchoolPage() {
                     <Row>
                         <div className="schoolDescription">
                             <span>
-                                    <p className="field">Основное образование:</p>
-                                    <p>1. Образовательные программы начальной школы (I ступень обучения).
-                                        2. Образовательные программы основной школы (II ступень обучения).
-                                        3. Образовательные программы средней школы (III ступень обучения)</p>
-                                </span>
+                                <p className="field">Основное образование:</p>
+                                <p>1. Образовательные программы начальной школы (I ступень обучения).
+                                    2. Образовательные программы основной школы (II ступень обучения).
+                                    3. Образовательные программы средней школы (III ступень обучения)
+                                    {/*{schoolCard && schoolCard.basicEducation}*/}
+                                </p>
+                            </span>
                             <span>
-                                    <p className="field">Профили:</p>
-                                    <p>Естественнонаучный, технологический, социально-экономический.
-                                        В основной школе лицеисты изучают предметы «Экология растений»,
-                                        «Экология животных», «Экология человека», а также элективные курсы:
-                                        «Флора в интерьере», «Культура здоровья», «Экология парков».
-                                        В старшей школе изучаются «Общая экология», «Социальная экология»,
-                                        «Экологический практикум». Таким образом, с 1 по 11 класс в лицее ярко
-                                        прослеживается экологическая содержательная линия.</p>
-                                </span>
+                                <p className="field">Профили:</p>
+                                <p>Естественнонаучный, технологический, социально-экономический.
+                                    В основной школе лицеисты изучают предметы «Экология растений»,
+                                    «Экология животных», «Экология человека», а также элективные курсы:
+                                    «Флора в интерьере», «Культура здоровья», «Экология парков».
+                                    В старшей школе изучаются «Общая экология», «Социальная экология»,
+                                    «Экологический практикум». Таким образом, с 1 по 11 класс в лицее ярко
+                                    прослеживается экологическая содержательная линия.
+                                    {/*{schoolCard && schoolCard.profiles}*/}
+                                </p>
+                            </span>
                             <span>
-                                    <p className="field">Иностранный язык:</p>
-                                    <p>Английский</p>
-                                </span>
+                                <p className="field">Иностранный язык:</p>
+                                <p>{/*{schoolCard && schoolCard.languages}*/}Английский</p>
+                            </span>
                             <span>
-                                    <p className="field">Дополнительное образование</p>
-                                    <p>«Флористика», «Корнепластика», «Изобразительное искусство», «Театр моды»,
-                                        помогающие развивать у обучающихся особую культуру общения человека с природой
-                                        на языке искусства. «Баскетбол», «Футбол», «Хоровое пение», «Вокальная студия» способствуют гармоничному развитию личности, «Научно-практическое краеведение».</p>
-                                </span>
+                                <p className="field">Дополнительное образование</p>
+                                <p>«Флористика», «Корнепластика», «Изобразительное искусство», «Театр моды»,
+                                    помогающие развивать у обучающихся особую культуру общения человека с природой
+                                    на языке искусства. «Баскетбол», «Футбол», «Хоровое пение», «Вокальная студия» 
+                                    способствуют гармоничному развитию личности, «Научно-практическое краеведение».
+                                    {/*{schoolCard && schoolCard.additionalEducation}*/}
+                                </p>
+                            </span>
                         </div>
                     </Row>
                 </Container>
             )}
-            <p className="description">Расположение объекта</p>
-            {/* <Map points={{ homes: PointsHomes, schools: [] }} /> */}
+            <Container><p className="descriptionMap">Расположение объекта</p></Container> 
+            <div className="mapBlock">
+                <Map points={{ homes: [], schools: listPoints }} />
+            </div>
             <Footer/>
         </div>
     );

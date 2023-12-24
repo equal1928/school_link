@@ -6,6 +6,13 @@ enum TypeSchool {
     INACTIVE = 4
 }
 
+// enum TypeSchool {
+//     TOP5,
+//     TOP20,
+//     TOP56,
+//     BASE
+// }
+
 export interface PointsSchoolsOnMap {
     id: number;
     latitude: number;
