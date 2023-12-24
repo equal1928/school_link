@@ -1,5 +1,6 @@
 import { Card, Image } from 'react-bootstrap';
 import { HouseModelCard } from '../../models/HouseModelCard'
+import { FavouriteButton } from './FavouriteButton'
 
 import './HouseCardSmall.css'
 
@@ -14,10 +15,13 @@ export function HouseCardSmall({ card }: { card: HouseModelCard }) {
                 <Card.Img variant="top" className="imageHouseCard" src={card.photo} />
             </div>
             <Card.Body className="cardBody">
-                <div className="titleHouseCard">          
-                    {card.rooms}-ком. квартира, {card.totalSquare} кв.м.,  
-                    {card.address}
-                </div>
+                <div className="titleHouseCardBlock">   
+                    <div className="titleHouseCardText">          
+                        {card.rooms}-ком. квартира, {card.totalSquare} кв.м.,  
+                        {card.address}
+                    </div>
+                    <FavouriteButton houseId={card.id} />
+                </div> 
                 <div className="priceHouse">
                     {card.price} рублей     
                 </div>

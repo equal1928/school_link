@@ -150,7 +150,7 @@ export function SchoolPage() {
             )}
             <Container><p className="descriptionMap">Расположение объекта</p></Container> 
             <div className="mapBlock">
-                <Map points={{ homes: [], schools: listPoints }} />
+                <Map isMapPage={false} points={{ homes: [], schools: listPoints }} />
             </div>
             <Footer/>
         </div>

@@ -73,7 +73,7 @@ function getMarkerIcon(typeSchool: TypeSchool) {
   }
 
 
-export function Map({ isSearchPage = false, points }: { isSearchPage?: boolean; 
+export function Map({ isMapPage = true, points }: { isMapPage?: boolean; 
                     points: { homes: PointsHousesOnMap[]; schools: PointsSchoolsOnMap[] } }) {
     const [showCard, setShowCard] = useState(false);
     const handleClose = () => { 
@@ -153,7 +153,7 @@ export function Map({ isSearchPage = false, points }: { isSearchPage?: boolean;
                 </div>
             </div>
             <div>
-                <MapContainer className="MapContainer" style={isSearchPage ? {height: "90vh", width: "100vw"} : {height: "40vh", width: "90vw"}} center={MAP_CENTER} zoom={13} scrollWheelZoom={true}>
+                <MapContainer className="MapContainer" style={isMapPage ? {height: "90vh", width: "100vw"} : {height: "40vh", width: "90vw"}} center={MAP_CENTER} zoom={13} scrollWheelZoom={true}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}"
@@ -162,7 +162,8 @@ export function Map({ isSearchPage = false, points }: { isSearchPage?: boolean;
                         {propsHome.map(point => (
                             <Marker key={point.id} position={[point.latitude, point.longitude]} icon={homeIcon} eventHandlers={{
                                 click: () => {
-                                    setShowCard(true);
+                                    if (isMapPage)
+                                        setShowCard(true);
                                     setCurrentTypePoint(TypePoint.HOME);
                                     handleHomePointClick([1,2,3]);
                                 },
@@ -173,7 +174,8 @@ export function Map({ isSearchPage = false, points }: { isSearchPage?: boolean;
                         <Marker key={point.id} position={[point.latitude, point.longitude]} 
                                 icon={getMarkerIcon(point.typeSchool)} eventHandlers={{
                             click: () => {
-                                setShowCard(true);
+                                if (isMapPage)
+                                    setShowCard(true);
                                 setCurrentTypePoint(TypePoint.SCHOOL);
                                 handleSchoolPointClick(point.schoolId);
                             },
