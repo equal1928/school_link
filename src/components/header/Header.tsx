@@ -8,10 +8,11 @@ import { RegistrationForm } from '../registration/RegistrationForm'
 import { LoginForm } from '../registration/LoginForm'
 
 import './Header.css'
-import logoIcon from '../images/logo1.png'
+import logoWhite from '../images/logoWhite.png'
+import logoBlack from '../images/logoBlack.png'
 import favouritesIcon from '../images/favourites.png'
 
-export function Header() {
+export function Header({ isMainPage = false }: { isMainPage?: boolean }) {
     const [loginModalShow, setLoginModalShow] = useState(false);
     const [registrationModalShow, setRegistrationModalShow] = useState(false);
 
@@ -19,7 +20,7 @@ export function Header() {
         <Navbar expand="lg" className="bg-body-tertiary headerContainer">
             <Container>
                 <Navbar.Brand href="/">
-                    <img src={logoIcon} className="App-logo" alt="logo" />
+                    <img src={isMainPage ? logoWhite : logoBlack} className="App-logo" alt="logo" />
                 </Navbar.Brand>
                 <Navbar.Toggle className="toggleButtonHeader" aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="entryBlock" id="basic-navbar-nav">

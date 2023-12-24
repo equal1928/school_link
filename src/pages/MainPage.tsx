@@ -11,7 +11,7 @@ export function MainPage() {
     return (
         <div>
             <div className="mainContainer" style={{ backgroundImage: `url(${main})` }}>
-                <Header />
+                <Header isMainPage={true} />
                 <MainFiltersBlock />
             </div>
             <DescriptionBlock />

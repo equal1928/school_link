@@ -16,11 +16,11 @@
     height: 100%;
 }
 
+.cardLinkSchool a {
+    color: black;
+}
+
 .headerInfoBlock {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
     width: 60vw;
     margin-top:10px;
     margin-bottom: 10px;
@@ -63,6 +63,12 @@
     flex-direction: column;
 }
 
+.descriptionMap {
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
 .schoolDescription span{
     display: flex;
     flex-wrap: wrap;
@@ -76,4 +82,11 @@
 .mainWrapper{
     display: flex;
     flex-wrap: wrap;
+}
+
+.mapBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
 }

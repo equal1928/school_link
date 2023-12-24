@@ -15,6 +15,7 @@
     color: gray;
 }
 
-.cardLink a {
+.cardLink p {
     color: black;
+    text-decoration: underline;
 }

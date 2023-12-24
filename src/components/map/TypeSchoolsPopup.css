@@ -20,14 +20,7 @@
     display: flex;
 }
 
-.homeMarker {
-    margin-left: 3px;
-    margin-right: 5px;
-    width: 26px;
-    height: 26px;
-}
-
-.schoolMarker {
+.homeMarker, .schoolMarker {
     margin-right: 5px;
     width: 26px;
     height: 26px;

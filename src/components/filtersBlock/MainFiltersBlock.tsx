@@ -7,15 +7,16 @@ export function MainFiltersBlock() {
     return (
         <div className="filtersContainer" style={{
                             display: "flex",
-                            justifyContent: "end",
+                            justifyContent: "space-around",
                             alignItems: "center",
                             flexDirection: "column",
-                            height: "90vh"
+                            height: "90vh",
+                            paddingTop: "100px"
                         }}>
             <div className="mainTextWrapper">
-                <div className="mainText">
+                <p className="mainText">
                     Хорошая школа рядом - <br/> это удобно
-                </div>
+                </p>
             </div>
             <FiltersList isMain={true} />
         </div>
