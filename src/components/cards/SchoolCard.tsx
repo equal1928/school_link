@@ -25,7 +25,6 @@ export function SchoolCard({ card }: { card: SchoolModelCard }) {
                 </div>
                 <div className="cardAddress">{card.address}<br/></div>
                 <div className="cardLink"><a href={card.link}>Перейти на сайт школы</a></div>
-                <div className="cardLink"><a href={card.link}>Перейти на сайт школы</a></div>
             </Card.Body>
         </Card>
     )

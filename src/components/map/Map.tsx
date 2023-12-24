@@ -137,7 +137,7 @@ export function Map({ points }: { points: { homes: PointsHousesOnMap[]; schools:
                                 </Spinner>
                             </Container>
                         ) : (
-                            <div>
+                            <div className="cardWrapper">
                                 {homesCard.map(homeCard => (
                                     <HouseCardLarge key={homeCard.id} card={homeCard}/>
                                 ))}

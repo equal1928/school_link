@@ -11,6 +11,7 @@ import { PointsHousesOnMap } from '../models/PointsHousesOnMap';
 import { PointsSchoolsOnMap } from '../models/PointsSchoolsOnMap';
 
 import './HomePage.css'
+import {Disclaimer} from "../components/disclaimer/Disclaimer";
 
 
 export function HomePage() {
@@ -63,22 +64,27 @@ export function HomePage() {
             ) : (
                 <Container>
                     <Row>
-                        <Col>
-                            <Image className="cardImg" src={homesCard && homesCard.photo} />
-                        </Col>
-                        <Col className="headerInfoBlock">
-                            <p className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной квартиры,
-                                {homesCard && homesCard.square} кв.м., {homesCard && homesCard.address}
-                            </p>
-                            <div className="price">{homesCard && homesCard.price} рублей</div>
-                            Школы рядом:
-                            <div className="nearbySchools">
-                                <li>Школа №203,</li>
-                                <li>Лицей №110,</li>
-                                <li>Школа №10</li>
+                        <div className="col-md-12">
+                            <div className="mainWrapper">
+                                <div className="imgWrapper">
+                                    <Image className="cardImg" src={homesCard && homesCard.photo}/>
+                                </div>
+                                <div className="headerInfoBlock">
+                                    <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной квартиры,
+                                        {homesCard && homesCard.square} кв.м., {homesCard && homesCard.address}
+                                    </div>
+                                    <div className="price">{homesCard && homesCard.price} рублей</div>
+                                    {/*Школы рядом:*/}
+                                    {/*<div className="nearbySchools">*/}
+                                    {/*    <li>Школа №203,</li>*/}
+                                    {/*    <li>Лицей №110,</li>*/}
+                                    {/*    <li>Школа №10</li>*/}
+                                    {/*</div>*/}
+                                    <div className="cardLink"><a href={homesCard && homesCard.link}>Перейти к объявлению</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="cardLink"><a href={homesCard && homesCard.link}>Перейти к объявлению</a></div>
-                        </Col>
+                        </div>
                     </Row>
                     <Row>
                         <Col className="generalDescription">

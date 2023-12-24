@@ -1,0 +1,12 @@
+.disclaimerWrapper{
+    display: flex;
+}
+.disclaimer{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.rateBlock{
+    flex: 0 1 70%;
+    align-self: center;
+}

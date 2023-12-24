@@ -3,14 +3,14 @@ import { MainFiltersBlock } from '../components/filtersBlock/MainFiltersBlock'
 import { DescriptionBlock } from '../components/descriptionBlock/DescriptionBlock'
 import { Footer } from '../components/footer/Footer'
 
-import filtersImage from '../components/images/filtersImage.png'
+import main from '../components/images/main.jpeg'
 import '../components/descriptionBlock/DescriptionBlock.css';
 import './MainPage.css'
 
 export function MainPage() {
     return (
         <div>
-            <div className="mainContainer" style={{ backgroundImage: `url(${filtersImage})` }}>
+            <div className="mainContainer" style={{ backgroundImage: `url(${main})` }}>
                 <Header />
                 <MainFiltersBlock />
             </div>

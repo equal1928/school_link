@@ -14,9 +14,10 @@
     margin-top: 20px;
     position: absolute;
     z-index: 1001;
-    width: 350px;
+    width: max-content;
     height: 85vh;
     background-color: white;
+    max-width: 620px;
 }
 
 .cardsListContainer {
@@ -39,3 +40,24 @@
     justify-content: center;
     align-items: center;
 }
+
+.cardWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    height: 80vh;
+    overflow-y: auto;
+    flex-direction: row;
+}
+
+.HouseCardLarge card{
+    width: 16rem;
+}
+/*.Disclaimer{*/
+/*    margin-top: 20px;*/
+/*    position: absolute;*/
+/*    z-index: 1002;*/
+/*    width: 400px;*/
+/*    height: 30px;*/
+/*    background-color: chocolate;*/
+/*    max-width: 620px;*/
+/*}*/
