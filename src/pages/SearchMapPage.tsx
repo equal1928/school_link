@@ -45,7 +45,7 @@ export function SearchMapPage() {
     return (
         <div>
             <Header />
-            <SearchFiltersBlock />s
+            <SearchFiltersBlock />
             {/*<Disclaimer />*/}
             <div className="SearchMapContainer">
                 {!mapIsLoading ? (
@@ -60,7 +60,7 @@ export function SearchMapPage() {
                             <Button variant="light" onClick={handleClick}>Показать объекты списком</Button>
                             <TypeSchoolsPopup />
                         </div>
-                        <Map isSearchPage={true} points={{ homes: PointsHomes, schools: PointsSchools }} />
+                        <Map points={{ homes: PointsHomes, schools: PointsSchools }} />
                     </div>
                 )}
             </div>

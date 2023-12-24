@@ -24,10 +24,17 @@
     width: 140px;
 }
 
-.favouritesButton {
+.favouritesBtn {
+    width: 50px;
+    height: 40px;
     margin: 5px;
-    width: 35px;
-    height: 35px;
+    background-color: #00000000;
+    border-style: none;
+}
+
+.favouritesImg {
+    width: 40px;
+    height: 40px;
 }
 
 .loginButton {
@@ -45,7 +52,7 @@
     background-color: white;
     border-style: solid;
     margin: 5px;
-    height: 35px;
+    height: 40px;
 }
 
 .loginButton:hover, .registrationButton:hover {

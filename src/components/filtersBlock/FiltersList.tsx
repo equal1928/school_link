@@ -10,13 +10,25 @@ import { SchoolModelFilter } from '../../models/SchoolModelFilter'
 
 export function FiltersList(props: any) {
     const [schools, setSchools] = useState<SchoolModelFilter[]>([]);
-    const [selectedSchools, setSelectedSchools] = useState<number[]>([]);
     const [schoolNameFilter, setSchoolNameFilter] = useState('');
     const [showMoreFilter, setShowMoreFilter] = useState(false);
     const handleToggleFiltersListMore = () => setShowMoreFilter(!showMoreFilter);
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     const handleClose = () => setShowOffcanvas(false);
     const toggleShow = () => setShowOffcanvas((s) => !s);
+
+    //Фильтры
+    const [selectedTypeHous, setSelectedTypeHous] = useState<string[]>([]);
+    const [selectedSchools, setSelectedSchools] = useState<number[]>([]);
+    const [selectedTime, setSelectedTime] = useState<number[]>([]);
+
+// priceButton
+// numberRoomsFilter
+// materialFilter
+// floorFilter
+// floorFilter
+// yearFilter
+
 
     const navigate = useNavigate();
     function handleClick(event: any) {
@@ -37,7 +49,6 @@ export function FiltersList(props: any) {
         const updatedSelectedSchools = selectedSchools.includes(schoolId)
             ? selectedSchools.filter(id => id !== schoolId)
             : [...selectedSchools, schoolId];
-
         setSelectedSchools(updatedSelectedSchools);
     };
 
@@ -54,6 +65,23 @@ export function FiltersList(props: any) {
                 />
             ));
     };
+
+    const handleSelectedTypeHousChange = (label: string) => {
+        const updatedSelectedTypeHous = selectedTypeHous.includes(label)
+            ? selectedTypeHous.filter(item => item !== label)
+            : [...selectedTypeHous, label];
+        setSelectedTypeHous(updatedSelectedTypeHous);
+    };
+
+    const handleTimeChange = (time: number) => {
+        const updatedSelectedTime = selectedTime.includes(time)
+            ? selectedTime.filter(item => item !== time)
+            : [...selectedTime, time];
+        setSelectedTime(updatedSelectedTime);
+    };
+
+
+
 
     const filtersOffcanvasStyleDesctop = {
         display: "flex", 
@@ -145,8 +173,12 @@ export function FiltersList(props: any) {
                             <DropdownButton className="filtersFirstButton" variant="light" id="dropdown-basic-button"
                                             title="Тип жилья" data-bs-theme="light">
                                 <Form className="typeHousFilter">
-                                    <Form.Check label="Новостройка"/>
-                                    <Form.Check label="Вторичное жилье"/>
+                                    <Form.Check label="Новостройка" 
+                                                checked={selectedTypeHous.includes("Новостройка")}
+                                                onChange={() => handleSelectedTypeHousChange("Новостройка")}/>
+                                    <Form.Check label="Вторичное жилье" 
+                                                checked={selectedTypeHous.includes("Вторичное жилье")}
+                                                onChange={() => handleSelectedTypeHousChange("Вторичное жилье")}/>
                                 </Form>
                             </DropdownButton>
                             <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button"
@@ -165,15 +197,24 @@ export function FiltersList(props: any) {
                                     </Form.Group>
                                 </Form>
                             </DropdownButton>
-                            <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button"
-                                            title="Расстояние до школы" data-bs-theme="light">
+                            <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button" title="Расстояние до школы" data-bs-theme="light">
                                 <Form className="timeSchoolFilter">
-                                    <Form.Check label="5 минут"/>
-                                    <Form.Check label="10 минут"/>
-                                    <Form.Check label="15 минут"/>
-                                    <Form.Check label="20 минут"/>
-                                    <Form.Check label="30 минут"/>
-                                </Form>
+                                    <Form.Check label="5 минут" 
+                                                checked={selectedTime.includes(5)}
+                                                onChange={() => handleTimeChange(5)}/>
+                                    <Form.Check label="10 минут" 
+                                                checked={selectedTime.includes(10)}
+                                                onChange={() => handleTimeChange(10)}/>
+                                    <Form.Check label="15 минут" 
+                                                checked={selectedTime.includes(15)}
+                                                onChange={() => handleTimeChange(15)}/>
+                                    <Form.Check label="20 минут" 
+                                                checked={selectedTime.includes(20)}
+                                                onChange={() => handleTimeChange(20)}/>
+                                    <Form.Check label="30 минут" 
+                                                checked={selectedTime.includes(30)}
+                                                onChange={() => handleTimeChange(30)}/>
+                                </Form> 
                             </DropdownButton>
                             <div className="priceButton">
                                 <InputGroup className="">

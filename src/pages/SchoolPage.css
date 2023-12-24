@@ -1,3 +1,7 @@
+p {
+    text-align: justify;
+}
+
 .spinnerContainer {
     display: flex;
     justify-content: center;

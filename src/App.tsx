@@ -6,6 +6,7 @@ import { SearchMapPage } from "./pages/SearchMapPage"
 import { SearchListPage } from "./pages/SearchListPage"
 import { HomePage } from "./pages/HomePage"
 import { SchoolPage } from "./pages/SchoolPage"
+import { FavoritesPage } from "./pages/FavoritesPage"
 
 import "leaflet/dist/leaflet.css"
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/search-list" element={<SearchListPage />} />
           <Route path="/homes/:id" element={<HomePage />} />
           <Route path="/schools/:id" element={<SchoolPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
       </Routes>
     </div>
   );

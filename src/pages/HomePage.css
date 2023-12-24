@@ -62,15 +62,18 @@
 
 .descriptionObjectText {
     word-wrap: break-word;
+    text-align: justify;
 }
 
 .generalDescription {
     width: 50vw;
     margin-right: 20px;
+    min-width: 300px;
 }
 
 .descriptionObject {
     width: 50vw;
+    min-width: 300px;
 }
 
 .apartmentDescription {
@@ -98,6 +101,8 @@
 .mainWrapper {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
     margin-top: 20px;
 }
 

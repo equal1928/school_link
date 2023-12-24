@@ -8,6 +8,7 @@ import { Map } from '../components/map/Map'
 import { Footer } from '../components/footer/Footer'
 import { HouseModelCard } from "../models/HouseModelCard";
 import { PointsHousesOnMap } from '../models/PointsHousesOnMap';
+import { FavouriteButton } from '../components/cards/FavouriteButton';
 
 import './HomePage.css'
 
@@ -64,6 +65,9 @@ export function HomePage() {
                         <Col className="mainWrapper">
                             <div className="imgWrapper">
                                 <Image className="cardImg" src={homesCard && homesCard.photo}/>
+                            </div>
+                            <div style={{position: "absolute", margin: "10px"}}>
+                                <FavouriteButton houseId={homesCard && homesCard.id} />
                             </div>
                         </Col>
                         <Col className="headerInfoBlock">
@@ -135,7 +139,7 @@ export function HomePage() {
             )}
             <Container><p className="descriptionMap">Расположение объекта</p></Container> 
             <div className="mapBlock">
-                <Map points={{ homes: listPoints, schools: [] }} />
+                <Map isMapPage={false} points={{ homes: listPoints, schools: [] }} />
             </div>
             <Footer />
         </div>

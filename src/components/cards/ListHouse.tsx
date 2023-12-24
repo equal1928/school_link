@@ -1,121 +1,40 @@
-import { HouseCardSmall } from './HouseCardSmall'
-import img1 from '../images/House1.png'
-import img2 from '../images/House2.png'
-import img3 from '../images/House3.png'
-
-
-import './Cards.css'
+import { Container, Pagination, Spinner } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+
+import { HouseCardSmall } from './HouseCardSmall'
 import { HouseModelCard } from '../../models/HouseModelCard'
-import { Container, Pagination, Spinner } from 'react-bootstrap'
+
+import './Cards.css'
 
 
-const card = [
-    {
-        id: 1,
-        photo: `${img1}`,
-        price: 8000000,
-        rooms: 3,
-        square: 110,
-        currentFloor: 8,
-        totalFloors: 10,
-        schools: [
-            {
-                number: 9,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 10,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 11,
-                address: "Плотинка",
-                link: "https"
-            }
-        ],
-        address: "Свердловская обл., г. Екатеринбург, ул. Красноуральская, 22",
-        link: "https",
-    },
-    {
-        id: 2,
-        photo: `${img2}`,
-        price: 4000000,
-        rooms: 1,
-        square: 40,
-        currentFloor: 2,
-        totalFloors: 30,
-        schools: [
-            {
-                number: 9,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 10,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 11,
-                address: "Плотинка",
-                link: "https"
-            }
-        ],
-        address: "Свердловская обл., г. Екатеринбург, ул. Красноуральская, 24",
-        link: "https",
-    },
-    {
-        id: 3,
-        photo: `${img3}`,
-        price: 5600000,
-        rooms: 2,
-        square: 70,
-        currentFloor: 4,
-        totalFloors: 15,
-        schools: [
-            {
-                number: 9,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 10,
-                address: "Плотинка",
-                link: "https"
-            },
-            {
-                number: 11,
-                address: "Плотинка",
-                link: "https"
-            }
-        ],
-        address: "Свердловская обл., г. Екатеринбург, ул. Красноуральская, 20",
-        link: "https",
-    },
-]
-
-
-export function ListHouse() {
+export function ListHouse({ isSearch = true }: { isSearch?: Boolean }) {
     const [cards, setCards] = useState<HouseModelCard[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [cardsPerPage] = useState(5);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        axios.get("https://retoolapi.dev/cZVlG9/homeinfo")
-            .then(response => {
+        const fetchData = async () => {
+          try {
+            let response;
+            if (isSearch)
+                response = await axios.get("https://retoolapi.dev/cZVlG9/homeinfo");
+            else
+                response = await axios.get("https://retoolapi.dev/cZVlG9/homeinfo/1");
+            if (!Array.isArray(response.data))
+                setCards([response.data]);
+            else
                 setCards(response.data);
-                setIsLoading(false);
-            })
-            .catch(error => {
-                console.error(error);
-                setIsLoading(false);
-            });
-    }, []);
+            setIsLoading(true);
+          } catch (error) {
+            console.error(error);
+            setIsLoading(true);
+          }
+        };
+    
+        fetchData();
+      }, [isSearch]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -135,7 +54,7 @@ export function ListHouse() {
     };
 
     const renderCards = () => {
-        if (isLoading) {
+        if (!isLoading) {
             return (
                 <Container className="SpinnerListHouse">
                     <Spinner animation="border" role="status">
@@ -148,6 +67,9 @@ export function ListHouse() {
         const indexOfLastCard = currentPage * cardsPerPage;
         const indexOfFirstCard = indexOfLastCard - cardsPerPage;
         const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
+
+        if (currentCards.length < 1)
+            return (<><h2>Ничего не найдено.</h2></>);
 
         return currentCards.map(currentCard => (
             <HouseCardSmall key={currentCard.id} card={currentCard} />
@@ -162,7 +84,7 @@ export function ListHouse() {
                 {currentPage > 1 && (
                     <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} />
                 )}
-                {displayedPages.map((page) => (
+                {displayedPages.length > 1 && displayedPages.map((page) => (
                     <Pagination.Item
                         key={page}
                         active={page === currentPage}
