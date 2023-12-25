@@ -17,8 +17,8 @@ export function Disclaimer() {
                 <div className="rateBlock">
                     <p> Для удобства школы на карте разделены на группы по рейтингу.
                         За основу мы взяли рейтинг агенства недвижимости "Драже". Его идея в том, чтобы найти в каждом микрорайоне города
-                        лучшие школы. Поэтому рейтинг могли попасть и не самые сильные школы, но при этом лучшие в
-                        районе. </p>
+                        лучшие школы. Всего достойных внимания оказалось 56. На карте они отмечены маркерами. <a style={{color:"mediumseagreen"}}>Топ-5 школ города,</a>
+                        <a style={{color:"royalblue"}}> топ-20 школ,</a> <a style={{color:"darkorange"}}> топ-56 </a> и <a style={{color:"red"}}>школы, которые не вошли в рейтинг.</a>  </p>
                 </div>
                 <div className="schoolBlock">
                     <div className="disclaimerWrapper"><Image className="homeMarker" src={homeMarker}/><p>Объект

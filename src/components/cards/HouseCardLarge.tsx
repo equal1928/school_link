@@ -10,10 +10,11 @@ export function HouseCardLarge({ card }: { card: HouseModelCard }) {
     }
     return (
         <Card className="HouseCardLarge" style={{ width: '16rem', backgroundColor: "#E3E5E5" }} onClick={handleHomeCardClick(card.id)}>
-
-            <Card.Img variant="top" style={{ width: '16rem', height:'13rem'}} src={card.photo} />
+            <div className="cardImgWrapper">
+                <Card.Img variant="top" className="cardImg" src={card.photo} />
+            </div>
             <Card.Body>
-                <div>{card.price} рублей</div>
+                <div className="cardPrice">{card.price} рублей</div>
                 <div>            
                     {card.rooms}-ком. квартира, {card.totalSquare} кв.м.<br/> 
                     {card.currentFloor}/{card.totalFloors} этаж

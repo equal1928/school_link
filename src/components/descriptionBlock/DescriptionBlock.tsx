@@ -31,7 +31,7 @@ export function DescriptionBlock() {
                     <Col>
                         <div className="descriptionRow">
                             <Image className="checkIcon" src={checkIcon} />
-                            <p>Что-то еще</p>
+                            <p>Поможем определиться со школой</p>
                         </div>
                     </Col>
                 </Row>

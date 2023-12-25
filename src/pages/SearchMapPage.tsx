@@ -45,8 +45,8 @@ export function SearchMapPage() {
     return (
         <div>
             <Header />
-            <SearchFiltersBlock />
-            <Disclaimer />
+            <SearchFiltersBlock />s
+            {/*<Disclaimer />*/}
             <div className="SearchMapContainer">
                 {!mapIsLoading ? (
                     <Container className="SpinnerMapLoading">

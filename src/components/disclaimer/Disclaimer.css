@@ -9,4 +9,5 @@
 .rateBlock{
     flex: 0 1 70%;
     align-self: center;
+    font-size: 18px;
 }
