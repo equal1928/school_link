@@ -17,7 +17,7 @@ export function MainFiltersBlock() {
                 <div className="firstPart">Хорошая школа рядом -</div>
                 <div className="secondPart"> это удобно</div>
             </div>
-            <FiltersList isMain={true} />
+            <FiltersList isMainPage={true} />
         </div>
     )
 }

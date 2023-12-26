@@ -30,20 +30,20 @@ export function SchoolPage() {
           }
         };
         fetchData();
-      }, []);
+    }, []);
 
     const [listPoints, setListPoints] = useState<PointsSchoolsOnMap[]>([]);
     const [mapIsLoading, setMapIsLoading] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
-        try {
-            const schoolResponse = await axios.get<PointsSchoolsOnMap>(`https://retoolapi.dev/zoluMf/schoolpoints/${schoolId}`);
-            setListPoints([schoolResponse.data,]);
-            setMapIsLoading(true);
-        } catch (error) {
-            console.error(error);
-            setMapIsLoading(true);
-        }
+            try {
+                const schoolResponse = await axios.get<PointsSchoolsOnMap>(`https://retoolapi.dev/zoluMf/schoolpoints/${schoolId}`);
+                setListPoints([schoolResponse.data,]);
+                setMapIsLoading(true);
+            } catch (error) {
+                console.error(error);
+                setMapIsLoading(true);
+            }
         };
     
         fetchData();
@@ -150,7 +150,15 @@ export function SchoolPage() {
             )}
             <Container><p className="descriptionMap">Расположение объекта</p></Container> 
             <div className="mapBlock">
-                <Map isMapPage={false} points={{ homes: [], schools: listPoints }} />
+                {!mapIsLoading ? (
+                    <Container className="spinnerContainer">
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                    </Container>
+                ) : (
+                    <Map isMapPage={false} points={{ homes: [], schools: listPoints }} />
+                )}
             </div>
             <Footer/>
         </div>

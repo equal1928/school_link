@@ -11,7 +11,8 @@ import './SearchListPage.css'
 export function SearchListPage() {
     const navigate = useNavigate();
     function handleClick() {
-        navigate('/search-map');
+        const searchUrl = window.location.search;
+        navigate(`/search-map${searchUrl}`);
     }
     
     return (
