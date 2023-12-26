@@ -67,6 +67,7 @@
 
 .yearFilter {
     margin: 5px 15px 0px 15px;
+    width: 180px;
 }
 
 .filtersFirstButton button {

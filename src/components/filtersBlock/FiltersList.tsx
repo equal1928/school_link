@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Button, InputGroup, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { SchoolModelFilter } from '../../models/SchoolModelFilter'
 
 
-export function FiltersList(props: any) {
+export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
     const [schools, setSchools] = useState<SchoolModelFilter[]>([]);
     const [schoolNameFilter, setSchoolNameFilter] = useState('');
     const [showMoreFilter, setShowMoreFilter] = useState(false);
@@ -21,19 +21,49 @@ export function FiltersList(props: any) {
     const [selectedTypeHous, setSelectedTypeHous] = useState<string[]>([]);
     const [selectedSchools, setSelectedSchools] = useState<number[]>([]);
     const [selectedTime, setSelectedTime] = useState<number[]>([]);
-
-// priceButton
-// numberRoomsFilter
-// materialFilter
-// floorFilter
-// floorFilter
-// yearFilter
-
+    const [minPrice, setMinPrice] = useState<number>();
+    const [maxPrice, setMaxPrice] = useState<number>();
+    const [selectedRooms, setSelectedRooms] = useState<number[]>([]);
+    const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
+    const [minFloor, setMinFloor] = useState<number>();
+    const [maxFloor, setMaxFloor] = useState<number>();
+    const [excludeFirst, setExcludeFirst] = useState<boolean>(false);
+    const [excludeLast, setExcludeLast] = useState<boolean>(false);
+    const [minYear, setMinYear] = useState<number>();
+    const [maxYear, setMaxYear] = useState<number>();
 
     const navigate = useNavigate();
-    function handleClick(event: any) {
+    function handleSearchSchoolClick(event: any) {
         navigate('/search-map');
     }
+    const handleSearchButtonClick = () => {
+        const queryParams = {
+          typeHous: selectedTypeHous.join(','),
+          schools: selectedSchools.join(','),
+          time: selectedTime.join(','),
+          minPrice,
+          maxPrice,
+          rooms: selectedRooms.join(','),
+          materials: selectedMaterials.join(','),
+          minFloor,
+          maxFloor,
+          excludeFirst,
+          excludeLast,
+          minYear,
+          maxYear,
+        };
+
+        const queryString = Object.entries(queryParams).map(([key, value]) => {
+            const encodedValue = encodeURIComponent(value || '');
+            return `${key}=${encodedValue}`;
+        }).join('&');
+        
+        const pathUrl = window.location.pathname;
+        if (pathUrl === "/search-list")
+            navigate(`/search-list?${queryString}`);
+        else 
+            navigate(`/search-map?${queryString}`);
+      };
 
     useEffect(() => {
         axios.get('https://retoolapi.dev/BwAFP7/data')
@@ -80,15 +110,99 @@ export function FiltersList(props: any) {
         setSelectedTime(updatedSelectedTime);
     };
 
+    const handleMinPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMinPrice(Number(event.target.value));
+    };
 
+    const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMaxPrice(Number(event.target.value));
+    };
+
+    const handleRoomsChange = (rooms: number) => {
+        const updatedSelectedRooms = selectedRooms.includes(rooms)
+            ? selectedRooms.filter(item => item !== rooms)
+            : [...selectedRooms, rooms];
+        setSelectedRooms(updatedSelectedRooms);
+    };
+
+    const handleMaterialsChange = (label: string) => {
+        const updatedSelectedMaterials = selectedMaterials.includes(label)
+            ? selectedMaterials.filter(item => item !== label)
+            : [...selectedMaterials, label];
+        setSelectedMaterials(updatedSelectedMaterials);
+    };    
+
+    const handleMinFloorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMinFloor(Number(event.target.value));
+    };
+
+    const handleMaxFloorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMaxFloor(Number(event.target.value));
+    };
+
+    const handleExcludeFirstChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setExcludeFirst(Boolean(event.target.checked));
+    };
+
+    const handleExcludeLastChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setExcludeLast(Boolean(event.target.checked));
+    };
+
+    const handleMinYearChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMinYear(Number(event.target.value));
+    };
+
+    const handleMaxYearChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMaxYear(Number(event.target.value));
+    };
+
+    useEffect(() => {
+        if (!isMainPage) {
+            const currentUrl = window.location.search;
+            const urlParams = new URLSearchParams(currentUrl);
+            
+            const typeHousePar = urlParams.get('typeHous');
+            setSelectedTypeHous(typeHousePar ? typeHousePar.split(",") : []);
+            
+            const schoolsPar = urlParams.get('schools');
+            setSelectedSchools(schoolsPar ? schoolsPar.split(",").map(Number) : []);
+
+            const timePar = urlParams.get('time');
+            setSelectedTime(timePar ? timePar.split(",").map(Number) : []);
+
+            const parsedMinPrice = urlParams.get('minPrice');
+            setMinPrice(parsedMinPrice ? parseInt(parsedMinPrice, 10) : undefined);
+            const parsedMaxPrice = urlParams.get('maxPrice');
+            setMaxPrice(parsedMaxPrice ? parseInt(parsedMaxPrice, 10) : undefined);
+
+            const roomsPar = urlParams.get('rooms');
+            setSelectedRooms(roomsPar ? roomsPar.split(",").map(Number) : []);
+
+            const materialsPar = urlParams.get('materials');
+            setSelectedMaterials(materialsPar ? materialsPar.split(",") : []);
+
+            const parsedMinFloor = urlParams.get('minFloor');
+            setMinFloor(parsedMinFloor ? parseInt(parsedMinFloor, 10) : undefined);
+            const parsedMaxFloor= urlParams.get('maxFloor');
+            setMaxFloor(parsedMaxFloor ? parseInt(parsedMaxFloor, 10) : undefined);
+
+            setExcludeFirst(urlParams.get('excludeFirst') === 'true');
+            setExcludeLast(urlParams.get('excludeLast') === 'true');
+
+            const parsedMinYear = urlParams.get('minYear');
+            setMinYear(parsedMinYear ? parseInt(parsedMinYear, 10) : undefined);
+            const parsedMaxYear= urlParams.get('maxYear');
+            setMaxYear(parsedMaxYear ? parseInt(parsedMaxYear, 10) : undefined);
+        }
+    }, []);
 
 
     const filtersOffcanvasStyleDesctop = {
         display: "flex", 
-        flexDirection: props.isMain ? "column" : "row", 
+        flexDirection: isMainPage ? "column" : "row", 
         flexWrap: "wrap", 
         justifyContent: "center", 
-        alignItems: props.isMain ? "center" : "flex-start"
+        alignItems: isMainPage ? "center" : "flex-start"
     };
 
     const filtersOffcanvasStyleMobile = {
@@ -130,23 +244,23 @@ export function FiltersList(props: any) {
         alignItems: "center",
         justifyContent: "center",
         borderRadius: "13px",
-        marginLeft: props.isMain ? "0px" : "20px",
-        marginTop: props.isMain && !showOffcanvas ? "90px" : "0px",
-        marginBottom: props.isMain ? "70px" : "0px"
+        marginLeft: isMainPage ? "0px" : "20px",
+        marginTop: isMainPage && !showOffcanvas ? "90px" : "0px",
+        marginBottom: isMainPage ? "70px" : "0px"
     };
     
     const buttonStyle={
-        borderColor: props.isMain && !showOffcanvas ? "white" : "gray",
-        borderWidth: props.isMain && !showOffcanvas ? "0px" : "2px",
-        width: props.isMain ? "220px" : "120px",
-        height: props.isMain ? "60px" : "45px",
-        borderRadius: props.isMain ? "13px" : "6px"
+        borderColor: isMainPage && !showOffcanvas ? "white" : "gray",
+        borderWidth: isMainPage && !showOffcanvas ? "0px" : "2px",
+        width: isMainPage ? "220px" : "120px",
+        height: isMainPage ? "60px" : "45px",
+        borderRadius: isMainPage ? "13px" : "6px"
     };
 
     const toggleButtonStyle={
-        width: props.isMain ? "300px" : "300px",
-        height: props.isMain ? "70px" : "50px",
-        marginBottom: props.isMain ? "130px" : "0px",
+        width: isMainPage ? "300px" : "300px",
+        height: isMainPage ? "70px" : "50px",
+        marginBottom: isMainPage ? "130px" : "0px",
         border: "1px solid grey",
         backgroundColor: "white"
     };
@@ -219,8 +333,18 @@ export function FiltersList(props: any) {
                             <div className="priceButton">
                                 <InputGroup className="">
                                     <InputGroup.Text>Цена</InputGroup.Text>
-                                    <Form.Control placeholder="от"/>
-                                    <Form.Control placeholder="до"/>
+                                    <Form.Control 
+                                        type="number"
+                                        min="0"
+                                        placeholder="от"
+                                        value={minPrice}
+                                        onChange={handleMinPriceChange}/>
+                                    <Form.Control
+                                        type="number"
+                                        min="0" 
+                                        placeholder="до"
+                                        value={maxPrice}
+                                        onChange={handleMaxPriceChange}/>
                                 </InputGroup>
                             </div>
                             <Button className="filtersLastButtonMore" variant="light" data-bs-theme="light"
@@ -232,34 +356,66 @@ export function FiltersList(props: any) {
                             <DropdownButton className="filtersFirstButton" variant="light" id="dropdown-basic-button"
                                             title="Количество комнат" data-bs-theme="light">
                                 <Form className="numberRoomsFilter">
-                                    <Form.Check label="Студия"/>
-                                    <Form.Check label="1"/>
-                                    <Form.Check label="2"/>
-                                    <Form.Check label="3"/>
-                                    <Form.Check label="4"/>
-                                    <Form.Check label="5"/>
+                                    <Form.Check label="Студия"
+                                                checked={selectedRooms.includes(0)}
+                                                onChange={() => handleRoomsChange(0)}/>
+                                    <Form.Check label="1"
+                                                checked={selectedRooms.includes(1)}
+                                                onChange={() => handleRoomsChange(1)}/>
+                                    <Form.Check label="2"
+                                                checked={selectedRooms.includes(2)}
+                                                onChange={() => handleRoomsChange(2)}/>
+                                    <Form.Check label="3"
+                                    checked={selectedRooms.includes(3)}
+                                                onChange={() => handleRoomsChange(3)}/>
+                                    <Form.Check label="4"
+                                                checked={selectedRooms.includes(4)}
+                                                onChange={() => handleRoomsChange(4)}/>
+                                    <Form.Check label="5"
+                                                checked={selectedRooms.includes(5)}
+                                                onChange={() => handleRoomsChange(5)}/>
                                 </Form>
                             </DropdownButton>
                             <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button"
                                             title="Материал стен" data-bs-theme="light">
                                 <Form className="materialFilter">
-                                    <Form.Check label="Кирпичный"/>
-                                    <Form.Check label="Монолитный"/>
-                                    <Form.Check label="Панельный"/>
-                                    <Form.Check label="Блочный"/>
-                                    <Form.Check label="Железобетонный"/>
+                                    <Form.Check label="Кирпичный"
+                                                checked={selectedMaterials.includes("Кирпичный")}
+                                                onChange={() => handleMaterialsChange("Кирпичный")}/>
+                                    <Form.Check label="Монолитный"
+                                                checked={selectedMaterials.includes("Монолитный")}
+                                                onChange={() => handleMaterialsChange("Монолитный")}/>
+                                    <Form.Check label="Панельный"
+                                                checked={selectedMaterials.includes("Панельный")}
+                                                onChange={() => handleMaterialsChange("Панельный")}/>
+                                    <Form.Check label="Блочный"
+                                                checked={selectedMaterials.includes("Блочный")}
+                                                onChange={() => handleMaterialsChange("Блочный")}/>
+                                    <Form.Check label="Железобетонный"
+                                                checked={selectedMaterials.includes("Железобетонный")}
+                                                onChange={() => handleMaterialsChange("Железобетонный")}/>
                                 </Form>
                             </DropdownButton><DropdownButton className="filtersButton" variant="light"
                                                              id="dropdown-basic-button" title="Этаж"
                                                              data-bs-theme="light">
                             <Form className="floorFilter">
                                 <InputGroup>
-                                    <Form.Control placeholder="с"/>
-                                    <Form.Control placeholder="по"/>
+                                    <Form.Control type="number"
+                                                  placeholder="с"
+                                                  value={minFloor}
+                                                  onChange={handleMinFloorChange}/>
+                                    <Form.Control type="number"
+                                                  placeholder="по"
+                                                  value={maxFloor}
+                                                  onChange={handleMaxFloorChange}/>
                                 </InputGroup>
                                 <Form>
-                                    <Form.Check label="Не первый"/>
-                                    <Form.Check label="Не последний"/>
+                                    <Form.Check label="Не первый"
+                                                checked={excludeFirst}
+                                                onChange={handleExcludeFirstChange}/>
+                                    <Form.Check label="Не последний"
+                                                checked={excludeLast}
+                                                onChange={handleExcludeLastChange}/>
                                 </Form>
                             </Form>
                         </DropdownButton>
@@ -267,17 +423,25 @@ export function FiltersList(props: any) {
                                             title="Год постройки" data-bs-theme="light">
                                 <Form className="yearFilter">
                                     <InputGroup>
-                                        <Form.Control placeholder="с"/>
-                                        <Form.Control placeholder="по"/>
+                                        <Form.Control type="number"
+                                                      min="0"
+                                                      placeholder="с"
+                                                      value={minYear}
+                                                      onChange={handleMinYearChange}/>
+                                        <Form.Control type="number"
+                                                      min="0"
+                                                      placeholder="по"
+                                                      value={maxYear}
+                                                      onChange={handleMaxYearChange}/>
                                     </InputGroup>
                                 </Form>
                             </DropdownButton>
                         </div>
                         <div className="bottomWrapper">
-                                <Button className="searchButton"  variant="light"
-                                        onClick={handleClick}>Найти квартиры</Button>
-                                <Button className="searchButton" variant="light"
-                                        onClick={handleClick}>Подобрать школу</Button>
+                            <Button className="searchButton"  variant="light"
+                                    onClick={handleSearchButtonClick}>Найти квартиры</Button>
+                            <Button className="searchButton" variant="light"
+                                    onClick={handleSearchSchoolClick}>Подобрать школу</Button>
                         </div>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>

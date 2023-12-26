@@ -23,10 +23,23 @@ export function SearchMapPage() {
     useEffect(() => {
         const fetchData = async () => {
           try {
+            const searchUrl = window.location.search;
+            const searchParams = new URLSearchParams(searchUrl);
             const homesResponse = await axios.get<PointsHousesOnMap[]>("https://retoolapi.dev/minnlU/homepoints");
-            setPointsHomes(homesResponse.data);
+            //const homesResponse = await axios.get<PointsHousesOnMap[]>(`https://retoolapi.dev/minnlU/homepoints${searchUrl}`);
+            if (!Array.isArray(homesResponse.data))
+                setPointsHomes([homesResponse.data]);
+            else
+                setPointsHomes(homesResponse.data);
             const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>("https://retoolapi.dev/zoluMf/schoolpoints");
-            setPointsSchools(schoolsResponse.data);
+            const schoolsPar = searchParams.get('schools');
+            const schoolsParArray = schoolsPar ? schoolsPar.split(",").map(Number) : [];
+            const queryString = `?schoolIds=${encodeURIComponent(schoolsParArray.join(','))}`;
+            //const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>(`https://retoolapi.dev/zoluMf/schoolpoints${queryString}`);
+            if (!Array.isArray(schoolsResponse.data))
+                setPointsSchools([schoolsResponse.data]);
+            else
+                setPointsSchools(schoolsResponse.data);
             setMapIsLoading(true);
           } catch (error) {
             console.error(error);
@@ -39,7 +52,8 @@ export function SearchMapPage() {
 
     const navigate = useNavigate();
     function handleClick() {
-        navigate('/search-list');
+        const searchUrl = window.location.search;
+        navigate(`/search-list${searchUrl}`);
     }
 
     return (

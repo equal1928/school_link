@@ -37,14 +37,14 @@ export function HomePage() {
     const [mapIsLoading, setMapIsLoading] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const homesResponse = await axios.get<PointsHousesOnMap>(`https://retoolapi.dev/minnlU/homepoints/${homeId}`);
-            setListPoints([homesResponse.data,]);
-            setMapIsLoading(true);
-          } catch (error) {
-            console.error(error);
-            setMapIsLoading(true);
-          }
+            try {
+                const homesResponse = await axios.get<PointsHousesOnMap>(`https://retoolapi.dev/minnlU/homepoints/${homeId}`);
+                setListPoints([homesResponse.data,]);
+                setMapIsLoading(true);
+            } catch (error) {
+                console.error(error);
+                setMapIsLoading(true);
+            }
         };
       
         fetchData();
@@ -139,7 +139,15 @@ export function HomePage() {
             )}
             <Container><p className="descriptionMap">Расположение объекта</p></Container> 
             <div className="mapBlock">
-                <Map isMapPage={false} points={{ homes: listPoints, schools: [] }} />
+                {!mapIsLoading ? (
+                    <Container className="spinnerContainer">
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                    </Container>
+                ) : (
+                    <Map isMapPage={false} points={{ homes: listPoints, schools: [] }} />
+                )}
             </div>
             <Footer />
         </div>

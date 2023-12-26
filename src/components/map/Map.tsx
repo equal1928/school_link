@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { Icon, LatLngExpression, PointExpression, divIcon, icon, point } from "leaflet";
 import { CloseButton, Container, Offcanvas, Spinner } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { PointsHousesOnMap } from '../../models/PointsHousesOnMap'
@@ -91,7 +91,10 @@ export function Map({ isMapPage = true, points }: { isMapPage?: boolean;
     const handleHomePointClick = (pointId: number[]) => {
         axios.get(`https://retoolapi.dev/cZVlG9/homeinfo?_page=1&_limit=4`)
             .then(response => {
-                setHomesCard(response.data);
+                if (!Array.isArray(response.data))
+                    setHomesCard([response.data]);
+                else
+                    setHomesCard(response.data);
                 setLoadingHomesCard(true);
             })
             .catch(error => {
@@ -110,11 +113,15 @@ export function Map({ isMapPage = true, points }: { isMapPage?: boolean;
             });
     };
 
+
     const propsHome = points.homes;
     const propsSchool = points.schools;
-    const MAP_CENTER: LatLngExpression = propsHome && propsHome.length 
-                                        ? [propsHome[0].latitude, propsHome[0].longitude] 
-                                        : [56.838270, 60.603475];
+    let MAP_CENTER: LatLngExpression =[56.838270, 60.603475]; 
+    if (propsHome && propsHome.length > 0) 
+        MAP_CENTER = [propsHome[0].latitude, propsHome[0].longitude];
+    else if (propsSchool && propsSchool.length > 0)
+        MAP_CENTER = [propsSchool[0].latitude, propsSchool[0].longitude];
+
     return (
         <div className="SearchMapContainer">
             <div className="mapOffcanvas" style={{ display: showCard ? 'block' : 'none' }}>
@@ -158,18 +165,16 @@ export function Map({ isMapPage = true, points }: { isMapPage?: boolean;
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}"
                     />
-                    <MarkerClusterGroup chunkedLoading>
-                        {propsHome.map(point => (
-                            <Marker key={point.id} position={[point.latitude, point.longitude]} icon={homeIcon} eventHandlers={{
-                                click: () => {
-                                    if (isMapPage)
-                                        setShowCard(true);
-                                    setCurrentTypePoint(TypePoint.HOME);
-                                    handleHomePointClick([1,2,3]);
-                                },
-                              }}></Marker>
-                        ))}
-                    </MarkerClusterGroup>
+                    {propsHome.map(point => (
+                        <Marker key={point.id} position={[point.latitude, point.longitude]} icon={homeIcon} eventHandlers={{
+                            click: () => {
+                                if (isMapPage)
+                                    setShowCard(true);
+                                setCurrentTypePoint(TypePoint.HOME);
+                                handleHomePointClick([1,2,3]);
+                            },
+                            }}></Marker>
+                    ))}
                     {propsSchool.map(point => (
                         <Marker key={point.id} position={[point.latitude, point.longitude]} 
                                 icon={getMarkerIcon(point.typeSchool)} eventHandlers={{
