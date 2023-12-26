@@ -10,7 +10,7 @@ import './MainPage.css'
 export function MainPage() {
     return (
         <div>
-            <div className="mainContainer" style={{ backgroundImage: `url(${main})` }}>
+            <div className="mainContainer">
                 <Header isMainPage={true} />
                 <MainFiltersBlock />
             </div>

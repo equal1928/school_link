@@ -3,6 +3,11 @@
 }
 
 .HouseCardLarge {
+    width: 16rem;
+    background-color: white!important;
+    border-radius: 4px!important;
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15)!important;
+    border-color: whitesmoke!important;
     margin: 20px;
 }
 
@@ -17,7 +22,7 @@
 
 .cardLink p {
     color: black;
-    text-decoration: none;
+    text-decoration: none!important;
     margin-top: 20px;
     font-size: 17px;
     border-width: 1px;
@@ -44,4 +49,21 @@
 }
 .card-body{
     background-color: whitesmoke;
+}
+
+@media (max-width: 577px) {
+    .HouseCardLarge {
+        width: 100%;
+        background-color: white!important;
+        border-radius: 4px!important;
+        box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2)!important;
+        border-color: whitesmoke!important;
+        margin: 15px;
+    }
+    .cardImgWrapper {
+        width: 100%;
+        height: 230px;
+        max-height: 350px;
+        margin-right: 40px;
+    }
 }

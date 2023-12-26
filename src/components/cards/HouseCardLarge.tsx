@@ -9,7 +9,7 @@ export function HouseCardLarge({ card }: { card: HouseModelCard }) {
         window.open(`/homes/${homeId}`, '_blank');
     }
     return (
-        <Card className="HouseCardLarge" style={{ width: '16rem', backgroundColor: "#E3E5E5" }} onClick={handleHomeCardClick(card.id)}>
+        <Card className="HouseCardLarge" onClick={handleHomeCardClick(card.id)}>
             <div className="cardImgWrapper">
                 <Card.Img variant="top" className="cardImg" src={card.photo} />
             </div>

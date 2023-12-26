@@ -273,13 +273,11 @@ export function FiltersList(props: any) {
                                 </Form>
                             </DropdownButton>
                         </div>
-                        <div style={buttonDivStyle}>
-                            <Button className="searchButton" style={buttonStyle} variant="light"
-                                    onClick={handleClick}>Найти квартиры</Button>
-                        </div>
-                        <div style={buttonDivStyle}>
-                            <Button className="searchButton" style={buttonStyle} variant="light"
-                                    onClick={handleClick}>Найти школу</Button>
+                        <div className="bottomWrapper">
+                                <Button className="searchButton"  variant="light"
+                                        onClick={handleClick}>Найти квартиры</Button>
+                                <Button className="searchButton" variant="light"
+                                        onClick={handleClick}>Подобрать школу</Button>
                         </div>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>

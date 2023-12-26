@@ -1,5 +1,9 @@
 .SchoolCard {
-    margin: 25px;
+    background-color: white!important;
+    border-radius: 4px!important;
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15)!important;
+    border-color: whitesmoke!important;
+    margin: 20px;
 }
 
 .SchoolCard:hover {
@@ -54,4 +58,20 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+@media (max-width: 577px) {
+    .SchoolCard {
+        width: inherit;
+        background-color: white!important;
+        border-radius: 4px!important;
+        box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2)!important;
+        border-color: whitesmoke!important;
+        margin: 15px;
+    }
+    .cardImgWrapperSchool {
+        width: 100%;
+        height: 230px;
+        max-height: 350px;
+        margin-right: 40px;
+    }
 }

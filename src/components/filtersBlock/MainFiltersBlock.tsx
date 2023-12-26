@@ -14,9 +14,8 @@ export function MainFiltersBlock() {
                             paddingTop: "100px"
                         }}>
             <div className="mainTextWrapper">
-                <p className="mainText">
-                    Хорошая школа рядом - <br/> это удобно
-                </p>
+                <div className="firstPart">Хорошая школа рядом -</div>
+                <div className="secondPart"> это удобно</div>
             </div>
             <FiltersList isMain={true} />
         </div>

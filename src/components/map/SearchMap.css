@@ -1,3 +1,7 @@
+.body {
+    overflow: hidden!important;
+}
+
 .MapContainer {
     margin-top: 20px;
     height: 90vh;
@@ -12,12 +16,21 @@
 
 @media (max-width: 577px) {
     .mapOffcanvas {
-        margin-top: 20px;
         position: absolute;
         z-index: 1001;
         width: 100%;
-        height: 90vh;
+        height: 65vh;
         background-color: white;
+        bottom: 0px;
+    }
+    .titleList {
+        display: none;
+    }
+    .cardsListContainer {
+        display: flex;
+        flex-wrap: wrap;
+        height: 50vh;
+        overflow-y: auto;
     }
 }
 
