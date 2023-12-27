@@ -8,7 +8,20 @@ import './HouseCardSmall.css'
 export function HouseCardSmall({ card }: { card: HouseModelCard }) {
     const handleHomeCardClick = (homeId: number) => (event: React.MouseEvent<HTMLElement>) => {
         window.open(`/homes/${homeId}`, '_blank');
-    }
+    };
+    const handleLinkClick = (event: React.MouseEvent<HTMLElement>) => {
+        window.open(`${card.link}`, '_blank');
+        event.stopPropagation();
+    };
+    const formattedNumber = (number: any) => {
+        const roundedNumber = Math.round(parseFloat(number.replace(',', '.')));
+        return new Intl.NumberFormat('ru-RU', {
+            style: 'currency',
+            currency: 'RUB',
+            minimumFractionDigits: 0,
+        }).format(roundedNumber);
+    };
+
     return (
         <Card className="houseCardSmall" onClick={handleHomeCardClick(card.id)}>
             <div className="fixblock">
@@ -17,10 +30,11 @@ export function HouseCardSmall({ card }: { card: HouseModelCard }) {
             <Card.Body className="cardBody">
                 <div className="titleHouseCardBlock">
                     <div className="titleHouseCardText">
-                        {card.rooms}-ком. квартира, {card.totalSquare} кв.м.
+                        {/* {card.rooms}-ком. квартира, {card.totalSquare} кв.м. */}
+                        {card.rooms}-ком. квартира, {card.square} кв.м.
                     </div>
                     <div className="priceHouse">
-                        1 245 000 &#8381;
+                        {formattedNumber(card.price)}
                     </div>
                     <div className="linkToFavsSmall">
                         <FavouriteButton houseId={card.id}/>
@@ -33,7 +47,7 @@ export function HouseCardSmall({ card }: { card: HouseModelCard }) {
                     {card.price} &#8381;
                 </div>
                 <div className="buttonWrapper">
-                    <div className="linkToAd">
+                    <div className="linkToAd" onClick={handleLinkClick}>
                         <p>Посмотреть на ЦИАН</p>
                     </div>
                     <div className="linkToFavs">

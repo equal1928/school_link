@@ -53,6 +53,19 @@ enum TypeSchool {
 //     BASE
 // }
 
+// function getMarkerIcon(typeSchool: TypeSchool) {
+//     //FIXME: переделать на switch, почему-то с ним неправильно приводит типы
+//     if (typeSchool == TypeSchool.BASE)
+//         return baseSchoolIcon;
+//     if (typeSchool == TypeSchool.TOP5)
+//         return top5SchoolIcon;
+//     if (typeSchool == TypeSchool.TOP20)
+//         return top20SchoolIcon;
+//     if (typeSchool == TypeSchool.TOP56)
+//         return top56SchoolIcon;
+//     return baseSchoolIcon;
+// }
+
 enum TypePoint {
     NONE,
     HOME,
@@ -70,7 +83,7 @@ function getMarkerIcon(typeSchool: TypeSchool) {
     if (typeSchool == TypeSchool.INACTIVE)
         return top56SchoolIcon;
     return baseSchoolIcon;
-  }
+};
 
 
 export function Map({ isMapPage = true, points }: { isMapPage?: boolean; 

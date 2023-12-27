@@ -9,7 +9,7 @@ export interface HouseModelCard {
     photo: string;
     price: number;
     rooms: number;
-    totalSquare: number;
+    square: number;
     currentFloor: number;
     totalFloors: number;
     schools: School[];

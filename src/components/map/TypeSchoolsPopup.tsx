@@ -36,8 +36,8 @@ const popover = (
 
 export function TypeSchoolsPopup() {
     return (
-        <OverlayTrigger trigger="click" placement="left" overlay={popover}>
-            <Button className="popoverButton">?</Button>
+        <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+            <Button className="popoverButton">Рейтинг школ</Button>
         </OverlayTrigger>
     )
 };
