@@ -271,184 +271,191 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
     return (
         <>
             <Navbar key="md" expand="md" className="bg-body-tertiary">
-                <Navbar.Toggle className="toggleButtonFilter" style={toggleButtonStyle} aria-controls="basic-navbar-nav" onClick={toggleShow}>Фильтры</Navbar.Toggle>
+                <Navbar.Toggle className="toggleButtonFilter" style={toggleButtonStyle} aria-controls="basic-navbar-nav"
+                               onClick={toggleShow}>Фильтры</Navbar.Toggle>
                 <Navbar.Collapse className="entryBlock" id="basic-navbar-nav">
-                <Navbar.Offcanvas
-                    className="filtersOffcanvas"
-                    id="offcanvasNavbar-expand-md"
-                    aria-labelledby="offcanvasNavbarLabel-expand-md"
-                    placement="top"
-                    onHide={handleClose}
+                    <Navbar.Offcanvas
+                        className="filtersOffcanvas"
+                        id="offcanvasNavbar-expand-md"
+                        aria-labelledby="offcanvasNavbarLabel-expand-md"
+                        placement="top"
+                        onHide={handleClose}
                     >
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title>Фильтры</Offcanvas.Title>
                         </Offcanvas.Header>
-                    <Offcanvas.Body
-                        style={showOffcanvas ? filtersOffcanvasStyleMobile as React.CSSProperties : filtersOffcanvasStyleDesctop as React.CSSProperties}>
-                        <div
-                            style={showOffcanvas ? filtersListStyleMobile as React.CSSProperties : filtersListStyleDesctop as React.CSSProperties}>
-                            <DropdownButton className="filtersFirstButton" variant="light" id="dropdown-basic-button"
-                                            title="Тип жилья" data-bs-theme="light">
-                                <Form className="typeHousFilter">
-                                    <Form.Check label="Новостройка" 
-                                                checked={selectedTypeHous.includes("Новостройка")}
-                                                onChange={() => handleSelectedTypeHousChange("Новостройка")}/>
-                                    <Form.Check label="Вторичное жилье" 
-                                                checked={selectedTypeHous.includes("Вторичное жилье")}
-                                                onChange={() => handleSelectedTypeHousChange("Вторичное жилье")}/>
-                                </Form>
-                            </DropdownButton>
-                            <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button"
-                                            title="Школа" data-bs-theme="light">
-                                <Form className="schoolListFilter">
-                                    <InputGroup>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Название школы"
-                                            value={schoolNameFilter}
-                                            onChange={(e) => setSchoolNameFilter(e.target.value)}
-                                        />
+                        <Offcanvas.Body
+                            style={showOffcanvas ? filtersOffcanvasStyleMobile as React.CSSProperties : filtersOffcanvasStyleDesctop as React.CSSProperties}>
+                            <div
+                                style={showOffcanvas ? filtersListStyleMobile as React.CSSProperties : filtersListStyleDesctop as React.CSSProperties}>
+                                <DropdownButton className="filtersFirstButton" variant="light"
+                                                id="dropdown-basic-button"
+                                                title="Тип жилья" data-bs-theme="light">
+                                    <Form className="typeHousFilter">
+                                        <Form.Check label="Новостройка"
+                                                    checked={selectedTypeHous.includes("Новостройка")}
+                                                    onChange={() => handleSelectedTypeHousChange("Новостройка")}/>
+                                        <Form.Check label="Вторичное жилье"
+                                                    checked={selectedTypeHous.includes("Вторичное жилье")}
+                                                    onChange={() => handleSelectedTypeHousChange("Вторичное жилье")}/>
+                                    </Form>
+                                </DropdownButton>
+                                <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button"
+                                                title="Школа" data-bs-theme="light">
+                                    <Form className="schoolListFilter">
+                                        <InputGroup>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Название школы"
+                                                value={schoolNameFilter}
+                                                onChange={(e) => setSchoolNameFilter(e.target.value)}
+                                            />
+                                        </InputGroup>
+                                        <Form.Group>
+                                            {renderSchoolCheckboxes()}
+                                        </Form.Group>
+                                    </Form>
+                                </DropdownButton>
+                                <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button"
+                                                title="Расстояние до школы" data-bs-theme="light">
+                                    <Form className="timeSchoolFilter">
+                                        <Form.Check label="5 минут"
+                                                    checked={selectedTime.includes(5)}
+                                                    onChange={() => handleTimeChange(5)}/>
+                                        <Form.Check label="10 минут"
+                                                    checked={selectedTime.includes(10)}
+                                                    onChange={() => handleTimeChange(10)}/>
+                                        <Form.Check label="15 минут"
+                                                    checked={selectedTime.includes(15)}
+                                                    onChange={() => handleTimeChange(15)}/>
+                                        <Form.Check label="20 минут"
+                                                    checked={selectedTime.includes(20)}
+                                                    onChange={() => handleTimeChange(20)}/>
+                                        <Form.Check label="30 минут"
+                                                    checked={selectedTime.includes(30)}
+                                                    onChange={() => handleTimeChange(30)}/>
+                                    </Form>
+                                </DropdownButton>
+                                <div className="priceButton">
+                                    <InputGroup className="">
+                                        <InputGroup.Text>Цена</InputGroup.Text>
+                                            <Form.Control 
+                                                type="number"
+                                                min="0"
+                                                placeholder="от"
+                                                value={minPrice}
+                                                onChange={handleMinPriceChange}/>
+                                            <Form.Control
+                                                type="number"
+                                                min="0" 
+                                                placeholder="до"
+                                                value={maxPrice}
+                                                onChange={handleMaxPriceChange}/>
                                     </InputGroup>
-                                    <Form.Group>
-                                        {renderSchoolCheckboxes()}
-                                    </Form.Group>
-                                </Form>
-                            </DropdownButton>
-                            <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button" title="Расстояние до школы" data-bs-theme="light">
-                                <Form className="timeSchoolFilter">
-                                    <Form.Check label="5 минут" 
-                                                checked={selectedTime.includes(5)}
-                                                onChange={() => handleTimeChange(5)}/>
-                                    <Form.Check label="10 минут" 
-                                                checked={selectedTime.includes(10)}
-                                                onChange={() => handleTimeChange(10)}/>
-                                    <Form.Check label="15 минут" 
-                                                checked={selectedTime.includes(15)}
-                                                onChange={() => handleTimeChange(15)}/>
-                                    <Form.Check label="20 минут" 
-                                                checked={selectedTime.includes(20)}
-                                                onChange={() => handleTimeChange(20)}/>
-                                    <Form.Check label="30 минут" 
-                                                checked={selectedTime.includes(30)}
-                                                onChange={() => handleTimeChange(30)}/>
-                                </Form> 
-                            </DropdownButton>
-                            <div className="priceButton">
-                                <InputGroup className="">
-                                    <InputGroup.Text>Цена</InputGroup.Text>
-                                    <Form.Control 
-                                        type="number"
-                                        min="0"
-                                        placeholder="от"
-                                        value={minPrice}
-                                        onChange={handleMinPriceChange}/>
-                                    <Form.Control
-                                        type="number"
-                                        min="0" 
-                                        placeholder="до"
-                                        value={maxPrice}
-                                        onChange={handleMaxPriceChange}/>
-                                </InputGroup>
+                                </div>
+                                <Button className="filtersLastButtonMore" variant="light" data-bs-theme="light"
+                                        style={{display: showOffcanvas ? "none" : "block"}}
+                                        onClick={handleToggleFiltersListMore}>Еще</Button>
                             </div>
-                            <Button className="filtersLastButtonMore" variant="light" data-bs-theme="light"
-                                    style={{display: showOffcanvas ? "none" : "block"}}
-                                    onClick={handleToggleFiltersListMore}>Еще</Button>
-                        </div>
-                        <div
-                            style={showOffcanvas ? filtersListStyleMobile as React.CSSProperties : filtersMoreListStyleDesctop as React.CSSProperties}>
-                            <DropdownButton className="filtersFirstButton" variant="light" id="dropdown-basic-button"
-                                            title="Количество комнат" data-bs-theme="light">
-                                <Form className="numberRoomsFilter">
-                                    <Form.Check label="Студия"
-                                                checked={selectedRooms.includes(0)}
-                                                onChange={() => handleRoomsChange(0)}/>
-                                    <Form.Check label="1"
-                                                checked={selectedRooms.includes(1)}
-                                                onChange={() => handleRoomsChange(1)}/>
-                                    <Form.Check label="2"
-                                                checked={selectedRooms.includes(2)}
-                                                onChange={() => handleRoomsChange(2)}/>
-                                    <Form.Check label="3"
-                                    checked={selectedRooms.includes(3)}
-                                                onChange={() => handleRoomsChange(3)}/>
-                                    <Form.Check label="4"
-                                                checked={selectedRooms.includes(4)}
-                                                onChange={() => handleRoomsChange(4)}/>
-                                    <Form.Check label="5"
-                                                checked={selectedRooms.includes(5)}
-                                                onChange={() => handleRoomsChange(5)}/>
-                                </Form>
-                            </DropdownButton>
-                            <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button"
-                                            title="Материал стен" data-bs-theme="light">
-                                <Form className="materialFilter">
-                                    <Form.Check label="Кирпичный"
-                                                checked={selectedMaterials.includes("Кирпичный")}
-                                                onChange={() => handleMaterialsChange("Кирпичный")}/>
-                                    <Form.Check label="Монолитный"
-                                                checked={selectedMaterials.includes("Монолитный")}
-                                                onChange={() => handleMaterialsChange("Монолитный")}/>
-                                    <Form.Check label="Панельный"
-                                                checked={selectedMaterials.includes("Панельный")}
-                                                onChange={() => handleMaterialsChange("Панельный")}/>
-                                    <Form.Check label="Блочный"
-                                                checked={selectedMaterials.includes("Блочный")}
-                                                onChange={() => handleMaterialsChange("Блочный")}/>
-                                    <Form.Check label="Железобетонный"
-                                                checked={selectedMaterials.includes("Железобетонный")}
-                                                onChange={() => handleMaterialsChange("Железобетонный")}/>
-                                </Form>
-                            </DropdownButton><DropdownButton className="filtersButton" variant="light"
-                                                             id="dropdown-basic-button" title="Этаж"
-                                                             data-bs-theme="light">
-                            <Form className="floorFilter">
-                                <InputGroup>
-                                    <Form.Control type="number"
-                                                  placeholder="с"
-                                                  value={minFloor}
-                                                  onChange={handleMinFloorChange}/>
-                                    <Form.Control type="number"
-                                                  placeholder="по"
-                                                  value={maxFloor}
-                                                  onChange={handleMaxFloorChange}/>
-                                </InputGroup>
-                                <Form>
-                                    <Form.Check label="Не первый"
-                                                checked={excludeFirst}
-                                                onChange={handleExcludeFirstChange}/>
-                                    <Form.Check label="Не последний"
-                                                checked={excludeLast}
-                                                onChange={handleExcludeLastChange}/>
-                                </Form>
-                            </Form>
-                        </DropdownButton>
-                            <DropdownButton className="filtersLastButton" variant="light" id="dropdown-basic-button"
-                                            title="Год постройки" data-bs-theme="light">
-                                <Form className="yearFilter">
+                            <div
+                                style={showOffcanvas ? filtersListStyleMobile as React.CSSProperties : filtersMoreListStyleDesctop as React.CSSProperties}>
+                                <DropdownButton className="filtersFirstButton" variant="light"
+                                                id="dropdown-basic-button"
+                                                title="Количество комнат" data-bs-theme="light">
+                                    <Form className="numberRoomsFilter">
+                                        <Form.Check label="Студия"
+                                                    checked={selectedRooms.includes(0)}
+                                                    onChange={() => handleRoomsChange(0)}/>
+                                        <Form.Check label="1"
+                                                    checked={selectedRooms.includes(1)}
+                                                    onChange={() => handleRoomsChange(1)}/>
+                                        <Form.Check label="2"
+                                                    checked={selectedRooms.includes(2)}
+                                                    onChange={() => handleRoomsChange(2)}/>
+                                        <Form.Check label="3"
+                                        checked={selectedRooms.includes(3)}
+                                                    onChange={() => handleRoomsChange(3)}/>
+                                        <Form.Check label="4"
+                                                    checked={selectedRooms.includes(4)}
+                                                    onChange={() => handleRoomsChange(4)}/>
+                                        <Form.Check label="5"
+                                                    checked={selectedRooms.includes(5)}
+                                                    onChange={() => handleRoomsChange(5)}/>
+                                    </Form>
+                                </DropdownButton>
+                                <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button"
+                                                title="Материал стен" data-bs-theme="light">
+                                    <Form className="materialFilter">
+                                        <Form.Check label="Кирпичный"
+                                                    checked={selectedMaterials.includes("Кирпичный")}
+                                                    onChange={() => handleMaterialsChange("Кирпичный")}/>
+                                        <Form.Check label="Монолитный"
+                                                    checked={selectedMaterials.includes("Монолитный")}
+                                                    onChange={() => handleMaterialsChange("Монолитный")}/>
+                                        <Form.Check label="Панельный"
+                                                    checked={selectedMaterials.includes("Панельный")}
+                                                    onChange={() => handleMaterialsChange("Панельный")}/>
+                                        <Form.Check label="Блочный"
+                                                    checked={selectedMaterials.includes("Блочный")}
+                                                    onChange={() => handleMaterialsChange("Блочный")}/>
+                                        <Form.Check label="Железобетонный"
+                                                    checked={selectedMaterials.includes("Железобетонный")}
+                                                    onChange={() => handleMaterialsChange("Железобетонный")}/>
+                                    </Form>
+                                </DropdownButton><DropdownButton className="filtersButton" variant="light"
+                                                                 id="dropdown-basic-button" title="Этаж"
+                                                                 data-bs-theme="light">
+                                <Form className="floorFilter">
                                     <InputGroup>
                                         <Form.Control type="number"
-                                                      min="0"
                                                       placeholder="с"
-                                                      value={minYear}
-                                                      onChange={handleMinYearChange}/>
+                                                      value={minFloor}
+                                                      onChange={handleMinFloorChange}/>
                                         <Form.Control type="number"
-                                                      min="0"
                                                       placeholder="по"
-                                                      value={maxYear}
-                                                      onChange={handleMaxYearChange}/>
+                                                      value={maxFloor}
+                                                      onChange={handleMaxFloorChange}/>
                                     </InputGroup>
+                                    <Form>
+                                        <Form.Check label="Не первый"
+                                                    checked={excludeFirst}
+                                                    onChange={handleExcludeFirstChange}/>
+                                        <Form.Check label="Не последний"
+                                                    checked={excludeLast}
+                                                    onChange={handleExcludeLastChange}/>
+                                    </Form>
                                 </Form>
                             </DropdownButton>
-                        </div>
-                        <div className="bottomWrapper">
-                            <Button className="searchButton"  variant="light"
-                                    onClick={handleSearchButtonClick}>Найти квартиры</Button>
-                            <Button className="searchButton" variant="light"
-                                    onClick={handleSearchSchoolClick}>Подобрать школу</Button>
-                        </div>
-                    </Offcanvas.Body>
-                </Navbar.Offcanvas>
+                                <DropdownButton className="filtersLastButton" variant="light" id="dropdown-basic-button"
+                                                title="Год постройки" data-bs-theme="light">
+                                    <Form className="yearFilter">
+                                        <InputGroup>
+                                            <Form.Control type="number"
+                                                          min="0"
+                                                          placeholder="с"
+                                                          value={minYear}
+                                                          onChange={handleMinYearChange}/>
+                                            <Form.Control type="number"
+                                                          min="0"
+                                                          placeholder="по"
+                                                          value={maxYear}
+                                                          onChange={handleMaxYearChange}/>
+                                        </InputGroup>
+                                    </Form>
+                                </DropdownButton>
+                            </div>
+                            <div className="bottomWrapper">
+                                <Button className="searchButton" variant="light">Найти</Button>
+                            </div>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
                 </Navbar.Collapse>
+                <div className="buttonBlock">
+                    <Button className="firstLineButton" variant="light"
+                            onClick={handleSearchButtonClick}>Подобрать квартиру</Button>
+                    <Button className="firstLineButton" variant="light"
+                            onClick={handleSearchSchoolClick}>Подобрать школу</Button>
+                </div>
             </Navbar>
         </>
     )

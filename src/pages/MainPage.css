@@ -1,6 +1,8 @@
 .mainContainer {
     background-size: cover;
     background-image: url("../components/images/main.jpeg");
+    margin-top: -10px;
+    height: 70vh;
 }
 
 @media (max-width: 468px) {
