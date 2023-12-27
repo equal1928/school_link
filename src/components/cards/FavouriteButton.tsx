@@ -12,6 +12,10 @@ export function FavouriteButton({ houseId }: { houseId?: Number }) {
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
+        const storedPhone = localStorage.getItem('userPhone');
+        const loggedIn = storedPhone && storedPhone?.length > 0 ? true : false;
+        if (!loggedIn)
+            return;
         axios.get(`https://retoolapi.dev/Jcozs1/favourites/${houseId}`)
             .then(response => {
                 if (response.status === 200)
@@ -23,8 +27,16 @@ export function FavouriteButton({ houseId }: { houseId?: Number }) {
     }, [houseId]);
 
     const handleFavouriteClick = (event: React.MouseEvent<HTMLElement>) => {
-        //axios.post('https://retoolapi.dev/Jcozs1/favourites', { userId: 'ВАШ_USER_ID', houseId })
+        const storedPhone = localStorage.getItem('userPhone');
+        const loggedIn = storedPhone && storedPhone?.length > 0 ? true : false;
+        if (!loggedIn) {
+            const openModalEvent = new Event('openModalLogin');
+            document.dispatchEvent(openModalEvent);
+            event.stopPropagation();
+            return;
+        }
         if (!isFavorite) {
+            //axios.post('https://retoolapi.dev/Jcozs1/favourites', { userId: 'ВАШ_USER_ID', houseId })
             axios.post('https://retoolapi.dev/Jcozs1/favourites', { id: houseId })
                 .then(response => {
                     if (response.status === 201) {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Form, Modal } from "react-bootstrap";
 
 import "./Registration.css"
+import axios from "axios";
 
 
 export function LoginForm(props: any) {
@@ -9,12 +10,14 @@ export function LoginForm(props: any) {
     const [password, setPassword] = useState('');
     const [isValidPhone, setIsValidPhone] = useState(true);
     const [isValidPassword, setIsValidPassword] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const resetForm = () => {
         setPhone('');
         setPassword('');
         setIsValidPhone(true);
         setIsValidPassword(true);
+        setErrorMessage('');
     };
 
     const validatePhone = () => {
@@ -25,8 +28,56 @@ export function LoginForm(props: any) {
         setIsValidPassword(password.length > 0);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        if (!isValidPhone) {
+            setErrorMessage('Введите номер телефона');
+            return;
+        }
+        if (!isValidPassword) {
+            setErrorMessage('Введите пароль');
+            return;
+        }
 
+        // TODO: Удалить
+        if (phone === '123' && password === '123')
+        {
+            localStorage.setItem('userPhone', phone);
+            setErrorMessage('Вход выполнен успешно');
+            resetForm();
+            setTimeout(() => {
+                props.onHide();
+            }, 500);
+            window.location.reload();
+        }
+        
+        try {
+            const response = await axios.get('эндпоинт_входа', {
+                params: {
+                  phone,
+                  password,
+                },
+            });
+        
+            if (response.data.success) {
+                localStorage.setItem('userPhone', phone);
+                setErrorMessage('Вход выполнен успешно');
+                resetForm();
+                setTimeout(() => {
+                    props.onHide();
+                }, 500);
+                window.location.reload();
+            } else {
+                setErrorMessage('Ошибка входа');
+            }
+        } catch (error) {
+            console.error(error);
+            setErrorMessage('Ошибка входа');
+        }
+    };
+
+    const handlePhoneChange = (e: any) => {
+        const inputValue = e.target.value.replace(/[^\d]/g, '');
+        setPhone(inputValue);
     };
 
     return (
@@ -53,7 +104,7 @@ export function LoginForm(props: any) {
                             type="tel"
                             placeholder="Номер телефона"
                             value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            onChange={handlePhoneChange}
                             onBlur={validatePhone}
                             style={{ borderColor: isValidPhone ? '' : 'red' }}
                             required
@@ -69,6 +120,9 @@ export function LoginForm(props: any) {
                             style={{ borderColor: isValidPassword ? '' : 'red' }}
                             required
                         />
+                        <Form.Text style={{ color: 'red' }}>
+                            {errorMessage}
+                        </Form.Text>
                     </Form.Group>
                 </Form>
             </Modal.Body>
