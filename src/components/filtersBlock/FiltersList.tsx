@@ -35,8 +35,13 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
     const [maxYear, setMaxYear] = useState<number>();
 
     const navigate = useNavigate();
-    function handleSearchSchoolClick(event: any) {
+    function handleSearchOnlySchoolClick(event: any) {
         navigate('/search-map?schoolsOnly=true');
+        if (window.location.pathname === '/search-map')
+            window.location.reload();
+    }
+    function handleSearchOnlyHomeClick(event: any) {
+        navigate('/search-map?homesOnly=true');
         if (window.location.pathname === '/search-map')
             window.location.reload();
     }
@@ -322,9 +327,9 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
             <div className="buttonBlock" style={showOffcanvas ? buttonBlockMobile as React.CSSProperties : buttonBlock as React.CSSProperties}>
                 <p className="callText">Найди свою</p>
                 <Button className="firstButton" variant="light"
-                        onClick={handleSearchSchoolClick}>Квартиру</Button>
+                        onClick={handleSearchOnlyHomeClick}>Квартиру</Button>
                 <Button className="secondButton" variant="light"
-                        onClick={handleSearchSchoolClick}>Школу</Button>
+                        onClick={handleSearchOnlySchoolClick}>Школу</Button>
             </div>
             <Navbar key="sm" expand="sm" className="bg-body-tertiary">
                 <Navbar.Toggle className="toggleButtonFilter" style={toggleButtonStyle} aria-controls="basic-navbar-nav"

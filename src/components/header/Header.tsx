@@ -17,10 +17,26 @@ import favouritesIcon from '../images/favouritesNo.png'
 export function Header({ isMainPage = false }: { isMainPage?: boolean }) {
     const [loginModalShow, setLoginModalShow] = useState(false);
     const [registrationModalShow, setRegistrationModalShow] = useState(false);
+
+    const logoutHandler = () => {
+        localStorage.setItem('userPhone', '');
+        window.location.reload();
+    };
+
+    const storedPhone = localStorage.getItem('userPhone');
+    const loggedIn = storedPhone && storedPhone?.length > 0 ? true : false;
+
     const navigate = useNavigate();
     function favouritesBtnClick(event: any) {
-        navigate('/favorites');
+        if (loggedIn) 
+            navigate('/favorites');
+        else 
+            setLoginModalShow(true);
     }
+
+    document.addEventListener('openModalLogin', () => {
+        setLoginModalShow(true);
+    });
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary headerContainer">
@@ -34,14 +50,20 @@ export function Header({ isMainPage = false }: { isMainPage?: boolean }) {
                         <button className="favouritesBtn" onClick={favouritesBtnClick}>
                             <Image className="favouritesImg" src={favouritesIcon} />
                         </button>
-                        <button className="loginButton" 
-                                onClick={() => setLoginModalShow(true)}>
-                            Войти
-                        </button>
-                        <button className="registrationButton" 
-                                onClick={() => setRegistrationModalShow(true)}>
-                            Зарегистрироваться
-                        </button>
+                        {loggedIn ? (
+                            <button className="loginButton" onClick={logoutHandler}>
+                                Выйти
+                            </button>
+                            ) : (
+                            <div>
+                                <button className="loginButton" onClick={() => setLoginModalShow(true)}>
+                                    Войти
+                                </button>
+                                <button className="registrationButton" onClick={() => setRegistrationModalShow(true)}>
+                                    Зарегистрироваться
+                                </button>
+                            </div>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

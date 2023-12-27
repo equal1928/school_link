@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, Modal } from "react-bootstrap";
+import axios from "axios";
 
 import "./Registration.css"
 
@@ -11,6 +12,7 @@ export function RegistrationForm(props: any) {
     const [isValidPhone, setIsValidPhone] = useState(true);
     const [isValidPassword, setIsValidPassword] = useState(true);
     const [passwordsMatch, setPasswordsMatch] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const resetForm = () => {
         setPhone('');
@@ -19,6 +21,7 @@ export function RegistrationForm(props: any) {
         setIsValidPhone(true);
         setIsValidPassword(true);
         setPasswordsMatch(true);
+        setErrorMessage('');
     };
 
     const validatePhone = () => {
@@ -33,10 +36,43 @@ export function RegistrationForm(props: any) {
 
     const validateConfirmPassword = () => {
         setPasswordsMatch(password === confirmPassword);
+        setErrorMessage(password !== confirmPassword ? 'Пароли не совпадают' : '')
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        if (!isValidPhone) {
+            setErrorMessage('Введите номер телефона');
+            return;
+        }
+        if (!isValidPassword || !confirmPassword.length) {
+            setErrorMessage('Введите пароль');
+            return;
+        }
+        if (!passwordsMatch) {
+            setErrorMessage('Пароли не совпадают');
+            return;
+        }
+    
+        try {
+            const response = await axios.post('эндпоинт_регистрации', {
+                phone,
+                password,
+            });
+        
+            if (response.data.success) {
+                setErrorMessage('Регистрация прошла успешно');
+            } else {
+                setErrorMessage('Ошибка регистрации');
+            }
+        } catch (error) {
+            console.error(error);
+            setErrorMessage('Ошибка регистрации');
+        }
+    };
 
+    const handlePhoneChange = (e: any) => {
+        const inputValue = e.target.value.replace(/[^\d]/g, '');
+        setPhone(inputValue);
     };
 
     return (
@@ -63,7 +99,7 @@ export function RegistrationForm(props: any) {
                             type="tel"
                             placeholder="Номер телефона"
                             value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            onChange={handlePhoneChange}
                             onBlur={validatePhone}
                             style={{ borderColor: isValidPhone ? '' : 'red' }}
                             required
@@ -90,11 +126,9 @@ export function RegistrationForm(props: any) {
                             style={{ borderColor: passwordsMatch ? '' : 'red' }}
                             required
                         />
-                        {!passwordsMatch && (
-                            <Form.Text style={{ color: 'red' }}>
-                                Пароли не совпадают
-                            </Form.Text>
-                        )}
+                        <Form.Text style={{ color: 'red' }}>
+                            {errorMessage}
+                        </Form.Text>
                     </Form.Group>
                 </Form>
             </Modal.Body>

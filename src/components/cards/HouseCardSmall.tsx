@@ -21,6 +21,9 @@ export function HouseCardSmall({ card }: { card: HouseModelCard }) {
             minimumFractionDigits: 0,
         }).format(roundedNumber);
     };
+    const handleFavsClick = (event: React.MouseEvent<HTMLElement>) => {
+        event.stopPropagation();
+    };
 
     return (
         <Card className="houseCardSmall" onClick={handleHomeCardClick(card.id)}>
@@ -44,14 +47,15 @@ export function HouseCardSmall({ card }: { card: HouseModelCard }) {
                     {card.address}
                 </div>
                 <div className="priceHouseSmall">
-                    {card.price} &#8381;
+                    {formattedNumber(card.price)};
                 </div>
                 <div className="buttonWrapper">
                     <div className="linkToAd" onClick={handleLinkClick}>
                         <p>Посмотреть на ЦИАН</p>
                     </div>
                     <div className="linkToFavs">
-                        <FavouriteButton houseId={card.id}/>  <a className="textFavs"> В избранное </a>
+                        <FavouriteButton houseId={card.id}/>
+                        <a className="textFavs" onClick={handleFavsClick}>В избранное</a>
                     </div>
                 </div>
 
