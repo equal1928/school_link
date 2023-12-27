@@ -7,16 +7,30 @@ import './HouseCardLarge.css'
 export function HouseCardLarge({ card }: { card: HouseModelCard }) {
     const handleHomeCardClick = (homeId: number) => (event: React.MouseEvent<HTMLElement>) => {
         window.open(`/homes/${homeId}`, '_blank');
-    }
+    };
+    const handleLinkClick = (event: React.MouseEvent<HTMLElement>) => {
+        window.open(`${card.link}`, '_blank');
+        event.stopPropagation();
+    };
+    const formattedNumber = (number: any) => {
+        const roundedNumber = Math.round(parseFloat(number.replace(',', '.')));
+        return new Intl.NumberFormat('ru-RU', {
+            style: 'currency',
+            currency: 'RUB',
+            minimumFractionDigits: 0,
+        }).format(roundedNumber);
+    };
+
     return (
         <Card className="HouseCardLarge" onClick={handleHomeCardClick(card.id)}>
             <div className="cardImgWrapper">
                 <Card.Img variant="top" className="cardImg" src={card.photo} />
             </div>
             <Card.Body>
-                <div className="cardPrice">{card.price} рублей</div>
+                <div className="cardPrice">{formattedNumber(card.price)}</div>
                 <div>            
-                    {card.rooms}-ком. квартира, {card.totalSquare} кв.м.<br/> 
+                    {/* {card.rooms}-ком. квартира, {card.totalSquare} кв.м.<br/>  */}
+                    {card.rooms}-ком. квартира, {card.square} кв.м.<br/> 
                     {card.currentFloor}/{card.totalFloors} этаж
                 </div>
                 {/* Школы рядом:
@@ -31,7 +45,7 @@ export function HouseCardLarge({ card }: { card: HouseModelCard }) {
                 <div className="cardAddress">
                     {card.address}
                 </div>
-                <div className="cardLink">
+                <div className="cardLink" onClick={handleLinkClick}>
                     <p>Перейти к объявлению</p>
                 </div>
             </Card.Body>

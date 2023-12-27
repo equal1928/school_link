@@ -45,7 +45,7 @@ export function FavouriteButton({ houseId }: { houseId?: Number }) {
             });
         }
 
-    event.stopPropagation();
+        event.stopPropagation();
     };
 
     return (

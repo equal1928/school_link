@@ -34,7 +34,9 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
 
     const navigate = useNavigate();
     function handleSearchSchoolClick(event: any) {
-        navigate('/search-map');
+        navigate('/search-map?schoolsOnly=true');
+        if (window.location.pathname === '/search-map')
+            window.location.reload();
     }
     const handleSearchButtonClick = () => {
         const queryParams = {
@@ -63,6 +65,7 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
             navigate(`/search-list?${queryString}`);
         else 
             navigate(`/search-map?${queryString}`);
+        window.location.reload();
       };
 
     useEffect(() => {

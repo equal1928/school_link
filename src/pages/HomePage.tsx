@@ -50,6 +50,15 @@ export function HomePage() {
         fetchData();
     }, []);
 
+    const formattedNumber = (number: any) => {
+        const roundedNumber = Math.round(parseFloat(number.replace(',', '.')));
+        return new Intl.NumberFormat('ru-RU', {
+            style: 'currency',
+            currency: 'RUB',
+            minimumFractionDigits: 0,
+        }).format(roundedNumber);
+    };
+
     return (
         <div>
             <Header />
@@ -71,8 +80,9 @@ export function HomePage() {
                             </div>
                         </Col>
                         <Col className="headerInfoBlock">
-                            <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной квартиры, {homesCard && homesCard.totalSquare} кв.м., {homesCard && homesCard.address}</div>
-                            <div className="price">{homesCard && homesCard.price} рублей</div>
+                            {/* <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной квартиры, {homesCard && homesCard.totalSquare} кв.м., {homesCard && homesCard.address}</div> */}
+                            <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной квартиры, {homesCard && homesCard.square} кв.м., {homesCard && homesCard.address}</div>
+                            <div className="price">{homesCard && formattedNumber(homesCard.price)}</div>
                             {/*Школы рядом:*/}
                             {/*<div className="nearbySchools">*/}
                             {/*    <li>Школа №203,</li>*/}
@@ -93,7 +103,8 @@ export function HomePage() {
                                 </span>
                                 <span>
                                     <p>Общая площадь</p>
-                                    <p>{homesCard && homesCard.totalSquare} кв.м</p>
+                                    {/* <p>{homesCard && homesCard.totalSquare} кв.м</p> */}
+                                    <p>{homesCard && homesCard.square} кв.м</p>
                                 </span>
                                 <span>
                                     <p>Этаж/этажность</p>
