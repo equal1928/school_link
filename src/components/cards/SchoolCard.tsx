@@ -9,7 +9,7 @@ export function SchoolCard({ card }: { card: SchoolModelCard }) {
         window.open(`/schools/${schoolId}`, '_blank');
     }
     return (
-        <Card className="SchoolCard" style={{width: '18rem', backgroundColor: "#E3E5E5"}}
+        <Card className="SchoolCard"
               onClick={handleSchoolCardClick(card.id)}>
             <div className="cardImgWrapperSchool">
                 <Card.Img variant="top" className="cardImg" src={card.photo}/>

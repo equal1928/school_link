@@ -3,6 +3,9 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.Container {
+    margin-top: 10px;
+}
 
 .entryBlock {
     justify-content: flex-end;

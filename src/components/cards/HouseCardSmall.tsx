@@ -15,19 +15,32 @@ export function HouseCardSmall({ card }: { card: HouseModelCard }) {
                 <Card.Img variant="top" className="imageHouseCard" src={card.photo} />
             </div>
             <Card.Body className="cardBody">
-                <div className="titleHouseCardBlock">   
-                    <div className="titleHouseCardText">          
-                        {card.rooms}-ком. квартира, {card.totalSquare} кв.м.,  
-                        {card.address}
+                <div className="titleHouseCardBlock">
+                    <div className="titleHouseCardText">
+                        {card.rooms}-ком. квартира, {card.totalSquare} кв.м.
                     </div>
-                    <FavouriteButton houseId={card.id} />
-                </div> 
-                <div className="priceHouse">
-                    {card.price} рублей     
+                    <div className="priceHouse">
+                        1 245 000 &#8381;
+                    </div>
+                    <div className="linkToFavsSmall">
+                        <FavouriteButton houseId={card.id}/>
+                    </div>
                 </div>
-                <div className="linkToAd">
-                    <p>Перейти к объявлению</p>
+                <div className="adressHouseCard">
+                    {card.address}
                 </div>
+                <div className="priceHouseSmall">
+                    {card.price} &#8381;
+                </div>
+                <div className="buttonWrapper">
+                    <div className="linkToAd">
+                        <p>Посмотреть на ЦИАН</p>
+                    </div>
+                    <div className="linkToFavs">
+                        <FavouriteButton houseId={card.id}/>  <a className="textFavs"> В избранное </a>
+                    </div>
+                </div>
+
             </Card.Body>
         </Card>
     )
