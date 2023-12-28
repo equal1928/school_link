@@ -5,7 +5,7 @@
     width: 80vw;
     background-color: white!important;
     border-radius: 4px!important;
-    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15)!important;
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2)!important;
     border-color: whitesmoke!important;
     border-radius: 4px;
 
@@ -96,6 +96,12 @@
 .imageHouseCard {
     height: 100%;
     object-fit: cover;
+}
+.showMapRow button{
+    background-color: white!important;
+        border-radius: 4px!important;
+        box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2)!important;
+        border-color: whitesmoke!important;
 }
 
 @media (max-width: 920px) {

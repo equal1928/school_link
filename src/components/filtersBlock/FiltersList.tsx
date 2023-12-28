@@ -213,7 +213,8 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
     const filtersOffcanvasStyleMobile = {
         display: "flex", 
         flexDirection: "column", 
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "lightgrey!important"
     };
 
     const filtersListStyleDesctop = {
@@ -221,7 +222,6 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         flexDirection: "row",
         justifyContent: "center",
         flexWrap: "wrap",
-        marginBottom: "5px",
         border: "1px solid lightgrey",
         borderRadius: "4px"
     };
@@ -241,14 +241,25 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: "5px",
     };
 
-    const wrapperMain = {
+    const wrapperMainDesktop = {
         width: "max-content",
         // position: isMainPage ? "relative" : "block",
         top: isMainPage ? "320px" : "0px",
         backgroundColor: isMainPage ? "white!important" : "none",
+        borderRadius: "4px!important",
+        boxShadow: isMainPage ? "0 4px 16px 0 rgba(0,0,0,0.15)!important" : "none",
+        borderColor: isMainPage ? "whitesmoke!important" : "none",
+        padding: isMainPage ? "15px" : "0px"
+    };
+
+     const wrapperMainMobile = {
+        width: "100%",
+        height: "100vh",
+        // position: isMainPage ? "relative" : "block",
+        top: isMainPage ? "320px" : "0px",
+        backgroundColor: "yellow!important",
         borderRadius: "4px!important",
         boxShadow: isMainPage ? "0 4px 16px 0 rgba(0,0,0,0.15)!important" : "none",
         borderColor: isMainPage ? "whitesmoke!important" : "none",
@@ -260,6 +271,16 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         background: "white",
         // position: "relative",
         top: isMainPage ? "310px" : "0px",
+        borderRadius: "4px!important",
+        boxShadow: isMainPage ? "0 4px 16px 0 rgba(0,0,0,0.15)!important" : "none",
+        borderColor: isMainPage ? "whitesmoke!important" : "none"
+    }
+
+     const buttonBlockMobile ={
+        display: isMainPage ? "block" : "none",
+        background: "white",
+        // position: "relative",
+        top: isMainPage ? "210px" : "0px",
         borderRadius: "4px!important",
         boxShadow: isMainPage ? "0 4px 16px 0 rgba(0,0,0,0.15)!important" : "none",
         borderColor: isMainPage ? "whitesmoke!important" : "none"
@@ -286,30 +307,28 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
     };
 
     const toggleButtonStyle={
-        width: isMainPage ? "180px" : "180px",
-        height: isMainPage ? "70px" : "70px",
-        // marginBottom: isMainPage ? "130px" : "0px",
-        // border: "1px solid grey",
-        backgroundColor: "#B9BA8E",
-        margin: "20px",
-        padding: "17px 20px",
-        color: "black",
-        fontSize: "18px",
-
+        display: isMainPage ? "none" : "block",
+        padding: "5px 8px",
+        alignSelf: "flex-end",
+        marginRight: "10px",
+        borderRadius: "4px!important",
+        boxShadow: "0 4px 16px 0 rgba(0,0,0,0.15)!important",
+        borderColor: "whitesmoke!important"
     };
+
 
     return (
         <>
-            <div className="buttonBlock" style={buttonBlock}>
+            <div className="buttonBlock" style={showOffcanvas ? buttonBlockMobile as React.CSSProperties : buttonBlock as React.CSSProperties}>
                 <p className="callText">Найди свою</p>
                 <Button className="firstButton" variant="light"
                         onClick={handleSearchSchoolClick}>Квартиру</Button>
                 <Button className="secondButton" variant="light"
                         onClick={handleSearchSchoolClick}>Школу</Button>
             </div>
-            <Navbar key="md" expand="md" className="bg-body-tertiary">
+            <Navbar key="sm" expand="sm" className="bg-body-tertiary">
                 <Navbar.Toggle className="toggleButtonFilter" style={toggleButtonStyle} aria-controls="basic-navbar-nav"
-                               onClick={toggleShow}>Квартиру</Navbar.Toggle>
+                               onClick={toggleShow}><Image className="filterImg" src={filterImg} /></Navbar.Toggle>
                 <Navbar.Collapse className="entryBlock" id="basic-navbar-nav">
                     <Navbar.Offcanvas
                         className="filtersOffcanvas"
@@ -318,9 +337,9 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
                         placement="top"
                         onHide={handleClose}
                     >
-                        <div className="wrapper" style={wrapperMain}>
+                        <div className="wrapper" style={showOffcanvas ? wrapperMainMobile as React.CSSProperties : wrapperMainDesktop as React.CSSProperties}>
                             <Offcanvas.Header closeButton>
-                            <Offcanvas.Title>Квартиру</Offcanvas.Title>
+                            <Offcanvas.Title>Фильтры</Offcanvas.Title>
                         </Offcanvas.Header>
                             <Offcanvas.Body
                                 style={showOffcanvas ? filtersOffcanvasStyleMobile as React.CSSProperties : filtersOffcanvasStyleDesctop as React.CSSProperties}>

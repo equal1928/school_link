@@ -28,3 +28,25 @@
     height: 40px;
     width: 40px;
 }
+
+@media (max-width: 577px) {
+    .descriptionBlock {
+    margin-top: 40%;
+    margin-bottom: 6%;
+    }
+    .descriptionTitle p {
+    font-size: 22px;
+    }
+    .descriptionRow {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 10px 10px 10px 20px;
+    }
+    .descriptionContainer p {
+    font-size: 16px;
+    margin: 0px 0px 0px 9px;
+    width: 70vw;
+    text-align: unset;
+    }
+}
