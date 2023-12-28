@@ -302,7 +302,7 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         width: isMainPage ? "120px" : "120px",
         height: isMainPage ? "60px" : "50px",
         borderRadius: isMainPage ? "4px" : "4px",
-        backgroundColor: "lightgrey !important",
+        backgroundColor: "#F5BE6A !important",
         alignSelf: isMainPage ? "flex-end" : "center"
     };
 
