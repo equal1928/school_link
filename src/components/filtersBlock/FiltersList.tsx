@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { Button, InputGroup, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import {Button, Image, InputGroup, Nav, Navbar, Offcanvas} from 'react-bootstrap';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 
 import { SchoolModelFilter } from '../../models/SchoolModelFilter'
+import checkIcon from "../images/checkIcon.png";
+import filterImg from '../images/filter.png'
 
 
 export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
@@ -220,8 +222,8 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         justifyContent: "center",
         flexWrap: "wrap",
         marginBottom: "5px",
-        border: "1px solid grey",
-        borderRadius: "12px"
+        border: "1px solid lightgrey",
+        borderRadius: "4px"
     };
 
     const filtersMoreListStyleDesctop = {
@@ -230,8 +232,8 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         justifyContent: "center",
         flexWrap: "wrap",
         marginBottom: "5px",
-        border: "1px solid grey",
-        borderRadius: "12px"
+        border: "1px solid lightgrey",
+        borderRadius: "4px",
     };
 
     const filtersListStyleMobile = {
@@ -241,6 +243,27 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         alignItems: "center",
         marginBottom: "5px",
     };
+
+    const wrapperMain = {
+        width: "max-content",
+        // position: isMainPage ? "relative" : "block",
+        top: isMainPage ? "320px" : "0px",
+        backgroundColor: isMainPage ? "white!important" : "none",
+        borderRadius: "4px!important",
+        boxShadow: isMainPage ? "0 4px 16px 0 rgba(0,0,0,0.15)!important" : "none",
+        borderColor: isMainPage ? "whitesmoke!important" : "none",
+        padding: isMainPage ? "15px" : "0px"
+    };
+
+    const buttonBlock ={
+        display: isMainPage ? "block" : "none",
+        background: "white",
+        // position: "relative",
+        top: isMainPage ? "310px" : "0px",
+        borderRadius: "4px!important",
+        boxShadow: isMainPage ? "0 4px 16px 0 rgba(0,0,0,0.15)!important" : "none",
+        borderColor: isMainPage ? "whitesmoke!important" : "none"
+    }
 
     const buttonDivStyle={
         display: "flex",
@@ -253,26 +276,40 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
     };
     
     const buttonStyle={
-        borderColor: isMainPage && !showOffcanvas ? "white" : "gray",
-        borderWidth: isMainPage && !showOffcanvas ? "0px" : "2px",
-        width: isMainPage ? "220px" : "120px",
-        height: isMainPage ? "60px" : "45px",
-        borderRadius: isMainPage ? "13px" : "6px"
+        borderColor: isMainPage && !showOffcanvas ? "white" : "none",
+        borderWidth: isMainPage && !showOffcanvas ? "0px" : "0px",
+        width: isMainPage ? "120px" : "120px",
+        height: isMainPage ? "60px" : "50px",
+        borderRadius: isMainPage ? "4px" : "4px",
+        backgroundColor: "lightgrey !important",
+        alignSelf: isMainPage ? "flex-end" : "center"
     };
 
     const toggleButtonStyle={
-        width: isMainPage ? "300px" : "300px",
-        height: isMainPage ? "70px" : "50px",
-        marginBottom: isMainPage ? "130px" : "0px",
-        border: "1px solid grey",
-        backgroundColor: "white"
+        width: isMainPage ? "180px" : "180px",
+        height: isMainPage ? "70px" : "70px",
+        // marginBottom: isMainPage ? "130px" : "0px",
+        // border: "1px solid grey",
+        backgroundColor: "#B9BA8E",
+        margin: "20px",
+        padding: "17px 20px",
+        color: "black",
+        fontSize: "18px",
+
     };
 
     return (
         <>
+            <div className="buttonBlock" style={buttonBlock}>
+                <p className="callText">Найди свою</p>
+                <Button className="firstButton" variant="light"
+                        onClick={handleSearchSchoolClick}>Квартиру</Button>
+                <Button className="secondButton" variant="light"
+                        onClick={handleSearchSchoolClick}>Школу</Button>
+            </div>
             <Navbar key="md" expand="md" className="bg-body-tertiary">
                 <Navbar.Toggle className="toggleButtonFilter" style={toggleButtonStyle} aria-controls="basic-navbar-nav"
-                               onClick={toggleShow}>Фильтры</Navbar.Toggle>
+                               onClick={toggleShow}>Квартиру</Navbar.Toggle>
                 <Navbar.Collapse className="entryBlock" id="basic-navbar-nav">
                     <Navbar.Offcanvas
                         className="filtersOffcanvas"
@@ -281,27 +318,28 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
                         placement="top"
                         onHide={handleClose}
                     >
-                        <Offcanvas.Header closeButton>
-                            <Offcanvas.Title>Фильтры</Offcanvas.Title>
+                        <div className="wrapper" style={wrapperMain}>
+                            <Offcanvas.Header closeButton>
+                            <Offcanvas.Title>Квартиру</Offcanvas.Title>
                         </Offcanvas.Header>
-                        <Offcanvas.Body
-                            style={showOffcanvas ? filtersOffcanvasStyleMobile as React.CSSProperties : filtersOffcanvasStyleDesctop as React.CSSProperties}>
+                            <Offcanvas.Body
+                                style={showOffcanvas ? filtersOffcanvasStyleMobile as React.CSSProperties : filtersOffcanvasStyleDesctop as React.CSSProperties}>
                             <div
                                 style={showOffcanvas ? filtersListStyleMobile as React.CSSProperties : filtersListStyleDesctop as React.CSSProperties}>
                                 <DropdownButton className="filtersFirstButton" variant="light"
                                                 id="dropdown-basic-button"
-                                                title="Тип жилья" data-bs-theme="light">
+                                                title="Новостройки,вторичка" data-bs-theme="light">
                                     <Form className="typeHousFilter">
                                         <Form.Check label="Новостройка"
                                                     checked={selectedTypeHous.includes("Новостройка")}
                                                     onChange={() => handleSelectedTypeHousChange("Новостройка")}/>
-                                        <Form.Check label="Вторичное жилье"
+                                        <Form.Check label="Вторичный рынок"
                                                     checked={selectedTypeHous.includes("Вторичное жилье")}
                                                     onChange={() => handleSelectedTypeHousChange("Вторичное жилье")}/>
                                     </Form>
                                 </DropdownButton>
                                 <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button"
-                                                title="Школа" data-bs-theme="light">
+                                                title="Школа по прописке" data-bs-theme="light">
                                     <Form className="schoolListFilter">
                                         <InputGroup>
                                             <Form.Control
@@ -339,23 +377,26 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
                                 <div className="priceButton">
                                     <InputGroup className="">
                                         <InputGroup.Text>Цена</InputGroup.Text>
-                                            <Form.Control 
-                                                type="number"
-                                                min="0"
-                                                placeholder="от"
-                                                value={minPrice}
-                                                onChange={handleMinPriceChange}/>
-                                            <Form.Control
-                                                type="number"
-                                                min="0" 
-                                                placeholder="до"
-                                                value={maxPrice}
-                                                onChange={handleMaxPriceChange}/>
+                                        <Form.Control
+                                            type="number"
+                                            min="0"
+                                            placeholder="от"
+                                            value={minPrice}
+                                            onChange={handleMinPriceChange}/>
+                                        <Form.Control
+                                            type="number"
+                                            min="0"
+                                            placeholder="до"
+                                            value={maxPrice}
+                                            onChange={handleMaxPriceChange}/>
                                     </InputGroup>
                                 </div>
                                 <Button className="filtersLastButtonMore" variant="light" data-bs-theme="light"
                                         style={{display: showOffcanvas ? "none" : "block"}}
-                                        onClick={handleToggleFiltersListMore}>Еще</Button>
+                                        onClick={handleToggleFiltersListMore}>
+                                    {/*<img className="filterImg" src="../images/filter.png"/>*/}
+                                    <Image className="filterImg" src={filterImg} />
+                                </Button>
                             </div>
                             <div
                                 style={showOffcanvas ? filtersListStyleMobile as React.CSSProperties : filtersMoreListStyleDesctop as React.CSSProperties}>
@@ -373,7 +414,7 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
                                                     checked={selectedRooms.includes(2)}
                                                     onChange={() => handleRoomsChange(2)}/>
                                         <Form.Check label="3"
-                                        checked={selectedRooms.includes(3)}
+                                                    checked={selectedRooms.includes(3)}
                                                     onChange={() => handleRoomsChange(3)}/>
                                         <Form.Check label="4"
                                                     checked={selectedRooms.includes(4)}
@@ -444,18 +485,14 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
                                     </Form>
                                 </DropdownButton>
                             </div>
-                            <div className="bottomWrapper">
-                                <Button className="searchButton" variant="light">Найти</Button>
-                            </div>
+                            {/*<div className="bottomWrapper">*/}
+                                <Button className="searchButton" style={buttonStyle} variant="light"
+                                        onClick={handleSearchButtonClick}>Найти</Button>
+                            {/*</div>*/}
                         </Offcanvas.Body>
+                        </div>
                     </Navbar.Offcanvas>
                 </Navbar.Collapse>
-                <div className="buttonBlock">
-                    <Button className="firstLineButton" variant="light"
-                            onClick={handleSearchButtonClick}>Подобрать квартиру</Button>
-                    <Button className="firstLineButton" variant="light"
-                            onClick={handleSearchSchoolClick}>Подобрать школу</Button>
-                </div>
             </Navbar>
         </>
     )
