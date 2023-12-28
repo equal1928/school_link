@@ -16,6 +16,7 @@ export function FavouriteButton({ houseId }: { houseId?: Number }) {
         const loggedIn = storedPhone && storedPhone?.length > 0 ? true : false;
         if (!loggedIn)
             return;
+        //axios.get(`/chosen/${houseId}`)
         axios.get(`https://retoolapi.dev/Jcozs1/favourites/${houseId}`)
             .then(response => {
                 if (response.status === 200)
@@ -36,7 +37,7 @@ export function FavouriteButton({ houseId }: { houseId?: Number }) {
             return;
         }
         if (!isFavorite) {
-            //axios.post('https://retoolapi.dev/Jcozs1/favourites', { userId: 'ВАШ_USER_ID', houseId })
+            //axios.post('/chosen', { user_login: loggedIn, flat_id: houseId })
             axios.post('https://retoolapi.dev/Jcozs1/favourites', { id: houseId })
                 .then(response => {
                     if (response.status === 201) {
@@ -47,6 +48,7 @@ export function FavouriteButton({ houseId }: { houseId?: Number }) {
                     console.error(error);
             });
         } else {
+            //axios.delete('/chosen', { user_login: loggedIn, flat_id: houseId })
             axios.delete(`https://retoolapi.dev/Jcozs1/favourites/${houseId}`)
             .then(response => {
                 if (response.status === 200)

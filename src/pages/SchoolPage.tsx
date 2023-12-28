@@ -14,13 +14,15 @@ import './SchoolPage.css'
 
 export function SchoolPage() {
     const params = useParams();
-    const schoolId = params.id;
+    const schoolId: number = params.id ? parseInt(params.id, 10) : 0;
+    //const schoolId = params.id;
     const [loadingSchoolCard, setLoadingSchoolCard] = useState(false);
     const [schoolCard, setSchoolCard] = useState<SchoolModelCard>();
 
     useEffect(() => {
         const fetchData = async () => {
           try {
+            //const schoolResponse = await axios.get<SchoolModelCard>(`/schools/${schoolId}`);
             const schoolResponse = await axios.get<SchoolModelCard>(`https://retoolapi.dev/PlFJLm/scholinfo/${schoolId}`);
             setSchoolCard(schoolResponse.data);
             setLoadingSchoolCard(true);
@@ -37,6 +39,12 @@ export function SchoolPage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // const schoolResponse = await axios.get<PointsSchoolsOnMap[]>(`/school/coords`);
+                // const respArray: PointsSchoolsOnMap[] = schoolResponse.data;
+                // const foundObject = respArray.find((item) => item.id === schoolId);
+                // if (foundObject)
+                //     setListPoints([foundObject,]);
+
                 const schoolResponse = await axios.get<PointsSchoolsOnMap>(`https://retoolapi.dev/zoluMf/schoolpoints/${schoolId}`);
                 setListPoints([schoolResponse.data,]);
                 setMapIsLoading(true);

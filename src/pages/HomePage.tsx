@@ -22,6 +22,7 @@ export function HomePage() {
     useEffect(() => {
         const fetchData = async () => {
           try {
+            //const homesResponse = await axios.get<HouseModelCard>(`/flats/${homeId}`);
             const homesResponse = await axios.get<HouseModelCard>(`https://retoolapi.dev/cZVlG9/homeinfo/${homeId}`);
             setHomesCard(homesResponse.data);
             setLoadingHomesCard(true);
@@ -38,6 +39,12 @@ export function HomePage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // const homesResponse = await axios.get<PointsHousesOnMap[]>(`/flat/coords`);
+                // const respArray: PointsHousesOnMap[] = homesResponse.data;
+                // const foundObject = respArray.find((item) => item.id === homeId);
+                // if (foundObject)
+                //     setListPoints([foundObject,]);
+
                 const homesResponse = await axios.get<PointsHousesOnMap>(`https://retoolapi.dev/minnlU/homepoints/${homeId}`);
                 setListPoints([homesResponse.data,]);
                 setMapIsLoading(true);
