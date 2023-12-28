@@ -11,11 +11,15 @@ export function MainPage() {
     return (
         <div>
             <div className="mainContainer">
-                <Header isMainPage={true} />
-                <MainFiltersBlock />
+                <Header isMainPage={true}/>
+                <div className="mainTextWrapper">
+                    <div className="firstPart">Хорошая школа рядом -</div>
+                    <div className="secondPart"> это удобно</div>
+                </div>
+                <MainFiltersBlock/>
             </div>
-            <DescriptionBlock />
-            <Footer />
+            <DescriptionBlock/>
+            <Footer/>
         </div>
     );
 }

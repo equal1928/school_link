@@ -2,10 +2,14 @@
     background-size: cover;
     background-image: url("../components/images/main.jpeg");
     margin-top: -10px;
-    height: 70vh;
+    /*height: 70vh;*/
+}
+.mainTextWrapper {
+    position: absolute;
+    left: 15%;
 }
 
-@media (max-width: 468px) {
+@media (max-width: 577px) {
     .mainContainer {
         background-image: none;
     }
