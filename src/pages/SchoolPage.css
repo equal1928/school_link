@@ -77,7 +77,7 @@ p {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin-top: 10px;
+    margin: 10px;
 }
 .field {
     padding-right: 10px;
@@ -86,6 +86,7 @@ p {
 .mainWrapper{
     display: flex;
     flex-wrap: wrap;
+    margin: 10px;
 }
 
 .mapBlock {
