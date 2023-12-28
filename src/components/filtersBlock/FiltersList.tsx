@@ -76,6 +76,7 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
       };
 
     useEffect(() => {
+        //axios.get('schoolsName')
         axios.get('https://retoolapi.dev/BwAFP7/data')
             .then(response => {
                 setSchools(response.data);

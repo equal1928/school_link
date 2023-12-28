@@ -54,10 +54,7 @@ export function RegistrationForm(props: any) {
         }
     
         try {
-            const response = await axios.post('эндпоинт_регистрации', {
-                phone,
-                password,
-            });
+            const response = await axios.post('/users', { user_login: phone, user_password: password });
         
             if (response.data.success) {
                 setErrorMessage('Регистрация прошла успешно');
