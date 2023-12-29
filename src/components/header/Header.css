@@ -20,7 +20,7 @@
     background-color: white !important;
     padding: 5px 8px !important;
         border-radius: 4px!important;
-        box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2)!important;
+        box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15)!important;
         border-color: whitesmoke!important;
 }
 
@@ -32,7 +32,6 @@
     /* background-color: white; */
     width: 100%;
     margin: 0px -12px;
-    height: 20vh;
     /* position: relative; */
     /* top: -95px; */
 }
@@ -54,8 +53,8 @@
 }
 
 .favouritesImg {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 }
 
 .loginButton {
@@ -71,19 +70,20 @@
     margin: 5px;
     height: 40px;
     border-radius: 4px!important;
-    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2)!important;
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15)!important;
     border-color: whitesmoke!important;
 }
 
 .loginButton:hover, .registrationButton:hover {
-    background-color: lightgray !important;
-    color: black;
+    background-color: #F5BE6A !important;
+    border-color: #F5BE6A!important;
 }
 
 .loginButton:active, .registrationButton:active {
     color: black;
     /*border-color:black;*/
-    background-color: #F4B659 !important;
+    background-color: #F5BE6A !important;
+    border-color: #F5BE6A!important;
 }
 @media (max-width: 988px) {
     .navLinkHeader {

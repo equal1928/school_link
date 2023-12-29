@@ -21,7 +21,7 @@
 .headerInfoBlock {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -33,8 +33,8 @@
 }
 
 .titleSell {
-    font-size: 25px;
-    margin-bottom: 15px;
+    font-size: 22px;
+    margin-bottom: 10px;
 }
 
 .price {
@@ -44,16 +44,23 @@
     border-radius: 8px;
     width:fit-content;
     padding: 8px;
-    margin-bottom: 15px;
 }
 
-.cardLink {
-    margin-bottom: 15px;
+.cardLinkHome {
+    border: none;
+    border-radius: 4px;
+    width: fit-content;
+    margin-right: 10px;
+    padding: 8px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background: #F5BE6A;
 }
 
-.cardLink a {
-    margin-bottom: 15px;
-    color: black;
+.cardLinkHome a {
+    color: darkslategrey;
+    text-decoration: none;
+    margin-bottom: 0px;
 }
 
 .description {

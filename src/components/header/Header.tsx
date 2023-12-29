@@ -14,6 +14,7 @@ import logoBlack from '../images/logoBlack.png'
 import favouritesIcon from '../images/favouritesNo.png'
 
 
+
 export function Header({ isMainPage = false }: { isMainPage?: boolean }) {
     const [loginModalShow, setLoginModalShow] = useState(false);
     const [registrationModalShow, setRegistrationModalShow] = useState(false);

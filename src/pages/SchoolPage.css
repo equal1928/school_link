@@ -31,22 +31,10 @@ p {
 }
 
 .titleSell {
-    font-size: 25px;
-}
-
-.price {
     font-size: 22px;
-    border-width: 1px;
-    border-style: solid;
-    border-color:gray;
-    border-radius: 8px;
-    width:fit-content;
-    padding: 8px;
 }
-
 .description {
     font-size: 22px;
-    margin-left: 60px;
 }
 
 .generalDescription {
@@ -78,6 +66,9 @@ p {
     flex-wrap: wrap;
     justify-content: flex-start;
     margin: 10px;
+}
+.schoolDescriptionTwo {
+    margin-left: 17px;
 }
 .field {
     padding-right: 10px;

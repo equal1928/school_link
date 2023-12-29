@@ -46,7 +46,7 @@ export function HouseCardLarge({ card }: { card: HouseModelCard }) {
                     {card.address}
                 </div>
                 <div className="cardLink" onClick={handleLinkClick}>
-                    <p>Перейти к объявлению</p>
+                    <p>Посмотреть на ЦИАН</p>
                 </div>
             </Card.Body>
         </Card>

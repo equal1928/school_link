@@ -209,10 +209,10 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
 
     const filtersOffcanvasStyleDesctop = {
         display: "flex", 
-        flexDirection: isMainPage ? "column" : "row", 
+        flexDirection: "column",
         flexWrap: "wrap", 
         justifyContent: "center", 
-        alignItems: isMainPage ? "center" : "flex-start"
+        alignItems: isMainPage ? "center" : "center"
     };
 
     const filtersOffcanvasStyleMobile = {
@@ -239,6 +239,7 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         marginBottom: "5px",
         border: "1px solid lightgrey",
         borderRadius: "4px",
+        marginTop: "10px"
     };
 
     const filtersListStyleMobile = {
@@ -251,6 +252,7 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
     const wrapperMainDesktop = {
         width: "max-content",
         // position: isMainPage ? "relative" : "block",
+        margin: "auto",
         top: isMainPage ? "320px" : "0px",
         backgroundColor: isMainPage ? "white!important" : "none",
         borderRadius: "4px!important",
@@ -278,7 +280,8 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         top: isMainPage ? "310px" : "0px",
         borderRadius: "4px!important",
         boxShadow: isMainPage ? "0 4px 16px 0 rgba(0,0,0,0.15)!important" : "none",
-        borderColor: isMainPage ? "whitesmoke!important" : "none"
+        borderColor: isMainPage ? "whitesmoke!important" : "none",
+        alignSelf: "center"
     }
 
      const buttonBlockMobile ={
@@ -297,7 +300,7 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         justifyContent: "center",
         borderRadius: "13px",
         marginLeft: isMainPage ? "0px" : "20px",
-        marginTop: isMainPage && !showOffcanvas ? "90px" : "0px",
+        marginTop: isMainPage && !showOffcanvas ? "90px" : "px",
         marginBottom: isMainPage ? "70px" : "0px"
     };
     
@@ -305,10 +308,11 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
         borderColor: isMainPage && !showOffcanvas ? "white" : "none",
         borderWidth: isMainPage && !showOffcanvas ? "0px" : "0px",
         width: isMainPage ? "120px" : "120px",
-        height: isMainPage ? "60px" : "50px",
+        height: isMainPage ? "50px" : "50px",
         borderRadius: isMainPage ? "4px" : "4px",
         backgroundColor: "#F5BE6A !important",
-        alignSelf: isMainPage ? "flex-end" : "center"
+        alignSelf: isMainPage ? "flex-end" : "flex-end",
+        marginTop: isMainPage ? "10px" : "10px"
     };
 
     const toggleButtonStyle={

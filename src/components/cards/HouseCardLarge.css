@@ -20,6 +20,11 @@
     color: gray;
 }
 
+.cardLink p:hover {
+    background: #F4B659;
+    border-color:  #F4B659;
+}
+
 .cardLink p {
     color: black;
     text-decoration: none!important;
@@ -27,10 +32,11 @@
     font-size: 17px;
     border-width: 1px;
     border-style: solid;
-    border-color: gray;
-    border-radius: 8px;
+    border-radius: 4px;
     width: fit-content;
     padding: 8px;
+    background: #F5BE6A;
+    border-color:  #F5BE6A;;
 }
 .cardImgWrapper{
     width: 255px;

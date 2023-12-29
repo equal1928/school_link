@@ -110,7 +110,7 @@ export function SchoolPage() {
                         </div>
                     </Row>
                     <Row>
-                        <div className="schoolDescription">
+                        <div className="schoolDescriptionTwo">
                             <span>
                                 <p className="field">Основное образование:</p>
                                 <p>1. Образовательные программы начальной школы (I ступень обучения).

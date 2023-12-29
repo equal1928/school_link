@@ -35,9 +35,9 @@
     position: relative;
     top: 390px;
     background-color: white!important;
-    border-radius: 4px!important;
-    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15)!important;
-    border-color: whitesmoke!important;
+    /*border-radius: 4px!important;*/
+    /*box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15)!important;*/
+    /*border-color: whitesmoke!important;*/
     padding: 30px;
 }
 
@@ -184,7 +184,15 @@
     border-color: #f4b659!important;
 }
 
+.searchButton {
+    background-color: #F5BE6A !important;
+    margin-left: 10px;
+}
+
 .searchButton:active {
+    background-color: #F4B659 !important;
+}
+.searchButton:hover {
     background-color: #F4B659 !important;
 }
 
@@ -292,7 +300,10 @@
 
 @media (max-width: 1097px) {
     .toggleButtonFilter {
-        display: block !important;
+        display: block;
+    }
+    .wrapper {
+        display: none;
     }
 
 }

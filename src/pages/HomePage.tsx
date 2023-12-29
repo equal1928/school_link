@@ -75,13 +75,14 @@ export function HomePage() {
                             <div className="imgWrapper">
                                 <Image className="cardImg" src={homesCard && homesCard.photo}/>
                             </div>
-                            <div style={{position: "absolute", margin: "10px"}}>
-                                <FavouriteButton houseId={homesCard && homesCard.id} />
-                            </div>
+                            {/*<div style={{position: "absolute", margin: "10px"}}>*/}
+                            {/*    <FavouriteButton houseId={homesCard && homesCard.id} />*/}
+                            {/*</div>*/}
                         </Col>
                         <Col className="headerInfoBlock">
                             {/* <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной квартиры, {homesCard && homesCard.totalSquare} кв.м., {homesCard && homesCard.address}</div> */}
-                            <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной квартиры, {homesCard && homesCard.square} кв.м., {homesCard && homesCard.address}</div>
+                            <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной
+                                квартиры, {homesCard && homesCard.square} кв.м., {homesCard && homesCard.address}</div>
                             <div className="price">{homesCard && formattedNumber(homesCard.price)}</div>
                             {/*Школы рядом:*/}
                             {/*<div className="nearbySchools">*/}
@@ -89,7 +90,11 @@ export function HomePage() {
                             {/*    <li>Лицей №110,</li>*/}
                             {/*    <li>Школа №10</li>*/}
                             {/*</div>*/}
-                            <div className="cardLink"><a href={homesCard && homesCard.link}>Перейти к объявлению</a></div>
+                            <div className="cardLinkHome"><a href={homesCard && homesCard.link}>Перейти к объявлению</a>
+                            </div>
+                            <div className="linkToFavs">
+                                <FavouriteButton houseId={homesCard && homesCard.id}/> <a className="textFavs"> В избранное </a>
+                            </div>
                         </Col>
                     </Row>
                     <Row>

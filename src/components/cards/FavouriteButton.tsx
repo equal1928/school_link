@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import favouritesNo from '../images/favouritesNo.png'
-import favouritesYes from '../images/favouritesYes.png'
+import favouritesYes from '../images/heartOrange.png'
 
 import './FavouriteButton.css'
 
