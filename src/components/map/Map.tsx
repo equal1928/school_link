@@ -93,14 +93,26 @@ export function Map({ isMapPage = true, points }: { isMapPage?: boolean;
         setShowCard(false); 
         setCurrentTypePoint(TypePoint.NONE);
         setHomesCard([]);
+        //setHomesCard(undefined);
         setScholCard(undefined);
      };
     const [loadingHomesCard, setLoadingHomesCard] = useState(false);
     const [homesCard, setHomesCard] = useState<HouseModelCard[]>([]);
+    //const [homesCard, setHomesCard] = useState<HouseModelCard>();
     const [loadingScholsCard, setLoadingScholsCard] = useState(false);
     const [scholCard, setScholCard] = useState<SchoolModelCard>();
     const [currentTypePoint, setCurrentTypePoint] = useState<TypePoint>();
 
+    // const handleHomePointClick = (pointId: number) => {
+    //     axios.get(`/flats/${pointId}`)
+    //     .then(response => {
+    //         setHomesCard(response.data);
+    //         setLoadingHomesCard(true);
+    //     })
+    //     .catch(error => {
+    //         console.error(error);
+    //     });
+    // };
     const handleHomePointClick = (pointId: number[]) => {
         axios.get(`https://retoolapi.dev/cZVlG9/homeinfo?_page=1&_limit=4`)
             .then(response => {
@@ -116,6 +128,7 @@ export function Map({ isMapPage = true, points }: { isMapPage?: boolean;
     };
 
     const handleSchoolPointClick = (pointId: number) => {
+        //axios.get(`/schools/${pointId}`)
         axios.get(`https://retoolapi.dev/PlFJLm/scholinfo/${pointId}`)
             .then(response => {
                 setScholCard(response.data);
@@ -155,6 +168,9 @@ export function Map({ isMapPage = true, points }: { isMapPage?: boolean;
                                 {homesCard.map(homeCard => (
                                     <HouseCardLarge key={homeCard.id} card={homeCard}/>
                                 ))}
+                                {/* <div className="schoolCardContainer">
+                                    {homesCard && <HouseCardLarge card={homesCard}/>}
+                                </div> */}
                             </div>
                         )
                     ) : (

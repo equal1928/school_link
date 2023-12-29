@@ -5,3 +5,9 @@ export interface PointsHousesOnMap {
     countApartments: number;
     // apartmentIds: number[];
 }
+
+// export interface PointsHousesOnMap {
+//     id: number;
+//     latitude: number;
+//     longitude: number;
+// }

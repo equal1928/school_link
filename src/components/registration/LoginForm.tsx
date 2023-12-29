@@ -51,7 +51,7 @@ export function LoginForm(props: any) {
         }
         
         try {
-            const response = await axios.get('эндпоинт_входа', {
+            const response = await axios.get('/users', {
                 params: {
                   phone,
                   password,

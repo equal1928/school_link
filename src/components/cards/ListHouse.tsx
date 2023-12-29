@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import { HouseCardSmall } from './HouseCardSmall'
 import { HouseModelCard } from '../../models/HouseModelCard'
+import { PointsHousesOnMap } from '../../models/PointsHousesOnMap'
 
 import './Cards.css'
 
@@ -18,10 +19,30 @@ export function ListHouse({ isSearch = true }: { isSearch?: Boolean }) {
         const fetchData = async () => {
           try {
             let response;
-            if (isSearch)
+            if (isSearch) {
+                // const searchUrl = window.location.search;
+                // const homesResponse = await axios.get<PointsHousesOnMap[]>(`/flats${searchUrl}`);
+                // let respArray: PointsHousesOnMap[] = [];
+                // if (!Array.isArray(homesResponse.data))
+                //     respArray = [homesResponse.data];
+                // else
+                //     respArray = homesResponse.data;
+                // const getRequests = respArray.map(async (item: PointsHousesOnMap) => {
+                //     const response = await axios.get<HouseModelCard>(`/flats/${item.id}`);
+                //     return response.data;
+                // });
+                // const homesData = await Promise.all(getRequests);
+                // setCards(homesData);
+                // setIsLoading(true);
+                // return;
+
                 response = await axios.get("https://retoolapi.dev/cZVlG9/homeinfo");
-            else
+            } else {
+                //Избранное chosen
+                //const storedPhone = localStorage.getItem('userPhone');
+                //response = await axios.get(`https://retoolapi.dev/cZVlG9/chosen/${storedPhone}`);
                 response = await axios.get("https://retoolapi.dev/cZVlG9/homeinfo/1");
+            }
             if (!Array.isArray(response.data))
                 setCards([response.data]);
             else
