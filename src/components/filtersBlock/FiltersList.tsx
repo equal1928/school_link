@@ -328,7 +328,7 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
 
     return (
         <>
-            <div className="buttonBlock" style={showOffcanvas ? buttonBlockMobile as React.CSSProperties : buttonBlock as React.CSSProperties}>
+            <div className="buttonBlock" style={buttonBlock}>
                 <p className="callText">Найди свою</p>
                 <Button className="firstButton" variant="light"
                         onClick={handleSearchOnlyHomeClick}>Квартиру</Button>

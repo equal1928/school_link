@@ -311,6 +311,7 @@
 @media (max-width: 576px) {
     .wrapper {
         background-color: #D5D5D5 !important;
+        display: block;
     }
     .mainText {
         text-align: center;
@@ -364,6 +365,14 @@
         /* align-self: end; */
         right: 20px;
         top: 20px;
+    }
+}
+@media (max-width: 1105px) {
+    .buttonBlock {
+        display: block;
+        background: white;
+        top: 220px !important;
+        align-self: center;
     }
 }
 
