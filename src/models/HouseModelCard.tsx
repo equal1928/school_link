@@ -4,18 +4,18 @@ type School = {
     link: string;
 };
 
-export interface HouseModelCard {
-    id: number;
-    photo: string;
-    price: number;
-    rooms: number;
-    square: number;
-    currentFloor: number;
-    totalFloors: number;
-    schools: School[];
-    address: string;
-    link: string;
-}
+// export interface HouseModelCard {
+//     id: number;
+//     photo: string;
+//     price: number;
+//     rooms: number;
+//     square: number;
+//     currentFloor: number;
+//     totalFloors: number;
+//     schools: School[];
+//     address: string;
+//     link: string;
+// }
 
 // export interface HouseModelCard {
 //     id: number;
@@ -34,3 +34,19 @@ export interface HouseModelCard {
 //     address: string;
 //     link: string;
 // }
+
+export interface HouseModelCard {
+    id: number;
+    link: string;
+    district: string;
+    street: string;
+    house_number: string;
+    floor: number;
+    Property_Type: string;
+    Year_of_Construction: number;
+    House_Type: string;
+    Floor_Type: string;
+    price: number;
+    latitude: number;
+    longitude: number;
+}

@@ -24,14 +24,15 @@ export function HouseCardLarge({ card }: { card: HouseModelCard }) {
     return (
         <Card className="HouseCardLarge" onClick={handleHomeCardClick(card.id)}>
             <div className="cardImgWrapper">
-                <Card.Img variant="top" className="cardImg" src={card.photo} />
+                <Card.Img variant="top" className="cardImg" src={""} />
             </div>
             <Card.Body>
                 <div className="cardPrice">{formattedNumber(card.price)}</div>
                 <div>            
                     {/* {card.rooms}-ком. квартира, {card.totalSquare} кв.м.<br/>  */}
-                    {card.rooms}-ком. квартира, {card.square} кв.м.<br/> 
-                    {card.currentFloor}/{card.totalFloors} этаж
+                    {/* {card.rooms}-ком. квартира, {card.square} кв.м.<br/> 
+                    {card.currentFloor}/{card.totalFloors} этаж */}
+                    Продажа квартиры на {card.floor} этаже
                 </div>
                 {/* Школы рядом:
                 <div className="nearbySchools">
@@ -39,11 +40,11 @@ export function HouseCardLarge({ card }: { card: HouseModelCard }) {
                     <li>Лицей №110,</li>
                     <li>Школа №10</li>
                 </div> */}
-                <div>
+                {/* <div>
                     {card.schools && card.schools.map(school => <li>Школа №{school.number} <a href={school.link}>Узнать о школе</a></li>)}   
-                </div>
+                </div> */}
                 <div className="cardAddress">
-                    {card.address}
+                    г. Екатеринбург, ул. {card.street}, {card.house_number}
                 </div>
                 <div className="cardLink" onClick={handleLinkClick}>
                     <p>Посмотреть на ЦИАН</p>

@@ -47,26 +47,28 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
     }
     const handleSearchButtonClick = () => {
         const queryParams = {
-          typeHous: selectedTypeHous.join(','),
-          schools: selectedSchools.join(','),
-          time: selectedTime.join(','),
-          minPrice,
-          maxPrice,
-          rooms: selectedRooms.join(','),
-          materials: selectedMaterials.join(','),
-          minFloor,
-          maxFloor,
-          excludeFirst,
-          excludeLast,
-          minYear,
-          maxYear,
+        //   typeHous: selectedTypeHous.join(','),
+        //   schools: selectedSchools.join(','),
+        //   time: selectedTime.join(','),
+        //   minPrice,
+        //   maxPrice,
+        //   rooms: selectedRooms.join(','),
+        //   materials: selectedMaterials.join(','),
+        //   minFloor,
+        //   maxFloor,
+        //   excludeFirst,
+        //   excludeLast,
+        //   minYear,
+        //   maxYear
+            Property_Type: selectedTypeHous.join('&Property_Type='),
+            schools: selectedSchools.join(','),
         };
 
         const queryString = Object.entries(queryParams).map(([key, value]) => {
-            const encodedValue = encodeURIComponent(value || '');
+            const encodedValue = value;
             return `${key}=${encodedValue}`;
         }).join('&');
-        
+
         const pathUrl = window.location.pathname;
         if (pathUrl === "/search-list")
             navigate(`/search-list?${queryString}`);
@@ -76,8 +78,8 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
       };
 
     useEffect(() => {
-        //axios.get('schoolsName')
-        axios.get('https://retoolapi.dev/BwAFP7/data')
+        axios.get('https://retoolapi.dev/bulbdc/schoolsname')
+        //axios.get('https://retoolapi.dev/BwAFP7/data')
             .then(response => {
                 setSchools(response.data);
             })
@@ -172,38 +174,42 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
             const currentUrl = window.location.search;
             const urlParams = new URLSearchParams(currentUrl);
             
-            const typeHousePar = urlParams.get('typeHous');
-            setSelectedTypeHous(typeHousePar ? typeHousePar.split(",") : []);
+            // const typeHousePar = urlParams.get('typeHous');
+            // setSelectedTypeHous(typeHousePar ? typeHousePar.split(",") : []);
             
-            const schoolsPar = urlParams.get('schools');
-            setSelectedSchools(schoolsPar ? schoolsPar.split(",").map(Number) : []);
+            // const schoolsPar = urlParams.get('schools');
+            // setSelectedSchools(schoolsPar ? schoolsPar.split(",").map(Number) : []);
 
-            const timePar = urlParams.get('time');
-            setSelectedTime(timePar ? timePar.split(",").map(Number) : []);
+            // const timePar = urlParams.get('time');
+            // setSelectedTime(timePar ? timePar.split(",").map(Number) : []);
 
-            const parsedMinPrice = urlParams.get('minPrice');
-            setMinPrice(parsedMinPrice ? parseInt(parsedMinPrice, 10) : undefined);
-            const parsedMaxPrice = urlParams.get('maxPrice');
-            setMaxPrice(parsedMaxPrice ? parseInt(parsedMaxPrice, 10) : undefined);
+            // const parsedMinPrice = urlParams.get('minPrice');
+            // setMinPrice(parsedMinPrice ? parseInt(parsedMinPrice, 10) : undefined);
+            // const parsedMaxPrice = urlParams.get('maxPrice');
+            // setMaxPrice(parsedMaxPrice ? parseInt(parsedMaxPrice, 10) : undefined);
 
-            const roomsPar = urlParams.get('rooms');
-            setSelectedRooms(roomsPar ? roomsPar.split(",").map(Number) : []);
+            // const roomsPar = urlParams.get('rooms');
+            // setSelectedRooms(roomsPar ? roomsPar.split(",").map(Number) : []);
 
-            const materialsPar = urlParams.get('materials');
-            setSelectedMaterials(materialsPar ? materialsPar.split(",") : []);
+            // const materialsPar = urlParams.get('materials');
+            // setSelectedMaterials(materialsPar ? materialsPar.split(",") : []);
 
-            const parsedMinFloor = urlParams.get('minFloor');
-            setMinFloor(parsedMinFloor ? parseInt(parsedMinFloor, 10) : undefined);
-            const parsedMaxFloor= urlParams.get('maxFloor');
-            setMaxFloor(parsedMaxFloor ? parseInt(parsedMaxFloor, 10) : undefined);
+            // const parsedMinFloor = urlParams.get('minFloor');
+            // setMinFloor(parsedMinFloor ? parseInt(parsedMinFloor, 10) : undefined);
+            // const parsedMaxFloor= urlParams.get('maxFloor');
+            // setMaxFloor(parsedMaxFloor ? parseInt(parsedMaxFloor, 10) : undefined);
 
-            setExcludeFirst(urlParams.get('excludeFirst') === 'true');
-            setExcludeLast(urlParams.get('excludeLast') === 'true');
+            // setExcludeFirst(urlParams.get('excludeFirst') === 'true');
+            // setExcludeLast(urlParams.get('excludeLast') === 'true');
 
-            const parsedMinYear = urlParams.get('minYear');
-            setMinYear(parsedMinYear ? parseInt(parsedMinYear, 10) : undefined);
-            const parsedMaxYear= urlParams.get('maxYear');
-            setMaxYear(parsedMaxYear ? parseInt(parsedMaxYear, 10) : undefined);
+            // const parsedMinYear = urlParams.get('minYear');
+            // setMinYear(parsedMinYear ? parseInt(parsedMinYear, 10) : undefined);
+            // const parsedMaxYear= urlParams.get('maxYear');
+            // setMaxYear(parsedMaxYear ? parseInt(parsedMaxYear, 10) : undefined);
+
+            const typeHousePar = urlParams.getAll('Property_Type')
+            setSelectedTypeHous([]);
+            setSelectedTypeHous(typeHousePar);
         }
     }, []);
 
@@ -362,9 +368,9 @@ export function FiltersList({ isMainPage = false }: { isMainPage?: boolean }) {
                                         <Form.Check label="Новостройка"
                                                     checked={selectedTypeHous.includes("Новостройка")}
                                                     onChange={() => handleSelectedTypeHousChange("Новостройка")}/>
-                                        <Form.Check label="Вторичный рынок"
-                                                    checked={selectedTypeHous.includes("Вторичное жилье")}
-                                                    onChange={() => handleSelectedTypeHousChange("Вторичное жилье")}/>
+                                        <Form.Check label="Вторичка"
+                                                    checked={selectedTypeHous.includes("Вторичка")}
+                                                    onChange={() => handleSelectedTypeHousChange("Вторичка")}/>
                                     </Form>
                                 </DropdownButton>
                                 <DropdownButton className="filtersButton" variant="light" id="dropdown-basic-button"

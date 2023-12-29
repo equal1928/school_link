@@ -26,8 +26,8 @@ export function SearchMapPage() {
                 const searchUrl = window.location.search;
                 const searchParams = new URLSearchParams(searchUrl);
                 if (searchUrl === '?schoolsOnly=true') {
-                    //const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>("school/coords");
-                    const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>("https://retoolapi.dev/zoluMf/schoolpoints");
+                    const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>("https://retoolapi.dev/Wpxa0f/schoolcoords");
+                    //const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>("https://retoolapi.dev/zoluMf/schoolpoints");
                     if (!Array.isArray(schoolsResponse.data))
                         setPointsSchools([schoolsResponse.data]);
                     else
@@ -36,8 +36,8 @@ export function SearchMapPage() {
                     return;
                 }
                 if (searchUrl === '?homesOnly=true') {
-                    //const homesResponse = await axios.get<PointsHousesOnMap[]>("flat/coords");
-                    const homesResponse = await axios.get<PointsHousesOnMap[]>("https://retoolapi.dev/minnlU/homepoints");
+                    const homesResponse = await axios.get<PointsHousesOnMap[]>("https://retoolapi.dev/zNOy5M/houseinfocord");
+                    //const homesResponse = await axios.get<PointsHousesOnMap[]>("https://retoolapi.dev/minnlU/homepoints");
                     if (!Array.isArray(homesResponse.data))
                         setPointsHomes([homesResponse.data]);
                     else
@@ -46,18 +46,33 @@ export function SearchMapPage() {
                     return;
                 }
 
-                //const homesResponse = await axios.get<PointsHousesOnMap[]>(`https://retoolapi.dev/minnlU/homepoints${searchUrl}`);
-                const homesResponse = await axios.get<PointsHousesOnMap[]>("https://retoolapi.dev/minnlU/homepoints");
-                if (!Array.isArray(homesResponse.data))
-                    setPointsHomes([homesResponse.data]);
+
+                const homesResponse = await axios.get<PointsHousesOnMap[]>(`https://retoolapi.dev/bOu0Zi/houseinfo${searchUrl}`);
+                const filterArray: PointsHousesOnMap[] = homesResponse.data.map((house) => {
+                    const newObject: PointsHousesOnMap = {
+                        id: house.id,
+                        latitude: house.latitude,
+                        longitude: house.longitude
+                      };
+                    return newObject;
+                });
+                if (!Array.isArray(filterArray))
+                    setPointsHomes([filterArray]);
                 else
-                    setPointsHomes(homesResponse.data);
+                    setPointsHomes(filterArray);
+                
+                //const homesResponse = await axios.get<PointsHousesOnMap[]>(`https://retoolapi.dev/minnlU/homepoints${searchUrl}`);
+                //const homesResponse = await axios.get<PointsHousesOnMap[]>("https://retoolapi.dev/minnlU/homepoints");
+                // if (!Array.isArray(homesResponse.data))
+                //     setPointsHomes([homesResponse.data]);
+                // else
+                //     setPointsHomes(homesResponse.data);
 
                 const schoolsPar = searchParams.get('schools');
                 const schoolsParArray = schoolsPar ? schoolsPar.split(",").map(Number) : [];
-                const queryString = `?schoolIds=${encodeURIComponent(schoolsParArray.join(','))}`;
+                const queryString = `?id=${schoolsParArray.join('&id=')}`;
                 //такого не будет в api
-                //const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>(`https://retoolapi.dev/zoluMf/schoolpoints${queryString}`);
+                const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>(`https://retoolapi.dev/Wpxa0f/schoolcoords${queryString}`);
 
                 // const schoolResponse = await axios.get<PointsSchoolsOnMap[]>(`school/coords`);
                 // let respArray: PointsSchoolsOnMap[] = [];
@@ -72,7 +87,8 @@ export function SearchMapPage() {
                 //     setPointsSchools(filteredRespArray);
                 // setMapIsLoading(true);
 
-                const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>("https://retoolapi.dev/zoluMf/schoolpoints");
+
+                //const schoolsResponse = await axios.get<PointsSchoolsOnMap[]>("https://retoolapi.dev/zoluMf/schoolpoints");
                 if (!Array.isArray(schoolsResponse.data))
                     setPointsSchools([schoolsResponse.data]);
                 else

@@ -23,7 +23,9 @@ export function SchoolPage() {
         const fetchData = async () => {
           try {
             //const schoolResponse = await axios.get<SchoolModelCard>(`/schools/${schoolId}`);
-            const schoolResponse = await axios.get<SchoolModelCard>(`https://retoolapi.dev/PlFJLm/scholinfo/${schoolId}`);
+            //const schoolResponse = await axios.get<SchoolModelCard>(`https://retoolapi.dev/PlFJLm/scholinfo/${schoolId}`);
+            const schoolResponse = await axios.get<SchoolModelCard>(`https://retoolapi.dev/oDaq8M/schoolinfo/${schoolId}`);
+            
             setSchoolCard(schoolResponse.data);
             setLoadingSchoolCard(true);
           } catch (error) {
@@ -45,7 +47,7 @@ export function SchoolPage() {
                 // if (foundObject)
                 //     setListPoints([foundObject,]);
 
-                const schoolResponse = await axios.get<PointsSchoolsOnMap>(`https://retoolapi.dev/zoluMf/schoolpoints/${schoolId}`);
+                const schoolResponse = await axios.get<PointsSchoolsOnMap>(`https://retoolapi.dev/Wpxa0f/schoolcoords/${schoolId}`);
                 setListPoints([schoolResponse.data,]);
                 setMapIsLoading(true);
             } catch (error) {
@@ -79,7 +81,8 @@ export function SchoolPage() {
                         <div className="col-md-12">
                             <div className="mainWrapper">
                                 <div className="imgWrapper">
-                                    <Image className="cardImg" src={schoolCard && schoolCard.photo}/>
+                                    {/* <Image className="cardImg" src={schoolCard && schoolCard.photo}/> */}
+                                    <Image className="cardImg" src={""}/>
                                 </div>
 
                                 <div className="generalDescription">
@@ -90,11 +93,11 @@ export function SchoolPage() {
                                         </span>
                                         <span>
                                             <div className="field">Телефоны:</div>
-                                            <div>{/*{schoolCard && schoolCard.phone}*/}9122334455</div>
+                                            <div>{schoolCard && schoolCard.phone}</div>
                                         </span>
                                         <span>
                                             <div className="field">Адрес электронной почты:</div>
-                                            <div>{/*{schoolCard && schoolCard.email}*/}licey3@eduekb.ru</div>
+                                            <div>{schoolCard && schoolCard.email}</div>
                                         </span>
                                         <span>
                                             <div className="field">Сайт:</div>
@@ -102,15 +105,15 @@ export function SchoolPage() {
                                         </span>
                                         <span>
                                             <div className="field">Дата основания:</div>
-                                            <div>{/*{schoolCard && schoolCard.foundingDate}*/}10.09.1936</div>
+                                            <div>{schoolCard && schoolCard.foundingDate}</div>
                                         </span>
                                         <span>
                                             <div className="field">Классы:</div>
-                                            <div>{/*{schoolCard && schoolCard.classes}*/}с 1 по 11</div>
+                                            <div>{schoolCard && schoolCard.classes}</div>
                                         </span>
                                         <span>
                                             <div className="field">Численность обучающихся:</div>
-                                            <div>{/*{schoolCard && schoolCard.numberStudents}*/}849 человек</div>
+                                            <div>{schoolCard && schoolCard.numberStudents}</div>
                                         </span>
                                     </div>
                                 </div>
@@ -121,35 +124,24 @@ export function SchoolPage() {
                         <div className="schoolDescriptionTwo">
                             <span>
                                 <p className="field">Основное образование:</p>
-                                <p>1. Образовательные программы начальной школы (I ступень обучения).
-                                    2. Образовательные программы основной школы (II ступень обучения).
-                                    3. Образовательные программы средней школы (III ступень обучения)
-                                    {/*{schoolCard && schoolCard.basicEducation}*/}
+                                <p>
+                                    {schoolCard && schoolCard.basicEducation}
                                 </p>
                             </span>
                             <span>
                                 <p className="field">Профили:</p>
-                                <p>Естественнонаучный, технологический, социально-экономический.
-                                    В основной школе лицеисты изучают предметы «Экология растений»,
-                                    «Экология животных», «Экология человека», а также элективные курсы:
-                                    «Флора в интерьере», «Культура здоровья», «Экология парков».
-                                    В старшей школе изучаются «Общая экология», «Социальная экология»,
-                                    «Экологический практикум». Таким образом, с 1 по 11 класс в лицее ярко
-                                    прослеживается экологическая содержательная линия.
-                                    {/*{schoolCard && schoolCard.profiles}*/}
+                                <p>
+                                    {schoolCard && schoolCard.profiles}
                                 </p>
                             </span>
                             <span>
                                 <p className="field">Иностранный язык:</p>
-                                <p>{/*{schoolCard && schoolCard.languages}*/}Английский</p>
+                                <p>{schoolCard && schoolCard.languages}</p>
                             </span>
                             <span>
                                 <p className="field">Дополнительное образование</p>
-                                <p>«Флористика», «Корнепластика», «Изобразительное искусство», «Театр моды»,
-                                    помогающие развивать у обучающихся особую культуру общения человека с природой
-                                    на языке искусства. «Баскетбол», «Футбол», «Хоровое пение», «Вокальная студия» 
-                                    способствуют гармоничному развитию личности, «Научно-практическое краеведение».
-                                    {/*{schoolCard && schoolCard.additionalEducation}*/}
+                                <p>
+                                    {schoolCard && schoolCard.additionalEducation}
                                 </p>
                             </span>
                         </div>

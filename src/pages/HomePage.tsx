@@ -22,8 +22,8 @@ export function HomePage() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            //const homesResponse = await axios.get<HouseModelCard>(`/flats/${homeId}`);
-            const homesResponse = await axios.get<HouseModelCard>(`https://retoolapi.dev/cZVlG9/homeinfo/${homeId}`);
+            const homesResponse = await axios.get<HouseModelCard>(`https://retoolapi.dev/bOu0Zi/houseinfo/${homeId}`);
+            //const homesResponse = await axios.get<HouseModelCard>(`https://retoolapi.dev/cZVlG9/homeinfo/${homeId}`);
             setHomesCard(homesResponse.data);
             setLoadingHomesCard(true);
           } catch (error) {
@@ -45,7 +45,7 @@ export function HomePage() {
                 // if (foundObject)
                 //     setListPoints([foundObject,]);
 
-                const homesResponse = await axios.get<PointsHousesOnMap>(`https://retoolapi.dev/minnlU/homepoints/${homeId}`);
+                const homesResponse = await axios.get<PointsHousesOnMap>(`https://retoolapi.dev/zNOy5M/houseinfocord/${homeId}`);
                 setListPoints([homesResponse.data,]);
                 setMapIsLoading(true);
             } catch (error) {
@@ -66,6 +66,11 @@ export function HomePage() {
         }).format(roundedNumber);
     };
 
+    const formattedNumberYear = (number: any) => {
+        const roundedNumber = Math.round(parseFloat(number.replace(',', '.')));
+        return roundedNumber;
+    };
+
     return (
         <div>
             <Header />
@@ -80,7 +85,7 @@ export function HomePage() {
                     <Row>
                         <Col className="mainWrapper">
                             <div className="imgWrapper">
-                                <Image className="cardImg" src={homesCard && homesCard.photo}/>
+                                <Image className="cardImg" src={""}/>
                             </div>
                             {/*<div style={{position: "absolute", margin: "10px"}}>*/}
                             {/*    <FavouriteButton houseId={homesCard && homesCard.id} />*/}
@@ -88,8 +93,7 @@ export function HomePage() {
                         </Col>
                         <Col className="headerInfoBlock">
                             {/* <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной квартиры, {homesCard && homesCard.totalSquare} кв.м., {homesCard && homesCard.address}</div> */}
-                            <div className="titleSell">Продажа {homesCard && homesCard.rooms}-комнатной
-                                квартиры, {homesCard && homesCard.square} кв.м., {homesCard && homesCard.address}</div>
+                            <div className="titleSell">Продажа квартиры на {homesCard && homesCard.floor} этаже, г. Екатеринбург, ул. {homesCard && homesCard.street}, {homesCard && homesCard.house_number}</div>
                             <div className="price">{homesCard && formattedNumber(homesCard.price)}</div>
                             {/*Школы рядом:*/}
                             {/*<div className="nearbySchools">*/}
@@ -113,47 +117,48 @@ export function HomePage() {
                                     <p>Тип жилья</p>
                                     <p>{/*{homesCard && homesCard.housType}*/}Новостройка</p>
                                 </span>
-                                <span>
+                                {/* <span>
                                     <p>Общая площадь</p>
-                                    {/* <p>{homesCard && homesCard.totalSquare} кв.м</p> */}
+                                    <p>{homesCard && homesCard.totalSquare} кв.м</p>
                                     <p>{homesCard && homesCard.square} кв.м</p>
-                                </span>
-                                <span>
+                                </span> */}
+                                {/* <span>
                                     <p>Этаж/этажность</p>
                                     <p>{homesCard && homesCard.currentFloor}/{homesCard && homesCard.totalFloors}</p>
-                                </span>
+                                </span> */}
                                 <span>
+                                    <p>Этаж</p>
+                                    <p>{homesCard && homesCard.floor}</p>
+                                </span>
+                                {/* <span>
                                     <p>Количество комнат</p>
                                     <p>{homesCard && homesCard.rooms}</p>
-                                </span>
-                                <span>
+                                </span> */}
+                                {/* <span>
                                     <p>Жилая площадь</p>
-                                    <p>{/*{homesCard && homesCard.livingSquare}*/}100 кв.м.</p>
-                                </span>
+                                    <p>{homesCard && homesCard.livingSquare} 100 кв.м.</p>
+                                </span> */}
                             </div>
                             <p>ДОМ</p>
                             <div className="houseDescription">
                                 <span>
                                     <p>Жилой комплекс</p>
-                                    <p>{/*{homesCard && homesCard.housType}*/}Новостройка</p>
+                                    <p>{homesCard && homesCard.Property_Type}</p>
                                 </span>
                                 <span>
                                     <p>Материал стен</p>
-                                    <p>{/*{homesCard && homesCard.wallMaterial}*/}Кирпич</p>
+                                    <p>{homesCard && homesCard.House_Type}</p>
                                 </span>
                                 <span>
                                     <p>Год постройки</p>
-                                    <p>{/*{homesCard && homesCard.yearConstruction}*/}2008</p>
+                                    <p>{homesCard && formattedNumberYear(homesCard.Year_of_Construction)}</p>
                                 </span>
                             </div>
                         </Col>
                         <Col className="descriptionObject">
                             <p className="description">Описание объекта</p>
                             <p className="descriptionObjectText">
-                                «Флористика», «Корнепластика», «Изобразительное искусство», «Театр моды»,
-                                помогающие развивать у обучающихся особую культуру общения человека с природой
-                                на языке искусства. «Баскетбол», «Футбол», «Хоровое пение», «Вокальная студия» 
-                                способствуют гармоничному развитию личности, «Научно-практическое краеведение».
+                                Описание отсутствует.
                                 {/*{homesCard && homesCard.description}*/}
                             </p>
                         </Col>

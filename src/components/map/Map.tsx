@@ -38,20 +38,20 @@ const baseSchoolIcon = new Icon({
     iconSize: customIconSize
 });
 
-enum TypeSchool {
-    SCHOOL = 0,
-    LYCEUM = 1,
-    GYMNASIUM = 2,
-    TOP = 3,
-    INACTIVE = 4
-}
-
 // enum TypeSchool {
-//     TOP5,
-//     TOP20,
-//     TOP56,
-//     BASE
+//     SCHOOL = 0,
+//     LYCEUM = 1,
+//     GYMNASIUM = 2,
+//     TOP = 3,
+//     INACTIVE = 4
 // }
+
+enum TypeSchool {
+    TOP5 = 5,
+    TOP20 = 20,
+    TOP56 = 56,
+    BASE = 0
+}
 
 // function getMarkerIcon(typeSchool: TypeSchool) {
 //     //FIXME: переделать на switch, почему-то с ним неправильно приводит типы
@@ -74,13 +74,13 @@ enum TypePoint {
 
 function getMarkerIcon(typeSchool: TypeSchool) {
     //FIXME: переделать на switch, почему-то с ним неправильно приводит типы
-    if (typeSchool == TypeSchool.SCHOOL)
+    if (typeSchool == TypeSchool.BASE)
         return baseSchoolIcon;
-    if (typeSchool == TypeSchool.LYCEUM)
+    if (typeSchool == TypeSchool.TOP5)
         return top5SchoolIcon;
-    if (typeSchool == TypeSchool.TOP)
+    if (typeSchool == TypeSchool.TOP20)
         return top20SchoolIcon;
-    if (typeSchool == TypeSchool.INACTIVE)
+    if (typeSchool == TypeSchool.TOP56)
         return top56SchoolIcon;
     return baseSchoolIcon;
 };
@@ -92,40 +92,40 @@ export function Map({ isMapPage = true, points }: { isMapPage?: boolean;
     const handleClose = () => { 
         setShowCard(false); 
         setCurrentTypePoint(TypePoint.NONE);
-        setHomesCard([]);
-        //setHomesCard(undefined);
+        //setHomesCard([]);
+        setHomesCard(undefined);
         setScholCard(undefined);
      };
     const [loadingHomesCard, setLoadingHomesCard] = useState(false);
-    const [homesCard, setHomesCard] = useState<HouseModelCard[]>([]);
-    //const [homesCard, setHomesCard] = useState<HouseModelCard>();
+    //const [homesCard, setHomesCard] = useState<HouseModelCard[]>([]);
+    const [homesCard, setHomesCard] = useState<HouseModelCard>();
     const [loadingScholsCard, setLoadingScholsCard] = useState(false);
     const [scholCard, setScholCard] = useState<SchoolModelCard>();
     const [currentTypePoint, setCurrentTypePoint] = useState<TypePoint>();
 
-    // const handleHomePointClick = (pointId: number) => {
-    //     axios.get(`/flats/${pointId}`)
-    //     .then(response => {
-    //         setHomesCard(response.data);
-    //         setLoadingHomesCard(true);
-    //     })
-    //     .catch(error => {
-    //         console.error(error);
-    //     });
-    // };
-    const handleHomePointClick = (pointId: number[]) => {
-        axios.get(`https://retoolapi.dev/cZVlG9/homeinfo?_page=1&_limit=4`)
-            .then(response => {
-                if (!Array.isArray(response.data))
-                    setHomesCard([response.data]);
-                else
-                    setHomesCard(response.data);
-                setLoadingHomesCard(true);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    const handleHomePointClick = (pointId: number) => {
+        axios.get(`https://retoolapi.dev/bOu0Zi/houseinfo/${pointId}`)
+        .then(response => {
+            setHomesCard(response.data);
+            setLoadingHomesCard(true);
+        })
+        .catch(error => {
+            console.error(error);
+        });
     };
+    // const handleHomePointClick = (pointId: number[]) => {
+    //     axios.get(`https://retoolapi.dev/cZVlG9/homeinfo?_page=1&_limit=4`)
+    //         .then(response => {
+    //             if (!Array.isArray(response.data))
+    //                 setHomesCard([response.data]);
+    //             else
+    //                 setHomesCard(response.data);
+    //             setLoadingHomesCard(true);
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         });
+    // };
 
     const handleSchoolPointClick = (pointId: number) => {
         //axios.get(`/schools/${pointId}`)
@@ -165,12 +165,12 @@ export function Map({ isMapPage = true, points }: { isMapPage?: boolean;
                             </Container>
                         ) : (
                             <div className="cardWrapper">
-                                {homesCard.map(homeCard => (
+                                {/* {homesCard.map(homeCard => (
                                     <HouseCardLarge key={homeCard.id} card={homeCard}/>
-                                ))}
-                                {/* <div className="schoolCardContainer">
+                                ))} */}
+                                <div className="schoolCardContainer">
                                     {homesCard && <HouseCardLarge card={homesCard}/>}
-                                </div> */}
+                                </div>
                             </div>
                         )
                     ) : (
@@ -200,7 +200,7 @@ export function Map({ isMapPage = true, points }: { isMapPage?: boolean;
                                 if (isMapPage)
                                     setShowCard(true);
                                 setCurrentTypePoint(TypePoint.HOME);
-                                handleHomePointClick([1,2,3]);
+                                handleHomePointClick(point.id);
                             },
                             }}></Marker>
                     ))}
@@ -211,7 +211,7 @@ export function Map({ isMapPage = true, points }: { isMapPage?: boolean;
                                 if (isMapPage)
                                     setShowCard(true);
                                 setCurrentTypePoint(TypePoint.SCHOOL);
-                                handleSchoolPointClick(point.schoolId);
+                                handleSchoolPointClick(point.id);
                             },
                             }}></Marker>
                     ))}

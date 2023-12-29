@@ -28,13 +28,13 @@ export function HouseCardSmall({ card }: { card: HouseModelCard }) {
     return (
         <Card className="houseCardSmall" onClick={handleHomeCardClick(card.id)}>
             <div className="fixblock">
-                <Card.Img variant="top" className="imageHouseCard" src={card.photo} />
+                <Card.Img variant="top" className="imageHouseCard" src={""} />
             </div>
             <Card.Body className="cardBody">
                 <div className="titleHouseCardBlock">
                     <div className="titleHouseCardText">
                         {/* {card.rooms}-ком. квартира, {card.totalSquare} кв.м. */}
-                        {card.rooms}-ком. квартира, {card.square} кв.м.
+                        Продажа квартиры на {card.floor} этаже
                     </div>
                     <div className="priceHouse">
                         {formattedNumber(card.price)}
@@ -44,7 +44,7 @@ export function HouseCardSmall({ card }: { card: HouseModelCard }) {
                     </div>
                 </div>
                 <div className="adressHouseCard">
-                    {card.address}
+                    г. Екатеринбург, ул. {card.street}, {card.house_number}
                 </div>
                 <div className="priceHouseSmall">
                     {formattedNumber(card.price)};

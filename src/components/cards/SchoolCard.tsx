@@ -12,7 +12,8 @@ export function SchoolCard({ card }: { card: SchoolModelCard }) {
         <Card className="SchoolCard"
               onClick={handleSchoolCardClick(card.id)}>
             <div className="cardImgWrapperSchool">
-                <Card.Img variant="top" className="cardImg" src={card.photo}/>
+                {/* <Card.Img variant="top" className="cardImg" src={card.photo}/> */}
+                <Card.Img variant="top" className="cardImg" src={""}/>
             </div>
                 <Card.Body>
                     <div className="schoolName">
